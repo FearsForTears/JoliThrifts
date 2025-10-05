@@ -35,6 +35,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       transition:transform 0.3s ease;
+      cursor: pointer;
     }
     .logo:hover {transform:scale(1.1);}
     nav {display:flex; align-items:center;}
@@ -45,6 +46,12 @@
       transition:all .3s ease;
     }
     nav ul li a:hover {color:#FFD700; transform:translateY(-2px);}
+    nav ul li a.active {
+      color:#FFD700;
+    }
+    nav ul li a.active::before, nav ul li a.active::after {
+      transform:scaleX(1);
+    }
     nav ul li a::before,
     nav ul li a::after {
       content:""; position:absolute; left:0; right:0; height:2px; background:#FFD700; transform:scaleX(0);
@@ -183,13 +190,13 @@
 <header>
   <div class="container">
     <div class="header-content">
-      <div class="logo">JoliThrifts</div>
+      <div class="logo" onclick="window.location.href='index.html'">JoliThrifts</div>
       <nav class="nav-menu" id="nav-menu">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="products.html">Products</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
           <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
         </ul>
       </nav>
@@ -214,7 +221,7 @@
     <div class="contact-card">
       <i class="fab fa-whatsapp"></i>
       <h3>WhatsApp</h3>
-      <a href="https://wa.me/+8616671705298?text=Hi%20I'm%20contacting%20you%20from%20JoliThrifts" target="_blank">Chat on WhatsApp</a>
+      <a href="https://wa.me/+8616671705298?text=Hi%20I'm%20contacting%20you%20from%20JoliThrifts.com" target="_blank">Chat on WhatsApp</a>
     </div>
   </div>
   <div class="contact-form">
@@ -265,7 +272,7 @@
     const message=document.getElementById('message').value;
     if(name && email && message){
       const whatsappMessage=`Hi, I'm ${name} (${email}). ${message}`;
-      window.open(`https://wa.me/+12167808372?text=${encodeURIComponent(whatsappMessage)}`,'_blank');
+      window.open(`https://wa.me/+8616671705298?text=${encodeURIComponent(whatsappMessage)}`,'_blank');
       alert('Your message has been sent via WhatsApp!');
       document.getElementById('name').value='';
       document.getElementById('email').value='';

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoliThrifts - Checkout</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif;}
+    body {background:#f8f9fa; color:#333; line-height:1.6; overflow-x:hidden;}
+    .container {max-width:1200px; margin:0 auto; padding:0 15px;}
+    header {
+      background: linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%);
+      color:white;
+      padding:15px 20px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.15);
+      border-radius:20px;
+      margin:15px;
+      position:sticky;
+      top:15px;
+      z-index:1000;
+      transition:transform 0.3s ease, background 0.3s ease;
+    }
+    header.scrolled {
+      transform:scale(0.98);
+      background:linear-gradient(135deg,#5A3AB0 0%, #7A4FF0 100%);
+    }
+    .header-content {display:flex; justify-content:space-between; align-items:center;}
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size:26px; 
+      font-weight:700;
+      background: linear-gradient(45deg, #FFD700, #FF8C00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition:transform 0.3s ease;
+    }
+    .logo:hover {transform:scale(1.1);}
+    nav ul {display:flex; list-style:none;}
+    nav ul li {margin-left:25px; position:relative;}
+    nav ul li a {
+      color:white; text-decoration:none; font-weight:500; padding:6px 0; display:inline-block;
+      transition:all .3s ease;
+    }
+    nav ul li a:hover {color:#FFD700; transform:translateY(-2px);}
+    nav ul li a::before,
+    nav ul li a::after {
+      content:""; position:absolute; left:0; right:0; height:2px; background:#FFD700; transform:scaleX(0);
+      transition:transform .3s ease;
+    }
+    nav ul li a::before {top:0;}
+    nav ul li a::after {bottom:0;}
+    nav ul li a:hover::before,nav ul li a:hover::after {transform:scaleX(1);}
+    .cart-icon {position:relative; cursor:pointer;}
+    .cart-count {
+      position:absolute; top:-8px; right:-10px;
+      background:#FF4757; color:white; font-size:12px;
+      border-radius:50%; width:18px; height:18px;
+      display:flex; align-items:center; justify-content:center;
+      transition:transform 0.3s ease;
+    }
+    .cart-icon:hover .cart-count {transform:scale(1.2);}
+    .hamburger {display:none; font-size:24px; color:white; cursor:pointer; transition:transform 0.3s ease;}
+    .hamburger:hover {transform:rotate(90deg);}
+    .nav-menu {display:block;}
+    .nav-menu ul {flex-direction:row;}
+    @media(max-width:768px){
+      header {margin:10px;}
+      .hamburger {display:block;}
+      nav {display:none;}
+      .nav-menu {display:none; position:absolute; top:100%; left:0; right:0;
+        background:linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%); border-radius:0 0 15px 15px;}
+      .nav-menu.active {display:block;}
+      .nav-menu ul {flex-direction:column; padding:15px;}
+      .nav-menu ul li {margin:10px 0; text-align:center;}
+    }
+    @media(max-width:576px){
+      .logo {font-size:22px;}
+      .hamburger {font-size:20px;}
+    }
+    .section-title {
+      text-align:center; margin:40px 0 30px; font-size:2rem; color:#6B46C1;
+      position:relative; animation:fadeInUp 1s ease;
+    }
+    .checkout-section {padding:60px 0;}
+    .checkout-section p {text-align:center; max-width:800px; margin:0 auto 40px; color:#555;}
+    .checkout-form {
+      max-width:600px; margin:0 auto; background:white; border-radius:12px;
+      padding:30px; box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    }
+    .checkout-form h2 {text-align:center; margin-bottom:20px; color:#6B46C1;}
+    .form-group {margin-bottom:20px;}
+    .form-group label {display:block; margin-bottom:5px; color:#333;}
+    .form-group input {
+      width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; font-size:1rem;
+      transition:border-color .3s ease;
+    }
+    .form-group input:focus {border-color:#6B46C1; outline:none;}
+    .cart-items {
+      background:#fff; border-radius:15px; padding:20px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08); max-width:800px; margin:0 auto 30px;
+      animation:fadeIn 1s ease;
+    }
+    .cart-item {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:15px 0; border-bottom:1px solid #eee;
+    }
+    .cart-item img {width:70px; height:70px; object-fit:cover; border-radius:8px;}
+    .item-details {flex-grow:1; margin-left:15px; text-align:left;}
+    .item-details h4 {font-size:1.1rem; margin-bottom:5px;}
+    .item-details .item-description {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 5px;
+      font-style: italic;
+    }
+    .item-details p {color:#6B46C1; font-weight:bold;}
+    .item-details .secondary-price {font-size: 0.9rem; color: #666;}
+    .cart-total {font-size:1.3rem; font-weight:bold; text-align:right; margin:20px 0;}
+    .cart-total .secondary-price {font-size: 1rem; color: #666; margin-top: 5px;}
+    .submit-button {
+      width:100%; background:#6B46C1; color:white; border:none; padding:12px;
+      border-radius:5px; font-weight:bold; font-size:1.1rem; cursor:pointer;
+      transition:.3s ease;
+    }
+    .submit-button:hover {background:#FFD700; transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+    .submit-button i {margin-right:8px;}
+    .social-cta {
+      background:linear-gradient(135deg,#6B46C1 0%,#9F7AEA 100%);
+      color:white; text-align:center; padding:60px 0; margin:40px 15px;
+      border-radius:20px;
+    }
+    .social-cta h2 {font-size:2.2rem; margin-bottom:20px;}
+    .social-cta p {font-size:1.2rem; max-width:700px; margin:0 auto 30px;}
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .social-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #25D366;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .social-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      background: #128C7E;
+    }
+    .social-button i {
+      margin-right: 8px;
+      font-size: 1.2rem;
+    }
+    footer {background:#333; color:white; padding:40px 0 20px;}
+    .footer-content {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; margin-bottom:30px;
+    }
+    .footer-section h3 {font-size:1.2rem; margin-bottom:15px; color:#FFD700;}
+    .footer-section a,.footer-section p {
+      color:#ddd; text-decoration:none; margin-bottom:10px; display:block; transition:color 0.3s ease;
+    }
+    .footer-section a:hover {color:#6B46C1;}
+    .social-icons a {margin-right:15px; font-size:1.5rem; color:#ddd; transition:transform 0.3s ease, color 0.3s ease;}
+    .social-icons a:hover {color:#6B46C1; transform:scale(1.2);}
+    .footer-bottom {text-align:center; padding-top:20px; border-top:1px solid #444;}
+    @media (max-width: 768px) {
+      .social-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .social-button {
+        width: 220px;
+      }
+    }
+    @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
+    @keyframes fadeInUp {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">JoliThrifts</div>
+      <nav class="nav-menu" id="nav-menu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
+        </ul>
+      </nav>
+      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    </div>
+  </div>
+</header>
+<section class="checkout-section container">
+  <h2 class="section-title">Checkout</h2>
+  <p>Review your selected products, enter your details, and complete your order via WhatsApp.</p>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-total" id="cartTotal">
+    <div class="primary-total">Total: $0.00</div>
+    <div class="secondary-total"></div>
+  </div>
+  <div class="checkout-form">
+    <h2>Your Details</h2>
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Your Full Name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Your Email" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="Your Phone Number" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Shipping Address</label>
+      <input type="text" id="address" placeholder="Your Shipping Address" required>
+    </div>
+    <button class="submit-button" onclick="completeCheckout()">
+      <i class="fab fa-whatsapp"></i> Complete Order via WhatsApp
+    </button>
+  </div>
+</section>
+<section class="social-cta">
+  <div class="container">
+    <h2>Need Assistance?</h2>
+    <p>Have questions about your order? Reach out to us on WhatsApp for quick support.</p>
+    <div class="social-buttons">
+      <a href="https://wa.me/+12167808372?text=Hi%20I'm%20contacting%20you%20from%20JoliThrifts%20about%20my%20order" target="_blank" class="social-button">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section"><h3>About Us</h3><p>We offer quality products with direct WhatsApp ordering for a seamless shopping experience.</p></div>
+      <div class="footer-section"><h3>Quick Links</h3><a href="index.html">Home</a><a href="products.html">Products</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+      <div class="footer-section"><h3>Contact Us</h3><p>Email: jolithrifts876@gmail.com</p><p>Phone: +233 20 865 2502</p><div class="social-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 JoliThrifts. All rights reserved.</p></div>
+  </div>
+</footer>
+<script>
+  const productDescriptions = {
+    "Wireless Earbuds": "High-quality wireless earbuds with noise cancellation and 24-hour battery life.",
+    "Bluetooth Speaker": "Portable Bluetooth speaker with 360° sound and waterproof design.",
+    "Smartphone": "Premium smartphone with advanced features and excellent performance.",
+    "Laptop": "Thin and lightweight laptop with long battery life and powerful performance.",
+    "Headphones": "Comfortable over-ear headphones with crystal clear audio quality.",
+    "Smartwatch": "Feature-rich smartwatch with health monitoring and notification support.",
+    "DSLR Camera": "Professional DSLR camera with multiple lenses and 4K video capability.",
+    "Drone": "4K camera drone with GPS positioning and obstacle avoidance technology.",
+    "Aurelia's Black Push-Up Bra": "✨AURELIA✨ Black Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
+    "Aurelia's Skin Color Push-Up Bra": "✨AURELIA✨ Skin Color Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
+    "Aurelia's Burgundy Red Push-Up Bra": "✨AURELIA✨ Burgundy Red Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
+    "Aurelia's Purple Push-Up Bra": "✨AURELIA✨ Purple Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort."
+  };
+
+  const phonePricing = {
+    "iPhone 12": {
+      "128": {
+        "80-84": 250.00,
+        "85-89": 260.00,
+        "90+": 285.00
+      }
+    },
+    "iPhone 12 Pro": {
+      "128": {
+        "80-84": 360.00,
+        "85-89": 374.50,
+        "90+": 404.50
+      }
+    },
+    "iPhone 12 Pro Max": {
+      "128": {
+        "80-84": 405.00,
+        "85-89": 419.00,
+        "90+": 447.50
+      }
+    },
+    "iPhone 13": {
+      "128": {
+        "80-84": 345.00,
+        "85-89": 359.50,
+        "90+": 387.00
+      }
+    },
+    "iPhone 14": {
+      "128": {
+        "80-84": 414.00,
+        "85-89": 430.00,
+        "90+": 464.0
+      }
+    },
+    "iPhone 14 Pro": {
+      "256": {
+        "80-84": 654.00,
+        "85-89": 671.00,
+        "90+": 701.00
+      }
+    },
+    "iPhone 14 Pro Max": {
+      "128": {
+        "80-84": 701.00,
+        "85-89": 714.00,
+        "90+": 745.50
+      },
+      "256": {
+        "80-84": 731.00,
+        "85-89": 748.50,
+        "90+": 774.00
+      }
+    },
+    "iPhone 15": {
+      "128": {
+        "80-84": 593.40,
+        "85-89": 612.30,
+        "90+": 636.30
+      }
+    },
+    "iPhone 15 Pro": {
+      "128": {
+        "80-84": 746.00,
+        "85-89": 756.80,
+        "90+": 782.50
+      },
+      "256": {
+        "80-84": 773.90,
+        "85-89": 789.45,
+        "90+": 816.90
+      }
+    },
+    "iPhone 15 Pro Max": {
+      "256": {
+        "80-84": 860.00,
+        "85-89": 877.20,
+        "90+": 903.00
+      },
+      "512": {
+        "80-84": 963.10,
+        "85-89": 980.30,
+        "90+": 988.90
+      }
+    },
+    "iPhone 16 Pro": {
+      "256": {
+        "80-84": 937.35,
+        "85-89": 946.00,
+        "90+": 1006.10
+      }
+    },
+    "iPhone 16 Pro Max": {
+      "256": {
+        "80-84": 946.00,
+        "85-89": 963.10,
+        "90+": 997.50
+      },
+      "512": {
+        "80-84": 1264.00,
+        "85-89": 1307.00,
+        "90+": 1310.00
+      }
+    }
+  };
+
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let exchangeRates = JSON.parse(localStorage.getItem('exchangeRates')) || {
+    USD: 1,
+    GHS: 12.5,
+    NGN: 1500,
+    LRD: 190
+  };
+  let selectedCurrency = localStorage.getItem('preferredCurrency') || 'USD';
+
+  function formatCurrency(amount, currency) {
+    const formatters = {
+      USD: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }),
+      GHS: new Intl.NumberFormat('en-GH', { style: 'currency', currency: 'GHS' }),
+      NGN: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }),
+      LRD: new Intl.NumberFormat('en-LR', { style: 'currency', currency: 'LRD' })
+    };
+    return formatters[currency].format(amount);
+  }
+
+  function updateCartCount() {
+    const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+    document.querySelector('.cart-count').textContent = totalItems;
+  }
+
+  function renderCart() {
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const primaryTotal = cartTotal.querySelector('.primary-total');
+    const secondaryTotal = cartTotal.querySelector('.secondary-total');
+
+    cartItems.innerHTML = '';
+
+    if (cart.length === 0) {
+      cartItems.innerHTML = '<p>Your cart is empty. Please add products from the products page.</p>';
+      primaryTotal.textContent = 'Total: $0.00';
+      secondaryTotal.textContent = '';
+      return;
+    }
+
+    let totalUSD = 0;
+    cart.forEach((item, index) => {
+      const quantity = item.quantity || 1;
+      const itemTotalUSD = item.price * quantity;
+      totalUSD += itemTotalUSD;
+
+      const convertedPrice = item.price * exchangeRates[selectedCurrency];
+      const convertedTotal = itemTotalUSD * exchangeRates[selectedCurrency];
+
+      const description = productDescriptions[item.name] || "Premium quality product.";
+
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+
+      let configDetails = "";
+      if (item.config) {
+        if (item.name.includes("iPhone") || item.name.includes("Smartphone")) {
+          configDetails = `Configuration: ${item.config.gig}${item.config.gig === '1TB' ? '' : 'GB'}, Battery: ${item.config.battery}`;
+        } else if (item.name.includes("Aurelia's")) {
+          configDetails = `Size: ${item.config.size}`;
+        }
+      }
+
+      div.innerHTML = `
+        <img src="${item.image || 'https://via.placeholder.com/70'}" alt="${item.name}">
+        <div class="item-details">
+          <h4>${item.name}</h4>
+          <div class="item-description">${description}</div>
+          ${configDetails ? `<p>${configDetails}</p>` : ''}
+          <p>${formatCurrency(convertedPrice, selectedCurrency)} each</p>
+          <div class="secondary-price">${formatCurrency(item.price, 'USD')} each</div>
+          <p>Quantity: ${quantity}</p>
+          <p>Item Total: ${formatCurrency(convertedTotal, selectedCurrency)}</p>
+          <div class="secondary-price">${formatCurrency(itemTotalUSD, 'USD')}</div>
+        </div>
+      `;
+      cartItems.appendChild(div);
+    });
+
+    const totalConverted = totalUSD * exchangeRates[selectedCurrency];
+
+    if (selectedCurrency !== 'USD') {
+      primaryTotal.textContent = `Total: ${formatCurrency(totalConverted, selectedCurrency)}`;
+      secondaryTotal.textContent = `${formatCurrency(totalUSD, 'USD')}`;
+    } else {
+      primaryTotal.textContent = `Total: ${formatCurrency(totalUSD, 'USD')}`;
+      secondaryTotal.textContent = '';
+    }
+  }
+
+  function completeCheckout() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+
+    if (!name || !email || !phone || !address || cart.length === 0) {
+      alert('Please fill in all fields and ensure your cart is not empty.');
+      return;
+    }
+
+    let message = `Hello! I would like to place an order:%0A%0A`;
+    message += `Customer Details:%0A`;
+    message += `Name: ${name}%0A`;
+    message += `Email: ${email}%0A`;
+    message += `Phone: ${phone}%0A`;
+    message += `Address: ${address}%0A%0A`;
+    message += `Order Details:%0A`;
+
+    let totalUSD = 0;
+    cart.forEach((item, i) => {
+      const quantity = item.quantity || 1;
+      const itemTotal = item.price * quantity;
+      totalUSD += itemTotal;
+
+      const description = productDescriptions[item.name] || "Premium quality product.";
+
+      let configDetails = "";
+      if (item.config) {
+        if (item.name.includes("iPhone") || item.name.includes("Smartphone")) {
+          configDetails = `%0A   Configuration: ${item.config.gig}${item.config.gig === '1TB' ? '' : 'GB'}, Battery: ${item.config.battery}`;
+        } else if (item.name.includes("Aurelia's")) {
+          configDetails = `%0A   Size: ${item.config.size}`;
+        }
+      }
+
+      message += `${i+1}. ${item.name} (Qty: ${quantity}) - $${itemTotal.toFixed(2)}${configDetails}%0A   ${description}%0A%0A`;
+    });
+
+    const totalConverted = totalUSD * exchangeRates[selectedCurrency];
+    message += `Total: ${formatCurrency(totalConverted, selectedCurrency)} (${formatCurrency(totalUSD, 'USD')})`;
+    message += "%0A%0AI would like to proceed with this order.";
+
+    window.open(`https://wa.me/+12167808372?text=${encodeURIComponent(message)}`, '_blank');
+
+    alert('Your order has been sent via WhatsApp!');
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('address').value = '';
+    updateCartCount();
+    renderCart();
+  }
+
+  updateCartCount();
+  renderCart();
+
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  window.addEventListener('scroll', () => {
+    document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+  });
+</script>
+</body>
+</html>
