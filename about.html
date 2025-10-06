@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JoliThrifts - About Us</title>
+  <link rel="icon" type="image/x-icon" href="images/clogo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -26,17 +27,52 @@
     }
     header.scrolled {transform:scale(0.98); background:linear-gradient(135deg,#5A3AB0 0%, #7A4FF0 100%);}
     .header-content {display:flex; justify-content:space-between; align-items:center;}
-    .logo {
+    
+    /* Logo Container */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-img img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .logo-text {
       font-family: 'Playfair Display', serif;
-      font-size:26px; 
-      font-weight:700;
+      font-size: 26px;
+      font-weight: 700;
       background: linear-gradient(45deg, #FFD700, #FF8C00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      transition:transform 0.3s ease;
-      cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    .logo:hover {transform:scale(1.1);}
+    
+    .logo-container:hover .logo-text {
+      transform: scale(1.05);
+    }
 
     /* Nav */
     nav ul {display:flex; list-style:none;}
@@ -76,12 +112,46 @@
       .nav-menu.active {display:block;}
       .nav-menu ul {flex-direction:column; padding:15px;}
       .nav-menu ul li {margin:10px 0; text-align:center;}
+      
+      .logo-text {
+        font-size: 22px;
+      }
+      .logo-img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .logo-text {
+        display: none;
+      }
     }
 
     /* About Section */
     .about-section {padding:60px 0; text-align:center;}
     .about-section h1 {font-size:2.5rem; margin-bottom:20px; color:#6B46C1; animation:fadeInUp 1s ease;}
     .about-section p {font-size:1.2rem; max-width:800px; margin:0 auto 30px; color:#555; animation:fadeIn 1s ease;}
+    
+    .about-logo {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 30px;
+      border-radius: 15px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    
+    .about-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .mission-vision {display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; margin-top:40px;}
     .mission-vision-card {
       background:white; border-radius:12px; padding:20px;
@@ -112,6 +182,26 @@
     }
     .social-cta h2 {font-size:2.2rem; margin-bottom:20px;}
     .social-cta p {font-size:1.2rem; max-width:700px; margin:0 auto 30px;}
+    
+    .social-cta-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .social-cta-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .social-buttons {
       display: flex;
       justify-content: center;
@@ -148,6 +238,26 @@
     .footer-section h3 {font-size:1.2rem; margin-bottom:15px; color:#FFD700;}
     .footer-section a,.footer-section p {color:#ddd; margin-bottom:10px; display:block; text-decoration:none;}
     .footer-section a:hover {color:#6B46C1;}
+    
+    .footer-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 0 20px 0;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .footer-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .social-icons a {margin-right:15px; font-size:1.5rem; color:#ddd; transition:transform 0.3s ease, color 0.3s ease;}
     .social-icons a:hover {color:#6B46C1; transform:scale(1.2);}
     .footer-bottom {text-align:center; padding-top:20px; border-top:1px solid #444;}
@@ -171,7 +281,12 @@
 <header>
   <div class="container">
     <div class="header-content">
-      <div class="logo" onclick="window.location.href='index.html'">JoliThrifts</div>
+      <div class="logo-container" onclick="window.location.href='index.html'">
+        <div class="logo-img">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
+        <div class="logo-text">JoliThrifts</div>
+      </div>
       <nav class="nav-menu" id="nav-menu">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -187,28 +302,38 @@
 </header>
 
 <section class="about-section container">
+  <div class="about-logo">
+    <img src="images/clogo.png" alt="JoliThrifts Logo">
+  </div>
   <h1>About JoliThrifts</h1>
-  <p>JoliThrifts is your one-stop online store for quality products, offering a seamless shopping experience through direct WhatsApp ordering...</p>
-  <p>Our platform combines modern e-commerce with the personal touch of WhatsApp communication...</p>
+  <p>JoliThrifts is your one-stop online store for quality products, offering a seamless shopping experience through direct WhatsApp ordering. We're passionate about connecting customers with the products they love through a modern, convenient shopping platform.</p>
+  <p>Our platform combines modern e-commerce with the personal touch of WhatsApp communication, creating a unique shopping experience that's both efficient and personal.</p>
   <div class="mission-vision">
     <div class="mission-vision-card">
       <h3>Our Mission</h3>
-      <p>To provide an innovative and convenient shopping experience by integrating e-commerce with direct WhatsApp communication.</p>
+      <p>To provide an innovative and convenient shopping experience by integrating e-commerce with direct WhatsApp communication, making quality products accessible to everyone with just a few taps.</p>
     </div>
     <div class="mission-vision-card">
       <h3>Our Vision</h3>
-      <p>To become the leading platform for WhatsApp-based shopping, offering a diverse range of products and exceptional customer service worldwide.</p>
+      <p>To become the leading platform for WhatsApp-based shopping, offering a diverse range of products and exceptional customer service worldwide while maintaining the personal touch that sets us apart.</p>
+    </div>
+    <div class="mission-vision-card">
+      <h3>Our Values</h3>
+      <p>We believe in quality, transparency, and customer satisfaction. Every product we offer is carefully selected, and every customer interaction is handled with care and professionalism.</p>
     </div>
   </div>
 </section>
 
 <section class="social-cta">
   <div class="container">
+    <div class="social-cta-logo">
+      <img src="images/clogo.png" alt="JoliThrifts Logo">
+    </div>
     <h2>Have Questions?</h2>
-    <p>Reach out to us directly on WhatsApp...</p>
+    <p>Reach out to us directly on WhatsApp for personalized assistance with any inquiries about our products or services.</p>
     <div class="social-buttons">
       <a href="https://wa.me/+8616671705298?text=Hi, I am interested in learning more about JoliThrifts" class="social-button whatsapp-button" target="_blank">
-        <i class="fab fa-whatsapp"></i> WhatsApp
+        <i class="fab fa-whatsapp"></i> Contact Us on WhatsApp
       </a>
     </div>
   </div>
@@ -217,10 +342,30 @@
 <footer>
   <div class="container">
     <div class="footer-content">
-      <div class="footer-section"><h3>About Us</h3><p>We offer quality products with direct WhatsApp ordering...</p></div>
-      <div class="footer-section"><h3>Quick Links</h3><a href="index.html">Home</a><a href="products.html">Products</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
-      <div class="footer-section"><h3>Contact Us</h3><p>Email: jolithrifts876@gmail.com</p><p>Phone: +8616671705298</p>
-        <div class="social-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div>
+      <div class="footer-section">
+        <div class="footer-logo">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
+        <h3>About Us</h3>
+        <p>We offer quality products with direct WhatsApp ordering for a seamless shopping experience that combines convenience with personal service.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: jolithrifts876@gmail.com</p>
+        <p>Phone: +8616671705298</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
       </div>
     </div>
     <div class="footer-bottom"><p>&copy; 2025 JoliThrifts. All rights reserved.</p></div>

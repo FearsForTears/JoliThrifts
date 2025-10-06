@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JoliThrifts - Social Shopping</title>
+  <link rel="icon" type="image/x-icon" href="images/clogo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -25,17 +26,50 @@
     .header-content {
       display: flex; justify-content: space-between; align-items: center;
     }
-    .logo {
+    
+    /* Logo Container */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-img img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .logo-text {
       font-family: 'Playfair Display', serif;
-      font-size:26px; 
-      font-weight:700;
+      font-size: 26px;
+      font-weight: 700;
       background: linear-gradient(45deg, #FFD700, #FF8C00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      transition:transform 0.3s ease;
-      cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    .logo:hover {
+    
+    .logo-container:hover .logo-text {
       transform: scale(1.05);
     }
 
@@ -104,6 +138,20 @@
       }
       nav ul.active { display: flex; }
       .hamburger { display: block; color: white; }
+      
+      .logo-text {
+        font-size: 22px;
+      }
+      .logo-img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .logo-text {
+        display: none;
+      }
     }
 
     /* ================= HERO ================= */
@@ -118,7 +166,32 @@
       content: ''; position: absolute; top: 0; left: 0;
       width: 100%; height: 100%; background: rgba(0,0,0,0.5);
     }
-    .hero-content { position: relative; max-width: 800px; padding: 20px; animation: slideUp 1.2s ease-in-out; }
+    .hero-content { 
+      position: relative; 
+      max-width: 800px; 
+      padding: 20px; 
+      animation: slideUp 1.2s ease-in-out; 
+    }
+    
+    .hero-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .hero-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .hero h1 { font-size: 2.2rem; margin-bottom: 20px; }
     .hero p { font-size: 1.1rem; margin-bottom: 30px; }
     .cta-button {
@@ -130,7 +203,35 @@
     .cta-button:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
     /* ================= CATEGORIES ================= */
-    .section-title { text-align: center; margin: 40px 0 30px; font-size: 2rem; color: #333; animation: fadeIn 2s ease; }
+    .section-title { 
+      text-align: center; 
+      margin: 40px 0 30px; 
+      font-size: 2rem; 
+      color: #333; 
+      animation: fadeIn 2s ease; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .section-title-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .section-title-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .categories {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -208,6 +309,26 @@
       color: white; text-align: center; padding: 60px 20px;
       margin: 40px 15px; border-radius: 15px; animation: fadeIn 2s ease;
     }
+    
+    .social-cta-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .social-cta-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .social-buttons {
       display: flex;
       justify-content: center;
@@ -234,6 +355,26 @@
       color: white; text-align: center; padding: 60px 20px;
       margin: 40px 15px; border-radius: 15px; animation: fadeIn 2s ease;
     }
+    
+    .bulk-cta-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .bulk-cta-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .bulk-cta .container h2 { font-size: 2rem; margin-bottom: 20px; }
     .bulk-cta .container p { font-size: 1.1rem; margin-bottom: 30px; }
     .bulk-buttons {
@@ -265,10 +406,44 @@
 
     /* ================= FOOTER ================= */
     footer { background: #333; color: white; padding: 40px 0 20px; }
+    
+    .footer-logo {
+      width: 70px;
+      height: 70px;
+      margin: 20 auto 20px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .footer-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 30px; margin-bottom: 30px; }
     .footer-section h3 { font-size: 1.2rem; margin-bottom: 15px; color: #FFD700; }
     .footer-section p, .footer-section a { color: #ddd; margin-bottom: 10px; text-decoration: none; }
     .footer-section a:hover { color: #FFD700; }
+    .social-icons {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+    }
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    .social-icons a:hover {
+      color: #FFD700;
+      transform: translateY(-3px);
+    }
     .footer-bottom { text-align: center; border-top: 1px solid #444; padding-top: 20px; }
 
     /* ================= ANIMATIONS ================= */
@@ -292,7 +467,12 @@
   <header>
     <div class="container">
       <div class="header-content">
-        <div class="logo" onclick="window.location.href='index.html'"><span>JoliThrifts</span></div>
+        <div class="logo-container" onclick="window.location.href='index.html'">
+          <div class="logo-img">
+            <img src="images/clogo.png" alt="JoliThrifts Logo">
+          </div>
+          <div class="logo-text">JoliThrifts</div>
+        </div>
         <nav>
           <ul>
             <li><a href="index.html" class="active">Home</a></li>
@@ -310,6 +490,9 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
+      <div class="hero-logo">
+        <img src="images/logo.jpg" alt="JoliThrifts Logo">
+      </div>
       <h1>Shop Direct Via WhatsApp with JoliThrifts</h1>
       <p>Discover amazing products at great prices. Browse categories, add to cart, and checkout directly through WhatsApp!</p>
       <a href="#categories" class="cta-button">Explore Categories</a>
@@ -318,40 +501,50 @@
 
   <!-- Categories -->
   <section id="categories" class="container">
-    <h2 class="section-title">Product Categories</h2>
+    <h2 class="section-title">
+      <div class="section-title-logo">
+        <img src="images/clogo.png" alt="JoliThrifts Logo">
+      </div>
+      Product Categories
+    </h2>
     <div class="categories">
       <div class="aurelia-brands-container">
         <img src="images/aureliabrand.png" alt="Aurelia Brands">
-        <div class="aurelia-brands-content"><a href="products.html#aurelias-bra" class="aurelia-brands-link">Aurelia Brands</a></div>
+        <div class="aurelia-brands-content"><a href="aurelia.html" class="aurelia-brands-link">Aurelia Brands</a></div>
       </div>
       <div class="category">
         <img src="images/iphone12pro.jpg" alt="Phones">
-        <div class="category-content"><a href="products.html#iphones" class="category-link">iPhones</a></div>
+        <div class="category-content"><a href="iphones.html" class="category-link">iPhones</a></div>
       </div>
       <div class="category">
         <img src="images/ladiesbag.jpg" alt="LadiesBag">
-        <div class="category-content"><a href="products.html#ladiesbag" class="category-link">Ladies Bag</a></div>
+        <div class="category-content"><a href="ladiesbag.html" class="category-link">Ladies Bag</a></div>
       </div>
       <div class="category">
         <img src="images/image90.jpg" alt="Clothing">
-        <div class="category-content"><a href="products.html#footwear" class="category-link">Sneakers</a></div>
+        <div class="category-content"><a href="sneakers.html" class="category-link">Sneakers</a></div>
       </div>
       <div class="category">
         <img src="images/image203.jpg" alt="ladies flat & heels">
-        <div class="category-content"><a href="products.html#Ladies-Flats-AND-HEELS" class="category-link">Ladies Flats and Heels</a></div>
+        <div class="category-content"><a href="ladiesflatsandheels.html" class="category-link">Ladies Flats and Heels</a></div>
       </div>
     </div>
   </section>
 
-
-  <!-- Bulk Purchase CTA -->
-  <section class="bulk-cta">
+   <!-- CTA -->
+ <section class="social-cta">
     <div class="container">
-      <h2>Bulk Purchases for Businesses</h2>
-      <p>Interested in bulk orders for your business? Contact us via WhatsApp to discuss wholesale pricing and customized solutions.</p>
-      <div class="bulk-buttons">
-        <a href="https://wa.me/+8616671705298?text=Hi, I am interested in bulk purchasing for my business" class="bulk-button" target="_blank">
-          <i class="fab fa-whatsapp"></i> Contact for Bulk Orders
+      <div class="social-cta-logo">
+        <img src="images/clogo.png" alt="JoliThrifts Logo">
+      </div>
+      <h2>Ready to Shop?</h2>
+      <p>Message us directly on WhatsApp. Our team will assist you with your order and answer any questions you may have.</p>
+      <div class="social-buttons">
+        <a href="https://wa.me/+8616671705298?text=Hi, I am interested in shopping with you" class="social-button whatsapp-button" target="_blank">
+          <i class="fab fa-whatsapp"></i> Shop via WhatsApp
+        </a>
+        <a href="https://wa.me/+8616671705298?text=Hi, I am interested in bulk purchases" class="social-button bulk-button" target="_blank">
+          <i class="fas fa-boxes"></i> Inquire About Bulk Orders
         </a>
       </div>
     </div>
@@ -362,6 +555,9 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
+          <div class="footer-logo">
+            <img src="images/clogo.png" alt="JoliThrifts Logo">
+          </div>
           <h3>About Us</h3>
           <p>We offer quality products with direct WhatsApp ordering for a seamless shopping experience.</p>
         </div>

@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JoliThrifts - Cart</title>
+  <link rel="icon" type="image/x-icon" href="images/clogo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif;}
     body {background:#f8f9fa; color:#333; line-height:1.6; overflow-x:hidden;}
     .container {max-width:1200px; margin:0 auto; padding:0 15px;}
     header {
-      background: linear-gradient(135deg,#7B4DFF 0%, #8B5CF6 100%);
+      background: linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%);
       color:white;
       padding:15px 20px;
       box-shadow:0 4px 20px rgba(0,0,0,0.15);
@@ -21,46 +23,125 @@
       z-index:1000;
       transition:transform 0.3s ease, background 0.3s ease;
     }
-    header.scrolled {transform:scale(0.98); background:linear-gradient(135deg,#6A41E0 0%, #7A4FF0 100%);}
+    header.scrolled {transform:scale(0.98); background:linear-gradient(135deg,#5A3AB0 0%, #7A4FF0 100%);}
     .header-content {display:flex; justify-content:space-between; align-items:center; position:relative;}
-    .logo {
-      font-size:26px; 
-      font-weight:bold; 
-      color:#FFA500; 
-      transition:transform 0.3s ease;
+    
+    /* Logo Container */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       cursor: pointer;
     }
-    .logo:hover {transform:scale(1.1);}
+    
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-img img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #FFD700, #FF8C00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo-container:hover .logo-text {
+      transform: scale(1.05);
+    }
+    
     nav ul {display:flex; list-style:none;}
     nav ul li {margin-left:25px; position:relative;}
     nav ul li a {color:white; text-decoration:none; font-weight:500; padding:6px 0; transition:all .3s ease;}
-    nav ul li a:hover {color:#FFA500; transform:translateY(-2px);}
+    nav ul li a:hover {color:#FFD700; transform:translateY(-2px);}
     nav ul li a::before, nav ul li a::after {
-      content:""; position:absolute; left:0; right:0; height:2px; background:#FFA500; transform:scaleX(0); transition:transform .3s ease;
+      content:""; position:absolute; left:0; right:0; height:2px; background:#FFD700; transform:scaleX(0); transition:transform .3s ease;
     }
     nav ul li a::before {top:0;} nav ul li a::after {bottom:0;}
     nav ul li a:hover::before, nav ul li a:hover::after {transform:scaleX(1);}
     .cart-icon {position:relative; cursor:pointer;}
     .cart-count {
       position:absolute; top:-8px; right:-10px;
-      background:#ff4757; color:white; font-size:12px;
+      background:#FF4757; color:white; font-size:12px;
       border-radius:50%; width:18px; height:18px;
       display:flex; align-items:center; justify-content:center;
+      transition:transform 0.3s ease;
     }
+    .cart-icon:hover .cart-count {transform:scale(1.2);}
     .hamburger {display:none; font-size:24px; color:white; cursor:pointer; transition:transform 0.3s ease;}
     .hamburger:hover {transform:rotate(90deg);}
+    .nav-menu {display:block;}
+    .nav-menu ul {flex-direction:row;}
     @media(max-width:768px){
       header {margin:10px;}
-      .header-content {flex-direction:row;}
       .hamburger {display:block;}
       nav {display:none;}
-      nav ul {flex-direction:column; background:linear-gradient(135deg,#7B4DFF 0%, #8B5CF6 100%); border-radius:0 0 15px 15px; padding:15px;}
-      nav.active {display:block; position:absolute; top:100%; left:0; right:0; box-shadow:0 4px 10px rgba(0,0,0,0.15);}
-      nav ul li {margin:10px 0; text-align:center;}
+      .nav-menu {display:none; position:absolute; top:100%; left:0; right:0;
+        background:linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%); border-radius:0 0 15px 15px;}
+      .nav-menu.active {display:block;}
+      .nav-menu ul {flex-direction:column; padding:15px;}
+      .nav-menu ul li {margin:10px 0; text-align:center;}
+      
+      .logo-text {
+        font-size: 22px;
+      }
+      .logo-img {
+        width: 40px;
+        height: 40px;
+      }
     }
+    @media(max-width:576px){
+      .logo-text {
+        display: none;
+      }
+      .hamburger {font-size:20px;}
+    }
+    
     .cart-section {padding:60px 0; text-align:center;}
-    .cart-section h1 {font-size:2.2rem; margin-bottom:15px; color:#7B4DFF; animation:fadeInUp 1s ease;}
+    .cart-section h1 {font-size:2.2rem; margin-bottom:15px; color:#6B46C1; animation:fadeInUp 1s ease;}
     .cart-section p {color:#555; margin-bottom:30px; animation:fadeInUp 1s ease .2s;}
+    
+    .cart-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 30px;
+      border-radius: 15px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    
+    .cart-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .cart-items {
       background:#fff; border-radius:15px; padding:20px;
       box-shadow:0 5px 15px rgba(0,0,0,0.08); max-width:800px; margin:0 auto 30px;
@@ -79,7 +160,7 @@
       margin-bottom: 5px;
       font-style: italic;
     }
-    .item-details p {color:#7B4DFF; font-weight:bold;}
+    .item-details p {color:#6B46C1; font-weight:bold;}
     .item-details .secondary-price {font-size: 0.9rem; color: #666;}
     .configuration-options {
       margin: 10px 0;
@@ -98,7 +179,7 @@
       margin: 10px 0;
     }
     .quantity-btn {
-      background: #7B4DFF;
+      background: #6B46C1;
       color: white;
       border: none;
       width: 30px;
@@ -111,7 +192,7 @@
       transition: all 0.3s ease;
     }
     .quantity-btn:hover {
-      background: #FFA500;
+      background: #FFD700;
       transform: scale(1.1);
     }
     .quantity-input {
@@ -123,7 +204,7 @@
       border-radius: 5px;
     }
     .remove-button {
-      background:#ff4757; color:white; border:none; border-radius:5px;
+      background:#FF4757; color:white; border:none; border-radius:5px;
       padding:8px 12px; cursor:pointer; transition:.3s ease;
     }
     .remove-button:hover {background:#e63946; transform:scale(1.05);}
@@ -161,11 +242,32 @@
       transform: translateY(-2px) scale(1.05);
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
+    
     .social-cta {
-      background:linear-gradient(135deg,#7B4DFF 0%,#8B5CF6 100%);
+      background:linear-gradient(135deg,#6B46C1 0%,#9F7AEA 100%);
       color:white; text-align:center; padding:60px 0;
       margin:40px 15px; border-radius:20px;
     }
+    
+    .social-cta-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .social-cta-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .social-cta h2 {font-size:2rem; margin-bottom:15px;}
     .social-cta p {margin-bottom:25px;}
     .social-buttons {
@@ -176,7 +278,7 @@
     }
     .social-button {
       background:white;
-      color:#7B4DFF;
+      color:#6B46C1;
       padding:15px 25px;
       border-radius:30px;
       font-weight:bold;
@@ -192,18 +294,40 @@
     }
     .social-button:hover {
       transform:scale(1.05);
-      background:#FFA500;
+      background:#FFD700;
       color:white;
       box-shadow:0 5px 15px rgba(0,0,0,0.2);
     }
+    
     footer {background:#333; color:white; padding:40px 0 20px;}
     .footer-content {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; margin-bottom:30px;}
-    .footer-section h3 {margin-bottom:15px; color:#FFA500;}
+    .footer-section h3 {margin-bottom:15px; color:#FFD700;}
     .footer-section a,.footer-section p {color:#ddd; text-decoration:none; margin-bottom:10px; display:block; transition:color 0.3s;}
-    .footer-section a:hover {color:#7B4DFF;}
+    .footer-section a:hover {color:#6B46C1;}
+    
+    .footer-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 0 20px 0;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .footer-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .social-icons a {margin-right:15px; font-size:1.5rem; color:#ddd; transition:transform .3s, color .3s;}
-    .social-icons a:hover {color:#7B4DFF; transform:scale(1.2);}
+    .social-icons a:hover {color:#6B46C1; transform:scale(1.2);}
     .footer-bottom {text-align:center; padding-top:20px; border-top:1px solid #444;}
+    
     @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
     @keyframes fadeInUp {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
   </style>
@@ -213,8 +337,13 @@
 <header>
   <div class="container">
     <div class="header-content">
-      <div class="logo" onclick="window.location.href='index.html'">JoliThrifts</div>
-      <nav id="nav-menu">
+      <div class="logo-container" onclick="window.location.href='index.html'">
+        <div class="logo-img">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
+        <div class="logo-text">JoliThrifts</div>
+      </div>
+      <nav class="nav-menu" id="nav-menu">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="products.html">Products</a></li>
@@ -229,12 +358,15 @@
 </header>
 
 <section class="cart-section container">
-  <h1>Your Cart</h1>
-  <p>Review your selected items and proceed to checkout via WhatsApp.</p>
+  <div class="cart-logo">
+    <img src="images/clogo.png" alt="JoliThrifts Logo">
+  </div>
+  <h1>Your Shopping Cart</h1>
+  <p>Review your selected items and proceed to checkout via WhatsApp for a seamless shopping experience.</p>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-total" id="cartTotal">
     <div class="primary-total">Total: $0.00</div>
-    <div class="secondary-total"></div>
+    <!-- <div class="secondary-total"></div> -->
   </div>
   
   <div class="checkout-options">
@@ -246,11 +378,14 @@
 
 <section class="social-cta">
   <div class="container">
+    <div class="social-cta-logo">
+      <img src="images/clogo.png" alt="JoliThrifts Logo">
+    </div>
     <h2>Need Help with Your Order?</h2>
-    <p>Contact us on WhatsApp for assistance with your cart or any other inquiries.</p>
+    <p>Contact us on WhatsApp for assistance with your cart, product inquiries, or any other questions about your shopping experience.</p>
     <div class="social-buttons">
-      <a href="https://wa.me/+8616671705298?text+=Hi%20I'm%20contacting%20you%20from%20JoliThrifts%20about%20my%20cart" target="_blank" class="social-button">
-        <i class="fab fa-whatsapp"></i> WhatsApp
+      <a href="https://wa.me/+8616671705298?text=Hi%20I'm%20contacting%20you%20from%20JoliThrifts%20about%20my%20cart" target="_blank" class="social-button">
+        <i class="fab fa-whatsapp"></i> WhatsApp Support
       </a>
     </div>
   </div>
@@ -259,15 +394,38 @@
 <footer>
   <div class="container">
     <div class="footer-content">
-      <div class="footer-section"><h3>About Us</h3><p>We offer quality products with direct WhatsApp ordering for a seamless shopping experience.</p></div>
-      <div class="footer-section"><h3>Quick Links</h3><a href="index.html">Home</a><a href="products.html">Products</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
-      <div class="footer-section"><h3>Contact Us</h3><p>Email: jolithrifts876@gmail.com</p><p>Phone: +8616671705298</p><div class="social-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div>
+      <div class="footer-section">
+        <div class="footer-logo">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
+        <h3>About Us</h3>
+        <p>We offer quality products with direct WhatsApp ordering for a seamless shopping experience that combines convenience with personal service.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: jolithrifts876@gmail.com</p>
+        <p>Phone: +8616671705298</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
     </div>
     <div class="footer-bottom"><p>&copy; 2025 JoliThrifts. All rights reserved.</p></div>
   </div>
 </footer>
 
 <script>
+  // All your existing JavaScript code remains exactly the same
   const productDescriptions = {
     "Jordan Air Air Jordan 4 SE": "The Air Jordan 4 SE combines classic Jordan style with modern updates. Featuring premium materials, unique color blocking, and the iconic visible Air unit in the heel for comfort and style.",
     "New Balance NB 9080": "The New Balance 9080 offers a futuristic take on retro running shoes. With a chunky sole, mixed materials, and advanced cushioning for all-day comfort and standout style.",
@@ -331,39 +489,40 @@
     "Satchel Handbag Set": "Product Name: Satchel Handbag Set\nDesign: This handbag features a structured, top-handle design with a crocodile-embossed texture. It has a secure clasp closure and is complemented by gold-tone hardware. The set includes a matching smaller pouch and a cardholder.\nMaterial: The bag is crafted from high-quality faux or PU leather, which is often described as water-resistant and scratch-resistant.\nStyle: The style is a versatile satchel or tote, suitable for both casual and formal occasions. It can be carried by the top handles or worn as a crossbody bag using the detachable shoulder strap.",
     "Woven Clutch Purse": "Product Name: Woven Clutch Purse\nDesign: The bag features a unique, handcrafted woven design with a delicate texture. It has an organ-style structure with clean lines and a distinctive shape. It is a clutch bag that can also be used as a crossbody bag with an adjustable strap.\nMaterial: The bag is made of PU leather.\nStyle: This versatile bag is suitable for both evening and casual use.",
     "Birken-Inspired Handbag Somos": "Product Name: Birkin-Inspired Handbag\nDesign: This bag features a structured, square tote design with a front flap and a metal buckle closure. It has a contrasting color block pattern, with a white body, brown handles and sides, and a black flap. The bag includes a top handle and a detachable, adjustable shoulder strap for versatile carrying options.\nMaterial: The bag is crafted from high-quality PU leather, which is a type of vegan leather with a litchi pattern texture that mimics genuine leather.\nStyle: This handbag combines a vintage aesthetic with contemporary functionality, making it a versatile accessory suitable for various occasions, from daily commutes to weekend outings. It is a large-capacity bag designed to hold daily essentials while maintaining a sophisticated look.",
-    "Lady Dior Bag": "Product Name: Lady Dior Bag\nDesign: The bag features the iconic Cannage topstitching, which creates a quilted, textured effect. It has rounded handles and a detachable shoulder strap. The bag is adorned with the signature 'D.I.O.R.' charm letters hanging from one of the handles.\nMaterial: The bag is typically made from various materials, including lambskin leather, but the specific material for this bag is difficult to determine from the image alone.\nStyle: This is a classic and elegant handbag known for its structured, timeless silhouette. It can be carried by hand using the top handles or worn over the shoulder or crossbody with the detachable strap.",
+    "Lady Dior Bag": "Product Name: Lady Dior Bag\nDesign: The bag features the iconic Cannage topstitching, which creates a quilted, textured effect. It has rounded handles and a detachable shoulder strap. The bag is adorned with the signature 'D.I.O.R.' charm letters hanging from one of the handles.\nMaterial: The bag is typically made from various materials, including lambsskin leather, but the specific material for this bag is difficult to determine from the image alone.\nStyle: This is a classic and elegant handbag known for its structured, timeless silhouette. It can be carried by hand using the top handles or worn over the shoulder or crossbody with the detachable strap.",
     "Vintage Bowling Bag": "Product Name: Vintage Bowling Handbag\nDesign: A unique, rounded design with a structured silhouette, resembling a classic bowling bag. It features a bold, graphic print with vertical black and white stripes and a prominent '96' patch in pink and white on the front. It has a top handle and a detachable shoulder strap for versatile carrying options.\nMaterial: The bag is made from a durable, textured material, possibly faux leather or a similar synthetic fabric, with patent leather-like accents on the handles and trim.\nStyle: This bag has a sporty, vintage-inspired aesthetic with a modern twist. Its design is both casual and trendy, making it suitable for a variety of outfits and occasions.",
     "Puffy Shoulder Bag": "Product Name: Puffy Shoulder Bag\nDesign: The bag features a soft, puffy, and quilted design with a single strap. The main body has a curved, crescent shape.\nMaterial: The material appears to be a soft fabric, likely polyester or a similar synthetic blend, giving it a padded, pillowy texture.\nStyle: This is a versatile, casual bag that can be worn as a shoulder bag or a crossbody bag. It fits a modern, minimalist, and comfortable aesthetic.",
     "Alo Yoga Large Tote Bag": "Product Name: Alo Yoga Large Tote Bag\nDesign: The bag features a gray and white tie-dye pattern with the 'alo' logo prominently displayed. It is an oversized, heavy-duty canvas bag with corded handles.\nMaterial: Canvas.\nStyle: This is a utility tote bag, also referred to as a shopper bag or tote bag, that is suitable for a variety of uses, including yoga, exercise, travel, or as a carry-on. The spacious interior makes it practical for carrying essentials.",
     "Oversized Fluffy Shoulder Bag": "Product Name: Oversized Fluffy Shoulder Bag\nDesign: This is a large, fluffy shoulder bag with a solid color design. The bag has a zipper closure and features a prominent 'PRO' logo on the front. It is designed to be carried over the shoulder.\nMaterial: The bag is made of a fluffy, imitation wool material with a polyester lining.\nStyle: The style is oversized and fashionable, suitable for travel or daily use.",
-    "Black Mary Jane Mesh Shoes": "Name: Black Mary Jane Mesh Shoes\nDesign: The shoes feature a closed-toe design with a fishnet or mesh upper. They have a single strap across the top of the foot, fastened with a silver-toned buckle. The heel appears to be flat or very low.\nMaterial: The shoe is made of a mesh or net-like material, while the strap and trim have a glossy, patent-like finish. The sole is black.\nStyle: The style is a modern take on the classic Mary Jane, blending a traditional silhouette with a contemporary, textured material.",
+    "Black Mary Jane Mesh Shoe": "Name: Black Mary Jane Mesh Shoes\nDesign: The shoes feature a closed-toe design with a fishnet or mesh upper. They have a single strap across the top of the foot, fastened with a silver-toned buckle. The heel appears to be flat or very low.\nMaterial: The shoe is made of a mesh or net-like material, while the strap and trim have a glossy, patent-like finish. The sole is black.\nStyle: The style is a modern take on the classic Mary Jane, blending a traditional silhouette with a contemporary, textured material.",
     "Davina Black Flats": "Name: Davina Black Flats\nDesign: The shoes are flats with a round-toe Mary Jane design, featuring a bow detail and rhinestone embellishments on a mesh upper.\nMaterial: The upper and inner parts are made of synthetic material. The upper has a mesh fabric.\nStyle: The style is described as elegant, ballet, or daily commute flats.",
-    "Women's Mules": "Name: Women Mules\nDesign: The shoes feature a slip-on design with a closed pointed toe. The upper part of the shoe combines a leopard print material with a black mesh or net-like overlay. A gold-toned chain detail is visible across the top of the foot.\nMaterial: The materials appear to be a mix of fabric for the leopard print and a mesh or net material for the overlay, with a synthetic sole and a metal chain embellishment.\nStyle: The style is a flat, backless mule, suitable for casual or fashion-forward wear.",
+    "Women Mules": "Name: Women Mules\nDesign: The shoes feature a slip-on design with a closed pointed toe. The upper part of the shoe combines a leopard print material with a black mesh or net-like overlay. A gold-toned chain detail is visible across the top of the foot.\nMaterial: The materials appear to be a mix of fabric for the leopard print and a mesh or net material for the overlay, with a synthetic sole and a metal chain embellishment.\nStyle: The style is a flat, backless mule, suitable for casual or fashion-forward wear.",
     "Ballet Flats": "Name: Ballet Flats\nDesign: The shoes feature a round toe, a single strap across the top of the foot (Mary Jane style), and a flat sole. The main design element is a hollowed-out, fishnet-style mesh covered with rhinestones or full-diamond embellishments.\nMaterial: The primary material is a textile or mesh fabric, with a full-diamond or rhinestone overlay.\nStyle: The style is a trendy, decorative flat that can be worn for summer or as a statement piece.",
     "Mesh Ballet Shoes": "Name: Mesh Ballet Shoes\nDesign: The shoes are a ballet flat style with a Mary Jane-style strap. They feature a mesh upper with embroidered floral details and pearl embellishments.\nMaterial: The primary material is mesh, which is adorned with embroidery and pearls.\nStyle: The style is a ballet flat, also referred to as a Mary Jane single shoe.",
     "Patent Finish Flat Shoe": "Name: Patent Finish Flat Shoe\nDesign: Both pairs feature a round-toe silhouette and a flat sole, providing a comfortable and timeless profile.\nMaterial: The shoes are characterized by their patent finish, indicating a glossy, polished surface, likely made from high-quality synthetic material or treated leather, offering durability and a sleek look.\nStyle: They embody the versatile ballet flat style, suitable for both casual and more dressed-up occasions. Some variations, like the red pair, may include a Mary Jane strap across the instep for added detail and a secure fit.",
-    "Animal Print Flat Mules with Bow": "Name: Animal Print Flat Mules with Bow\nDesign: These are slip-on mules with a pointy toe and a backless design. They feature a leopard print pattern in brown and black, and a black bow accent on top.\nStyle: The style is a flat mule, which is a type of shoe that is a cross between a slipper and a shoe, with a closed toe and open back. They are described as casual, stylish, and elegant.\nMaterial: The footbed is described as a flexible, high-tech synthetic foam for comfort.",
-    "Zara SlingBack Ballet Flats": "Name: Zara Slingback Ballet Flats\nDesign: The shoes are a flat mule or slipper design with a bow detail on the front and a rounded toe. The shoes have an open back, making them a slip-on style.\nStyle: The style is a casual, flat mule or slipper, suitable for everyday wear.\nMaterial: The material appears to be a fabric or synthetic material.",
+    "Animal Print Fat Mules with Bow": "Name: Animal Print Flat Mules with Bow\nDesign: These are slip-on mules with a pointy toe and a backless design. They feature a leopard print pattern in brown and black, and a black bow accent on top.\nStyle: The style is a flat mule, which is a type of shoe that is a cross between a slipper and a shoe, with a closed toe and open back. They are described as casual, stylish, and elegant.\nMaterial: The footbed is described as a flexible, high-tech synthetic foam for comfort.",
+    "Flat Strappy Sandals": "Name: Zara Slingback Ballet Flats\nDesign: The shoes are a flat mule or slipper design with a bow detail on the front and a rounded toe. The shoes have an open back, making them a slip-on style.\nStyle: The style is a casual, flat mule or slipper, suitable for everyday wear.\nMaterial: The material appears to be a fabric or synthetic material.",
     "Flat strappy sandals": "Name: Flat strappy sandals\nDesign: The sandals feature a cage-like design with multiple metallic straps that crisscross over the foot. The straps are flat, and the sandal has an ankle strap with a buckle closure. The front of the sandal has an open, peep-toe style.\nMaterial: The sandals appear to be made of a metallic material in a gold color.\nStyle: The style is a flat sandal, suitable for casual wear.",
     "Rhinestone Ankle Strap Sandals": "Name: Rhinestone Ankle Strap Sandals\nDesign: These are flat sandals with a thong toe post and a strap that wraps around the ankle. The straps are adorned with rhinestones.\nMaterial: The sandals are typically made with a rubber or artificial leather sole and a soft insole for comfort. The upper is often made of artificial leather or a similar material, with the rhinestone embellishments.\nStyle: The style is casual and suitable for summer, beach, or other outdoor occasions. They are designed to be non-slip and comfortable for all-day wear.",
     "Head Cross Sandals": "Name: Head Cross Sandals\nDesign: The sandals feature a square-toed design with a flat sole. The upper part consists of two wide, intertwined straps that cross over the foot.\nMaterial: The straps appear to be made of a soft, possibly woven or braided material, while the sole is a contrasting light-colored material, likely faux leather or a similar synthetic.\nStyle: This style is a flat slipper or sandal, suitable for casual wear, such as at a beach or for summer outings.",
     "Split-Toe Sandals": "Name: Split-Toe Sandals\nDesign: The design features a T-strap with a toe post and a slingback ankle strap. The sandals have a square-toe shape and a flat sole. Some descriptions mention a metal buckle or golden detail on the strap.\nMaterial: The upper is described as being made from a soft fabric or synthetic cover. The sole is typically a non-slip rubber or TPR (thermoplastic rubber).\nStyle: The style is casual and suitable for summer, beach, or everyday wear. The sandals are often described as elegant and versatile.",
     "Rhinestone Slides": "Name: Rhinestone Slides\nDesign: The sandals are a slip-on style with a wide strap across the top of the foot. The strap is embellished with rows of rhinestones or glitter. The sole is typically black.\nMaterial: The outer material is often described as polyurethane (PU).\nStyle: The style is a casual, flat slide or slipper, suitable for beachwear or everyday wear. They are also described as a 'fashionable' and 'stylish' sandal.",
-    "Chypre Sandal": "Name: Chypre sandal\nDesign: The design features a wide strap with an 'H' cut-out and a comfortable, chunky sole.\nMaterial: The sandals are typically made of calfskin leather.\nStyle: The style is described as contemporary, sporty, and elegant, suitable for both casual and chic looks.",
-    "Oran Sandal": "Name: Oran sandal\nDesign: The sandal is a leather slider with a distinctive 'H' cut-out strap, which is the brand's signature design.\nMaterial: The Oran sandal is typically made from leather, with common materials including Box Calfskin, Woolskin, and Epsom.\nStyle: The style is minimalist and timeless, often described as a luxurious summer footwear option.",
+    "Chypre Sandals": "Name: Chypre sandal\nDesign: The design features a wide strap with an 'H' cut-out and a comfortable, chunky sole.\nMaterial: The sandals are typically made of calfskin leather.\nStyle: The style is described as contemporary, sporty, and elegant, suitable for both casual and chic looks.",
+    "Oran Sandals": "Name: Oran sandal\nDesign: The sandal is a leather slider with a distinctive 'H' cut-out strap, which is the brand's signature design.\nMaterial: The Oran sandal is typically made from leather, with common materials including Box Calfskin, Woolskin, and Epsom.\nStyle: The style is minimalist and timeless, often described as a luxurious summer footwear option.",
     "Izmir Sandals": "Name: Izmir Sandals\nDesign: The sandals feature a wide strap that is cut out to form a prominent 'H' shape across the top of the foot.\nMaterial: The sandals are typically crafted from leather, including premium heritage calfskin leather.\nStyle: The style is a flat, open-toe sandal, often categorized as a designer slide or mule, suitable for casual wear.",
     "Guess Slide Sandals": "Name: Guess Slide Sandals\nDesign: The sandals are a slide-style with a single, wide strap across the top of the foot. The brand name 'GUESS' is prominently displayed in gold-colored metal lettering on the strap. The sandals have a thick platform sole.\nMaterial: The material appears to be a type of synthetic leather or similar textile for the strap, and a rubber or foam-like material for the sole.\nStyle: The style is a casual, slip-on sandal, often referred to as a slide or a flatform slide due to the thick sole.",
     "Saint Laurent Opyum Heels": "Name: Saint Laurent Opyum Heels\nDesign: The design features a sharply pointed silhouette with a high heel that is a gold-tone metal 'YSL' monogram. The shoes are pumps with an ankle strap.\nMaterial: The shoes are crafted from black patent leather.\nStyle: These are considered high-fashion, luxury footwear, suitable for both casual and formal occasions.",
     "Valentino Garavani Heels": "Name: Valentino Garavani Heels\nDesign: The shoes are a slingback pump design with a pointed toe and a stiletto or kitten heel. They feature an oversized logo buckle and are embellished with rhinestones or crystals.\nStyle: The style is a classic slingback pump with a modern, embellished twist.\nMaterial: The material appears to be a combination of leather or suede for the straps and a synthetic material for the rhinestone embellishments.",
     "Butterfly High Heels": "Name: Butterfly High Heels\nDesign: These are open-toe sandals with a stiletto heel. The design features a butterfly-knot detailing with sparkling embellishments, and crisscross ankle straps.\nMaterial: The shoes are described as having a fabric upper, synthetic insole, and a non-slip rubber sole. The embellishments are made of crystal or rhinestone.\nStyle: The style is elegant and glamorous, suitable for special events like weddings, proms, and parties.",
     "YSL Heels": "Name: YSL Heels\nDesign: The shoes are a slingback style with a pointed toe. The most prominent design feature is the heel, which is a gold-toned metal sculpture of the YSL logo.\nMaterial: The pumps are typically crafted from black patent leather.\nStyle: The style is described as elegant and sophisticated, making them a statement piece suitable for both casual and formal occasions.",
-    "Stiletto Heeled Ankle Strap": "Name: Stiletto Heeled Ankle Strap\nDesign: These are stiletto heeled sandals with a wide front strap, a back strap that forms an ankle bracelet, and a metal buckle closure. They have a metallic pointed toe and a heel height of approximately 3.7 inches (9.5 cm).\nMaterial: The sandals are crafted with premium PU leather and have a sturdy rubber sole.\nStyle: The style is described as elegant, sexy, and suitable for occasions such as weddings or other evening events.",
-    " Patent Bow Heels": "Name: Patent Bow Heels\nDesign: These are pointed-toe slingback high heels featuring a prominent bow detail at the front. The design includes an ankle strap with buckle closure and a stiletto heel.\nMaterial: The heels are crafted from a faux patent leather finish.\nStyle: The overall style is elegant and sophisticated, suitable for both dressy occasions and elevating everyday chic looks, reflecting a classic court heel silhouette with modern details.",
+    "Stileto Heeled Ankle Strap": "Name: Stiletto Heeled Ankle Strap\nDesign: These are stiletto heeled sandals with a wide front strap, a back strap that forms an ankle bracelet, and a metal buckle closure. They have a metallic pointed toe and a heel height of approximately 3.7 inches (9.5 cm).\nMaterial: The sandals are crafted with premium PU leather and have a sturdy rubber sole.\nStyle: The style is described as elegant, sexy, and suitable for occasions such as weddings or other evening events.",
+    "Stileto Heels": "Name: Stileto Heels\nDesign: These are stiletto heeled sandals with a wide front strap, a back strap that forms an ankle bracelet, and a metal buckle closure. They have a metallic pointed toe and a heel height of approximately 3.7 inches (9.5 cm).\nMaterial: The sandals are crafted with premium PU leather and have a sturdy rubber sole.\nStyle: The style is described as elegant, sexy, and suitable for occasions such as weddings or other evening events.",
+    "Patent Bow Heels": "Name: Patent Bow Heels\nDesign: These are pointed-toe slingback high heels featuring a prominent bow detail at the front. The design includes an ankle strap with buckle closure and a stiletto heel.\nMaterial: The heels are crafted from a faux patent leather finish.\nStyle: The overall style is elegant and sophisticated, suitable for both dressy occasions and elevating everyday chic looks, reflecting a classic court heel silhouette with modern details.",
     "Slingback High Heels": "Name: Slingback High Heels\nDesign: These are high-heeled slingback shoes with a pointed toe and a buckle fastening on the ankle strap. They feature an animal print, specifically a leopard pattern.\nMaterial: The shoes are made of fabric.\nStyle: The style is a slingback pump with a high heel.",
     "Gianvito Rossi Flavia Heels": "Name: Gianvito Rossi Flavia Heels\nDesign: They feature a distinctive leaf decor, typically in gold, winding around the foot, often with a pointed toe and a secure back strap for comfort and stability.\nMaterial: These sandals are commonly crafted from patent leather or premium synthetic leather for the upper, offering a sleek and polished finish. The outsole is typically made of rubber for durability and traction, and they often include a cushioned insole for comfort.\nStyle: The style is best described as a high-heeled sandal, with variations including stiletto or thin heels. They are designed for special occasions, parties, and formal events, exuding elegance and sophistication.",
     "Rivet High Heels": "Name: Rivet High Heels\nDesign: These are pointed-toe, slingback high-heeled sandals with a slim stiletto heel. They feature a lace-up design with a bow detail on the front and are embellished with metal rivets.\nMaterial: The shoes are made from high-quality materials such as premium leather or microfiber leather.\nStyle: The style can be described as a fusion of elegant and edgy, with a sophisticated silhouette and a touch of glamour from the metallic heel and rivet details. They are suitable for both casual and formal occasions.",
     "Polka Dot Bow Heels": "Name: Polka Dot Bow Heels\nDesign: These elegant high heels feature a polka dot pattern on a light-colored base, likely pink or nude. The design includes an open-toe front adorned with a bow detail, and an ankle strap for secure fitting. The heels are stiletto-style.\nMaterial: The upper material appears to be a fabric or synthetic material with a subtle texture, potentially mesh or a similar woven fabric, given the bow's appearance and details from similar products mentioning 'breathable fabric upper' or 'faux leather'.\nStyle: The overall style is feminine and chic, blending classic polka dots with a modern high-heel sandal silhouette, suitable for parties, weddings, or other special occasions.",
-    "Pointed Toes Heels": "Name: Pointed Toes Heels\nDesign: These heels feature a sharp pointed toe and a slingback strap for an open-back design. The prominent design element is a distinctive metallic gold detail across the vamp, possibly forming a logo or an intricate embellishment. They are elevated by a sleek stiletto heel.\nMaterial: While the exact material is not specified, similar shoes often utilize materials like patent leather or other high-shine synthetic leathers for the main body of the shoe, complemented by metal for the accents and possibly the heel.\nStyle: The overall style is elegant and sophisticated, suitable for formal events, evening wear, or professional settings. The pointed toe and stiletto heel contribute to a classic and flattering silhouette, while the metallic detailing adds a touch of modern luxury.",
+    "Pointed Toe Heels": "Name: Pointed Toes Heels\nDesign: These heels feature a sharp pointed toe and a slingback strap for an open-back design. The prominent design element is a distinctive metallic gold detail across the vamp, possibly forming a logo or an intricate embellishment. They are elevated by a sleek stiletto heel.\nMaterial: While the exact material is not specified, similar shoes often utilize materials like patent leather or other high-shine synthetic leathers for the main body of the shoe, complemented by metal for the accents and possibly the heel.\nStyle: The overall style is elegant and sophisticated, suitable for formal events, evening wear, or professional settings. The pointed toe and stiletto heel contribute to a classic and flattering silhouette, while the metallic detailing adds a touch of modern luxury.",
     "iPhone 12": "iPhone 12, sourced from trusted pawn shops. Fully functional with a vibrant 6.1-inch Super Retina XDR display, A14 Bionic chip, and dual-camera system. Perfect for everyday use, tested to ensure all features work seamlessly. Battery health varies, impacting price: 80-84% offers reliable performance, 85-89% provides improved longevity, and 90%+ ensures near-new battery life.",
     "iPhone 12 Pro": "iPhone 12 Pro from pawn shops, in excellent working condition. Features a 6.1-inch Super Retina XDR display, A14 Bionic chip, and a triple-camera system with LiDAR for enhanced photography. Fully tested for performance. Battery health options: 80-84% for solid daily use, 85-89% for better endurance, and 90%+ for near-new battery capacity.",
     "iPhone 12 Pro Max": "iPhone 12 Pro Max, sourced from pawn shops. Fully operational with a 6.7-inch Super Retina XDR display, A14 Bionic chip, and advanced triple-camera system with LiDAR. Ideal for power users, thoroughly tested for reliability. Battery health choices: 80-84% for dependable use, 85-89% for extended life, and 90%+ for near-new battery performance.",
@@ -526,7 +685,7 @@
   const shoeSizes = ["38", "39", "40", "41", "42", "43", "44", "45"];
 
   const shoesAndFlatsHeels = [
-    "Black Mary Jane Mesh Shoes",
+    "Black Mary Jane Mesh Shoe",
     "Davina Black Flats",
     "Women's Mules",
     "Ballet Flats",

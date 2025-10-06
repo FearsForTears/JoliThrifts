@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoliThrifts - Ladies Flats and Heels Collection</title>
+  <link rel="icon" type="image/x-icon" href="images/clogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif;}
+    body {background:#f8f9fa; color:#333; line-height:1.6; overflow-x:hidden;}
+    .container {max-width:1200px; margin:0 auto; padding:0 15px;}
+    header {
+      background: linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%);
+      color:white;
+      padding:15px 20px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.15);
+      border-radius:20px;
+      margin:15px;
+      position:sticky;
+      top:15px;
+      z-index:1000;
+      transition:transform 0.3s ease, background 0.3s ease;
+    }
+    header.scrolled {
+      transform:scale(0.98);
+      background:linear-gradient(135deg,#5A3AB0 0%, #7A4FF0 100%);
+    }
+    .header-content {
+      display:flex; 
+      justify-content:space-between; 
+      align-items:center;
+      position: relative;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .logo-img img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    .logo-img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #FFD700, #FF8C00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.3s ease;
+    }
+    .logo-container:hover .logo-text {
+      transform: scale(1.05);
+    }
+    .currency-selector {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 5px 15px;
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .currency-selector:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .currency-selector label {
+      margin-right: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .currency-selector select {
+      background: transparent;
+      border: none;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      outline: none;
+      padding: 5px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' %3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 5px center;
+      background-size: 16px;
+      padding-right: 25px;
+    }
+    .currency-selector select:focus {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    .currency-selector select option {
+      color: #333;
+      background: white;
+      padding: 10px;
+      transition: all 0.2s ease;
+    }
+    .currency-selector select option:hover {
+      background: #6B46C1;
+      color: white;
+    }
+    nav {
+      display:flex;
+      align-items:center;
+    }
+    nav ul {
+      display:flex; 
+      list-style:none;
+      transition:all 0.3s ease;
+    }
+    nav ul li {margin-left:25px; position:relative;}
+    nav ul li a {
+      color:white; 
+      text-decoration:none; 
+      font-weight:500; 
+      padding:6px 0;
+      display:inline-block;
+      transition:all .3s ease;
+    }
+    nav ul li a:hover {
+      color:#FFD700;
+      transform:translateY(-2px);
+    }
+    nav ul li a.active {
+      color:#FFD700;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      padding: 6px 12px;
+    }
+    nav ul li a::before,
+    nav ul li a::after {
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      height:2px;
+      background:#FFD700;
+      transform:scaleX(0);
+      transition:transform .3s ease;
+    }
+    nav ul li a::before {top:0;}
+    nav ul li a::after {bottom:0;}
+    nav ul li a:hover::before,
+    nav ul li a:hover::after,
+    nav ul li a.active::before,
+    nav ul li a.active::after {
+      transform:scaleX(1);
+    }
+    .cart-icon {position:relative; cursor:pointer;}
+    .cart-count {
+      position:absolute; 
+      top:-8px; right:-10px; 
+      background:#FF4757; 
+      color:white; 
+      font-size:12px; 
+      border-radius:50%; 
+      width:18px; 
+      height:18px; 
+      display:flex; 
+      align-items:center; 
+      justify-content:center;
+      transition:transform 0.3s ease;
+    }
+    .cart-icon:hover .cart-count {transform:scale(1.2);} 
+    .hamburger {
+      display:none;
+      font-size:24px;
+      color:white;
+      cursor:pointer;
+      transition:transform 0.3s ease;
+    }
+    .hamburger:hover {transform:rotate(90deg);} 
+    .nav-menu {
+      display:block;
+      position:static;
+      max-height:none;
+      background:none;
+      box-shadow:none;
+    }
+    .nav-menu ul {
+      flex-direction:row;
+      padding:0;
+    }
+    .nav-menu ul li {
+      margin:0 15px;
+      text-align:left;
+    }
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @media(max-width:768px){
+      header {margin:10px;}
+      .header-content {flex-direction:row; flex-wrap:wrap; gap:8px;}
+      .hamburger {display:block;}
+      nav {display:none;}
+      .currency-selector {
+        margin: 10px auto;
+        width: 90%;
+        justify-content: space-between;
+      }
+      .currency-selector label {
+        font-size: 0.8rem;
+      }
+      .nav-menu {
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        background:linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%);
+        border-radius:0 0 15px 15px;
+        box-shadow:0 4px 10px rgba(0,0,0,0.15);
+      }
+      .nav-menu.active {display:block;}
+      .nav-menu ul {
+        flex-direction:column;
+        padding:15px;
+      }
+      .nav-menu ul li {
+        margin:10px 0;
+        text-align:center;
+      }
+      .section-title {font-size:1.8rem;}
+      .social-cta {padding:40px 0;}
+      .social-cta h2 {font-size:1.8rem;}
+      .social-cta p {font-size:1rem;}
+      .cart-notification {top:70px; right:10px; font-size:0.9rem; padding:8px 15px;}
+      .logo-text {font-size: 22px;}
+      .logo-img {width: 40px; height: 40px;}
+    }
+    @media(max-width:576px){
+      .products {grid-template-columns:1fr;}
+      .logo-text {display:none;}
+      .hamburger {font-size:20px;}
+      .social-button {padding:12px 30px; font-size:1rem;}
+      .currency-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 12px;
+      }
+      .currency-selector label {
+        margin-bottom: 5px;
+      }
+    }
+    .cart-notification {
+      position:fixed;
+      top:80px;
+      right:20px;
+      background:#6B46C1;
+      color:white;
+      padding:10px 20px;
+      border-radius:8px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.2);
+      z-index:2000;
+      opacity:0;
+      transform:translateY(-20px);
+      transition:opacity 0.3s ease, transform 0.3s ease;
+    }
+    .cart-notification.show {
+      opacity:1;
+      transform:translateY(0);
+    }
+    .section-title {
+      text-align:center; 
+      margin:40px 0 30px; 
+      font-size:2rem; 
+      color:#6B46C1;
+      position:relative;
+      animation:fadeInUp 1s ease;
+    }
+    .category-section {margin-bottom:50px;}
+    .products {
+      display:grid; 
+      grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); 
+      gap:25px;
+      animation:fadeIn 1s ease;
+    }
+    .product {
+      background:white; 
+      border-radius:12px; 
+      overflow:hidden; 
+      box-shadow:0 5px 15px rgba(0,0,0,0.08); 
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .product:hover {
+      transform:translateY(-8px) scale(1.03); 
+      box-shadow:0 12px 25px rgba(107,70,193,.25);
+    }
+    .product a {text-decoration:none; color:inherit; display:block;}
+    .product-img-container {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #fff;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-img {
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: transform .3s ease;
+      image-rendering: auto;
+    }
+    .product:hover .product-img {transform:scale(1.08);} 
+    .product-content {padding:15px;}
+    .product-title {
+      font-size:1.1rem; 
+      margin-bottom:10px; 
+      color:#333;
+      transition:color 0.3s ease;
+    }
+    .product:hover .product-title {color:#6B46C1;}
+    .product-price {
+      font-size:1.2rem; 
+      font-weight:bold; 
+      color:#6B46C1; 
+      margin-bottom:5px;
+    }
+    .primary-price {
+      display: block;
+      font-size: 1.2rem;
+    }
+    .secondary-price {
+      display: block;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .add-to-cart {
+      width:100%; 
+      padding:10px; 
+      background:#6B46C1; 
+      color:white; 
+      border:none; 
+      border-radius:5px; 
+      cursor:pointer; 
+      font-weight:bold; 
+      transition:.3s ease;
+    }
+    .add-to-cart:hover {
+      background:#FFD700; 
+      transform:translateY(-2px);
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    }
+    .social-cta {
+      background:linear-gradient(135deg,#6B46C1 0%,#9F7AEA 100%); 
+      color:white; 
+      text-align:center; 
+      padding:60px 0; 
+      margin:40px 15px;
+      border-radius:20px;
+      animation:fadeIn 1.5s ease;
+    }
+    .social-cta-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    .social-cta-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    .social-cta h2 {
+      font-size:2.2rem; 
+      margin-bottom:20px;
+      animation:fadeInUp 1s ease 0.2s;
+    }
+    .social-cta p {
+      font-size:1.2rem; 
+      max-width:700px; 
+      margin:0 auto 30px;
+      animation:fadeInUp 1s ease 0.4s;
+    }
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .social-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      color: #6B46C1;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      animation: fadeInUp 1s ease 0.6s;
+    }
+    .social-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .social-button i {
+      margin-right: 8px;
+      font-size: 1.2rem;
+    }
+    .whatsapp-button { background: #25D366; color: white; }
+    footer {
+      background:#333; 
+      color:white; 
+      padding:40px 0 20px;
+      animation:fadeIn 1s ease;
+    }
+    .footer-content {
+      display:grid; 
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); 
+      gap:30px; 
+      margin-bottom:30px;
+    }
+    .footer-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 0 20px 0;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    .footer-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    .footer-section h3 {
+      font-size:1.2rem; 
+      margin-bottom:15px; 
+      color:#FFD700;
+    }
+    .footer-section a,.footer-section p {
+      color:#ddd; 
+      text-decoration:none; 
+      margin-bottom:10px; 
+      display:block;
+      transition:color 0.3s ease;
+    }
+    .footer-section a:hover {color:#6B46C1;}
+    .social-icons a {
+      margin-right:15px; 
+      font-size:1.5rem; 
+      color:#ddd;
+      transition:transform 0.3s ease, color 0.3s ease;
+    }
+    .social-icons a:hover {
+      color:#6B46C1;
+      transform:scale(1.2);
+    }
+    .footer-bottom {
+      text-align:center; 
+      padding-top:20px; 
+      border-top:1px solid #444;
+    }
+    @keyframes fadeIn {
+      from {opacity:0;}
+      to {opacity:1;}
+    }
+    @keyframes fadeInUp {
+      from {opacity:0; transform:translateY(20px);}
+      to {opacity:1; transform:translateY(0);}
+    }
+    @media (max-width: 768px) {
+      .social-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .social-button {
+        width: 220px;
+      }
+    }
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    .carousel-images {
+      display: flex;
+      transition: transform 0.3s ease;
+    }
+    .carousel-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      z-index: 10;
+      border-radius: 5px;
+    }
+    .carousel-arrow.left {
+      left: 10px;
+    }
+    .carousel-arrow.right {
+      right: 10px;
+    }
+    .carousel-arrow:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo-container" onclick="window.location.href='index.html'">
+        <div class="logo-img">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
+        <div class="logo-text">JoliThrifts</div>
+      </div>
+      <div class="currency-selector">
+        <label for="currency-select">Select currency:</label>
+        <select id="currency-select">
+          <option value="USD">USD ($)</option>
+          <option value="GHS">GHS (₵)</option>
+          <option value="NGN">NGN (₦)</option>
+          <option value="LRD">LRD ($)</option>
+        </select>
+        <span id="currency-loading" class="loading" style="display:none;"></span>
+      </div>
+      <nav class="nav-menu" id="nav-menu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
+        </ul>
+      </nav>
+      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    </div>
+  </div>
+</header>
+<section class="container">
+  <h2 class="section-title">Ladies Flats and Heels Collection</h2>
+  <div class="category-section" id="flats-and-heels">
+    <h3 class="section-title">FLATS & HEELS</h3>
+    <div class="products">
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Black Mary Jane Mesh Shoe&price=14.00&image=images/image137.jpg">
+            <div class="carousel-images">
+              <img src="images/image137.jpg" class="product-img">
+              <img src="images/image138.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Black Mary Jane Mesh Shoe</h3>
+          <p class="product-price" data-usd="14.00">
+            <span class="primary-price">$14.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Black Mary Jane Mesh Shoe',14.00,'images/image137.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Davina Black Flats&price=20.00&image=images/image139.jpg">
+            <div class="carousel-images">
+              <img src="images/image139.jpg" class="product-img">
+              <img src="images/image140.jpg" class="product-img">
+              <img src="images/image141.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Davina Black Flats</h3>
+          <p class="product-price" data-usd="20.00">
+            <span class="primary-price">$20.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Davina Black Flats',20.00,'images/image139.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Women Mules&price=14.80&image=images/image142.jpg">
+            <div class="carousel-images">
+              <img src="images/image142.jpg" class="product-img">
+              <img src="images/image143.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Women's Mules</h3>
+          <p class="product-price" data-usd="14.80">
+            <span class="primary-price">$14.80</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Women Mules',14.80,'images/image142.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Ballet Flats&price=20.00&image=images/image144.jpg">
+            <div class="carousel-images">
+              <img src="images/image144.jpg" class="product-img">
+              <img src="images/image145.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Ballet Flats</h3>
+          <p class="product-price" data-usd="20.00">
+            <span class="primary-price">$20.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Ballet Flats',20.00,'images/image144.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Mesh Ballet Shoes&price=28.00&image=images/image146.jpg">
+            <div class="carousel-images">
+              <img src="images/image146.jpg" class="product-img">
+              <img src="images/image147.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Mesh Ballet Shoes</h3>
+          <p class="product-price" data-usd="28.00">
+            <span class="primary-price">$28.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Mesh Ballet Shoes',28.00,'images/image146.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Patent Finish Flat Shoe&price=18.00&image=images/image148.jpg">
+            <div class="carousel-images">
+              <img src="images/image148.jpg" class="product-img">
+              <img src="images/image.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Patent Finish Flat Shoe</h3>
+          <p class="product-price" data-usd="18.00">
+            <span class="primary-price">$18.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Patent Finish Flat Shoe',18.00,'images/image148.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Animal Print Fat Mules with Bow&price=20.00&image=images/image149.jpg">
+            <div class="carousel-images">
+              <img src="images/image149.jpg" class="product-img">
+              <img src="images/image150.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Animal Print Fat Mules with Bow</h3>
+          <p class="product-price" data-usd="20.00">
+            <span class="primary-price">$20.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Animal Print Fat Mules with Bow',20.00,'images/image149.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Slingback Ballet Flats&price=28.00&image=images/image151.jpg">
+            <div class="carousel-images">
+              <img src="images/image151.jpg" class="product-img">
+              <img src="images/image152.jpg" class="product-img">
+              <img src="images/image153.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Slingback Ballet Flats</h3>
+          <p class="product-price" data-usd="28.00">
+            <span class="primary-price">$28.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Slingback Ballet Flats',28.00,'images/image151.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Flat Strappy Sandals&price=23.50&image=images/image154.jpg">
+            <div class="carousel-images">
+              <img src="images/image154.jpg" class="product-img">
+              <img src="images/image.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Flat Strappy Sandals</h3>
+          <p class="product-price" data-usd="23.50">
+            <span class="primary-price">$23.50</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Flat Strappy Sandals',23.50,'images/image154.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Rhinestone Ankle Strap Sandals&price=15.00&image=images/image155.jpg">
+            <div class="carousel-images">
+              <img src="images/image155.jpg" class="product-img">
+              <img src="images/image156.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Rhinestone Ankle Strap Sandals</h3>
+          <p class="product-price" data-usd="15.00">
+            <span class="primary-price">$15.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Rhinestone Ankle Strap Sandals',15.00,'images/image155.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Head Cross Sandals&price=15.00&image=images/image157.jpg">
+            <div class="carousel-images">
+              <img src="images/image157.jpg" class="product-img">
+              <img src="images/image158.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Head Cross Sandals</h3>
+          <p class="product-price" data-usd="15.00">
+            <span class="primary-price">$15.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Head Cross Sandals',15.00,'images/image157.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Split-Toe Sandals&price=15.00&image=images/image161.jpg">
+            <div class="carousel-images">
+              <img src="images/image161.jpg" class="product-img">
+              <img src="images/image162.jpg" class="product-img">
+              <img src="images/image163.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Split-Toe Sandals</h3>
+          <p class="product-price" data-usd="15.00">
+            <span class="primary-price">$15.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Split-Toe Sandals',15.00,'images/image161.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Rhinestone Slides&price=15.00&image=images/image164.jpg">
+            <div class="carousel-images">
+              <img src="images/image164.jpg" class="product-img">
+              <img src="images/image165.jpg" class="product-img">
+              <img src="images/image166.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Rhinestone Slides</h3>
+          <p class="product-price" data-usd="15.00">
+            <span class="primary-price">$15.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Rhinestone Slides',15.00,'images/image164.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Chypre Sandals&price=23.00&image=images/image167.jpg">
+            <div class="carousel-images">
+              <img src="images/image167.jpg" class="product-img">
+              <img src="images/image168.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Chypre Sandals</h3>
+          <p class="product-price" data-usd="23.00">
+            <span class="primary-price">$23.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Chypre Sandals',23.00,'images/image167.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Oran Sandals&price=37.00&image=images/image169.jpg">
+            <div class="carousel-images">
+              <img src="images/image169.jpg" class="product-img">
+              <img src="images/image170.jpg" class="product-img">
+              <img src="images/image171.jpg" class="product-img">
+              <img src="images/image172.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Oran Sandals</h3>
+          <p class="product-price" data-usd="37.00">
+            <span class="primary-price">$37.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Oran Sandals',37.00,'images/image169.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Izmir Sandals&price=42.00&image=images/image173.jpg">
+            <div class="carousel-images">
+              <img src="images/image173.jpg" class="product-img">
+              <img src="images/image174.jpg" class="product-img">
+              <img src="images/image175.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Izmir Sandals</h3>
+          <p class="product-price" data-usd="42.00">
+            <span class="primary-price">$42.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Izmir Sandals',42.00,'images/image173.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Guess Slide Sandals&price=37.00&image=images/image176.jpg">
+            <div class="carousel-images">
+              <img src="images/image176.jpg" class="product-img">
+              <img src="images/image177.jpg" class="product-img">
+              <img src="images/image178.jpg" class="product-img">
+              <img src="images/image179.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Guess Slide Sandals</h3>
+          <p class="product-price" data-usd="37.00">
+            <span class="primary-price">$37.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Guess Slide Sandals',37.00,'images/image176.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Saint Laurent Opyum Heels&price=32.00&image=images/image180.jpg">
+            <div class="carousel-images">
+              <img src="images/image180.jpg" class="product-img">
+              <img src="images/image181.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Saint Laurent Opyum Heels</h3>
+          <p class="product-price" data-usd="32.00">
+            <span class="primary-price">$32.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Saint Laurent Opyum Heels',32.00,'images/image180.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Valentino Garavani Heels&price=37.00&image=images/image182.jpg">
+            <div class="carousel-images">
+              <img src="images/image182.jpg" class="product-img">
+              <img src="images/image183.jpg" class="product-img">
+              <img src="images/image184.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Valentino Garavani Heels</h3>
+          <p class="product-price" data-usd="37.00">
+            <span class="primary-price">$37.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Valentino Garavani Heels',37.00,'images/image182.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Butterfly High Heels&price=37.00&image=images/image185.jpg">
+            <div class="carousel-images">
+              <img src="images/image185.jpg" class="product-img">
+              <img src="images/image186.jpg" class="product-img">
+              <img src="images/image187.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Butterfly High Heels</h3>
+          <p class="product-price" data-usd="37.00">
+            <span class="primary-price">$37.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Butterfly High Heels',37.00,'images/image185.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=YSL Heels&price=37.00&image=images/image188.jpg">
+            <div class="carousel-images">
+              <img src="images/image188.jpg" class="product-img">
+              <img src="images/image189.jpg" class="product-img">
+              <img src="images/image190.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">YSL Heels</h3>
+          <p class="product-price" data-usd="37.00">
+            <span class="primary-price">$37.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('YSL Heels',37.00,'images/image188.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Stileto Heels&price=37.00&image=images/image191.jpg">
+            <div class="carousel-images">
+              <img src="images/image191.jpg" class="product-img">
+              <img src="images/image192.jpg" class="product-img">
+              <img src="images/image193.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Stileto Heels</h3>
+          <p class="product-price" data-usd="37.00">
+            <span class="primary-price">$37.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Stileto Heels',37.00,'images/image191.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Stileto Heeled Ankle Strap&price=37.00&image=images/image194.jpg">
+            <div class="carousel-images">
+              <img src="images/image194.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Stileto Heeled Ankle Strap</h3>
+          <p class="product-price" data-usd="37.00">
+            <span class="primary-price">$37.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Stileto Heeled Ankle Strap',37.00,'images/image194.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Patent Bow Heels&price=37.00&image=images/image195.jpg">
+            <div class="carousel-images">
+              <img src="images/image195.jpg" class="product-img">
+              <img src="images/image196.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Patent Bow Heels</h3>
+          <p class="product-price" data-usd="37.00">
+            <span class="primary-price">$37.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Patent Bow Heels',37.00,'images/image195.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Slingback High Heels&price=29.00&image=images/image197.jpg">
+            <div class="carousel-images">
+              <img src="images/image197.jpg" class="product-img">
+              <img src="images/image198.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Slingback High Heels</h3>
+          <p class="product-price" data-usd="29.00">
+            <span class="primary-price">$29.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Slingback High Heels',29.00,'images/image197.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Gianvito Rossi Flavia Heels&price=32.00&image=images/image199.jpg">
+            <div class="carousel-images">
+              <img src="images/image199.jpg" class="product-img">
+              <img src="images/image200.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Gianvito Rossi Flavia Heels</h3>
+          <p class="product-price" data-usd="32.00">
+            <span class="primary-price">$32.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Gianvito Rossi Flavia Heels',32.00,'images/image199.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Rivet High Heels&price=40.00&image=images/image201.jpg">
+            <div class="carousel-images">
+              <img src="images/image201.jpg" class="product-img">
+              <img src="images/image202.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Rivet High Heels</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Rivet High Heels',40.00,'images/image201.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Polka Dot Bow Heels&price=40.00&image=images/image203.jpg">
+            <div class="carousel-images">
+              <img src="images/image203.jpg" class="product-img">
+              <img src="images/image204.jpg" class="product-img">
+              <img src="images/image205.jpg" class="product-img">
+              <img src="images/image206.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Polka Dot Bow Heels</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Polka Dot Bow Heels',40.00,'images/image203.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Pointed Toe Heels&price=30.00&image=images/image207.jpg">
+            <div class="carousel-images">
+              <img src="images/image207.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Pointed Toe Heels</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Pointed Toe Heels',30.00,'images/image207.jpg')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="social-cta">
+  <div class="container">
+    <div class="social-cta-logo">
+      <img src="images/clogo.png" alt="JoliThrifts Logo">
+    </div>
+    <h2>Ready to Shop?</h2>
+    <p>Message us directly on WhatsApp. Our team will assist you with your order and answer any questions you may have.</p>
+    <div class="social-buttons">
+      <a href="https://wa.me/+8616671705298?text=Hi, I am interested in shopping with you" class="social-button whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <div class="footer-logo">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
+        <h3>About Us</h3>
+        <p>We offer quality products with direct social media ordering for a seamless shopping experience.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="aurelia.html">Aurelia</a>
+        <a href="iphones.html">iPhones</a>
+        <a href="ladiesbag.html">Ladies Bag</a>
+        <a href="sneakers.html">Sneakers</a>
+        <a href="ladiesflatsandheels.html">Ladies Flats & Heels</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: jolithrifts876@gmail.com</p>
+        <p>Phone: +8616671705298</p>
+        <div class="social-icons">
+          <a href="https://wa.me/+8616671705298" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.snapchat.com/add/" target="_blank"><i class="fab fa-snapchat"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 JoliThrifts. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<div class="cart-notification" id="cart-notification">Item added to cart!</div>
+<script>
+  function formatNumber(num) {
+    const parts = num.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    const currencySelect = document.getElementById('currency-select');
+    const currencyLoading = document.getElementById('currency-loading');
+    
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+    
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    
+    const exchangeRates = {
+      USD: 1,
+      GHS: 12.50,
+      NGN: 1650,
+      LRD: 195
+    };
+    
+    function updatePrices(currency) {
+      const products = document.querySelectorAll('.product-price');
+      products.forEach(product => {
+        const usdPrice = parseFloat(product.getAttribute('data-usd'));
+        const convertedPrice = (usdPrice * exchangeRates[currency]).toFixed(2);
+        const symbol = {
+          USD: '$',
+          GHS: '₵',
+          NGN: '₦',
+          LRD: '$'
+        }[currency];
+        
+        const formattedPrice = formatNumber(convertedPrice);
+        product.querySelector('.primary-price').textContent = `${symbol}${formattedPrice}`;
+        product.querySelector('.secondary-price').textContent = `($${usdPrice.toFixed(2)} USD)`;
+      });
+    }
+    
+    currencySelect.addEventListener('change', (e) => {
+      currencyLoading.style.display = 'inline-block';
+      setTimeout(() => {
+        updatePrices(e.target.value);
+        currencyLoading.style.display = 'none';
+      }, 500);
+    });
+    
+    updatePrices('USD');
+    
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    function updateCartCount() {
+      const cartCount = document.querySelector('.cart-count');
+      cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+    
+    window.addToCart = function(name, price, image) {
+      const existingItem = cart.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ name, price, image, quantity: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      
+      const notification = document.getElementById('cart-notification');
+      notification.classList.add('show');
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 2000);
+    };
+    
+    updateCartCount();
+    
+    // Carousel functionality
+    const carousels = document.querySelectorAll('.carousel-container');
+    carousels.forEach(carousel => {
+      const images = carousel.querySelector('.carousel-images');
+      const imageList = images.querySelectorAll('img');
+      const leftArrow = carousel.querySelector('.carousel-arrow.left');
+      const rightArrow = carousel.querySelector('.carousel-arrow.right');
+      let currentIndex = 0;
+      
+      // Hide arrows if only one image
+      if (imageList.length <= 1) {
+        leftArrow.style.display = 'none';
+        rightArrow.style.display = 'none';
+      }
+      
+      leftArrow.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          images.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+      });
+      
+      rightArrow.addEventListener('click', () => {
+        if (currentIndex < imageList.length - 1) {
+          currentIndex++;
+          images.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+      });
+      
+      // Adjust addToCart to use current image
+      const product = carousel.closest('.product');
+      product.querySelector('.add-to-cart').addEventListener('click', () => {
+        const name = product.querySelector('.product-title').textContent;
+        const price = parseFloat(product.querySelector('.product-price').getAttribute('data-usd'));
+        const currentImage = imageList[currentIndex].src;
+        addToCart(name, price, currentImage);
+      });
+    });
+  });
+</script>
+</body>
+</html>

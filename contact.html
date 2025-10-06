@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JoliThrifts - Contact Us</title>
+  <link rel="icon" type="image/x-icon" href="images/clogo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -27,17 +28,53 @@
       background:linear-gradient(135deg,#5A3AB0 0%, #7A4FF0 100%);
     }
     .header-content {display:flex; justify-content:space-between; align-items:center;}
-    .logo {
+    
+    /* Logo Container */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-img img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .logo-text {
       font-family: 'Playfair Display', serif;
-      font-size:26px; 
-      font-weight:700;
+      font-size: 26px;
+      font-weight: 700;
       background: linear-gradient(45deg, #FFD700, #FF8C00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      transition:transform 0.3s ease;
-      cursor: pointer;
+      transition: transform 0.3s ease;
     }
-    .logo:hover {transform:scale(1.1);}
+    
+    .logo-container:hover .logo-text {
+      transform: scale(1.05);
+    }
+    
     nav {display:flex; align-items:center;}
     nav ul {display:flex; list-style:none;}
     nav ul li {margin-left:25px; position:relative;}
@@ -82,15 +119,48 @@
       .nav-menu.active {display:block;}
       .nav-menu ul {flex-direction:column; padding:15px;}
       .nav-menu ul li {margin:10px 0; text-align:center;}
+      
+      .logo-text {
+        font-size: 22px;
+      }
+      .logo-img {
+        width: 40px;
+        height: 40px;
+      }
     }
     @media(max-width:576px){
-      .logo {font-size:22px;}
+      .logo-text {
+        display: none;
+      }
       .hamburger {font-size:20px;}
     }
+    
     .section-title {
       text-align:center; margin:40px 0 30px; font-size:2rem; color:#6B46C1;
       position:relative; animation:fadeInUp 1s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
     }
+    
+    .section-title-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .section-title-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .contact-section {padding:60px 0;}
     .contact-section p {text-align:center; max-width:800px; margin:0 auto 40px; color:#555;}
     .contact-info {
@@ -126,11 +196,32 @@
       transition:.3s ease;
     }
     .submit-button:hover {background:#FFD700; transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+    
     .social-cta {
       background:linear-gradient(135deg,#6B46C1 0%,#9F7AEA 100%);
       color:white; text-align:center; padding:60px 0; margin:40px 15px;
       border-radius:20px;
     }
+    
+    .social-cta-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .social-cta-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .social-cta h2 {font-size:2.2rem; margin-bottom:20px;}
     .social-cta p {font-size:1.2rem; max-width:700px; margin:0 auto 30px;}
     .social-buttons {
@@ -162,6 +253,7 @@
       font-size: 1.2rem;
     }
     .whatsapp-button { background: #25D366; color: white; }
+    
     footer {background:#333; color:white; padding:40px 0 20px;}
     .footer-content {
       display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; margin-bottom:30px;
@@ -171,9 +263,30 @@
       color:#ddd; text-decoration:none; margin-bottom:10px; display:block; transition:color 0.3s ease;
     }
     .footer-section a:hover {color:#6B46C1;}
+    
+    .footer-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 0 20px 0;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .footer-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .social-icons a {margin-right:15px; font-size:1.5rem; color:#ddd; transition:transform 0.3s ease, color 0.3s ease;}
     .social-icons a:hover {color:#6B46C1; transform:scale(1.2);}
     .footer-bottom {text-align:center; padding-top:20px; border-top:1px solid #444;}
+    
     @media (max-width: 768px) {
       .social-buttons {
         flex-direction: column;
@@ -183,6 +296,7 @@
         width: 220px;
       }
     }
+    
     @keyframes fadeInUp {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
   </style>
 </head>
@@ -190,7 +304,12 @@
 <header>
   <div class="container">
     <div class="header-content">
-      <div class="logo" onclick="window.location.href='index.html'">JoliThrifts</div>
+      <div class="logo-container" onclick="window.location.href='index.html'">
+        <div class="logo-img">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
+        <div class="logo-text">JoliThrifts</div>
+      </div>
       <nav class="nav-menu" id="nav-menu">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -204,8 +323,14 @@
     </div>
   </div>
 </header>
+
 <section class="contact-section container">
-  <h2 class="section-title">Contact Us</h2>
+  <h2 class="section-title">
+    <div class="section-title-logo">
+      <img src="images/clogo.png" alt="JoliThrifts Logo">
+    </div>
+    Contact Us
+  </h2>
   <p>We're here to assist you! Whether you have questions about our products, need help with an order, or just want to say hi, feel free to reach out through any of the methods below.</p>
   <div class="contact-info">
     <div class="contact-card">
@@ -241,27 +366,55 @@
     <button class="submit-button" onclick="sendMessage()">Send Message</button>
   </div>
 </section>
+
 <section class="social-cta">
   <div class="container">
+    <div class="social-cta-logo">
+      <img src="images/clogo.png" alt="JoliThrifts Logo">
+    </div>
     <h2>Instant Support</h2>
-    <p>Need immediate assistance? Chat with us on WhatsApp for quick responses to your queries.</p>
+    <p>Need immediate assistance? Chat with us on WhatsApp for quick responses to your queries about products, orders, or any other concerns.</p>
     <div class="social-buttons">
       <a href="https://wa.me/+8616671705298?text=Hi%20I'm%20contacting%20you%20from%20JoliThrifts" class="social-button whatsapp-button" target="_blank">
-        <i class="fab fa-whatsapp"></i> WhatsApp
+        <i class="fab fa-whatsapp"></i> WhatsApp Support
       </a>
     </div>
   </div>
 </section>
+
 <footer>
   <div class="container">
     <div class="footer-content">
-      <div class="footer-section"><h3>About Us</h3><p>We offer quality products with direct WhatsApp ordering for a seamless shopping experience.</p></div>
-      <div class="footer-section"><h3>Quick Links</h3><a href="index.html">Home</a><a href="products.html">Products</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
-      <div class="footer-section"><h3>Contact Us</h3><p>Email: jolithrifts876@gmail.com</p><p>Phone: +8616671705298</p><div class="social-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div>
+      <div class="footer-section">
+        <div class="footer-logo">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
+        <h3>About Us</h3>
+        <p>We offer quality products with direct WhatsApp ordering for a seamless shopping experience that combines convenience with personal service.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Email: jolithrifts876@gmail.com</p>
+        <p>Phone: +8616671705298</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
     </div>
     <div class="footer-bottom"><p>&copy; 2025 JoliThrifts. All rights reserved.</p></div>
   </div>
 </footer>
+
 <script>
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   let cartCount = cart.length;
