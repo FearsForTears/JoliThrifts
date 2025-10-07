@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JoliThrifts - Products</title>
+  <link rel="icon" type="image/x-icon" href="images/clogo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -22,17 +23,64 @@
       z-index:1000;
       transition:transform 0.3s ease, background 0.3s ease;
     }
+    
+    /* Logo Container */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-img img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #FFD700, #FF8C00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo-container:hover .logo-text {
+      transform: scale(1.05);
+    }
+
     /* Active menu item styling */
-nav ul li a.active {
-  color:#FFD700;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-  padding: 6px 12px;
-}
-nav ul li a.active::before,
-nav ul li a.active::after {
-  transform:scaleX(1);
-}
+    nav ul li a.active {
+      color:#FFD700;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      padding: 6px 12px;
+    }
+    nav ul li a.active::before,
+    nav ul li a.active::after {
+      transform:scaleX(1);
+    }
     header.scrolled {
       transform:scale(0.98);
       background:linear-gradient(135deg,#5A3AB0 0%, #7A4FF0 100%);
@@ -42,18 +90,8 @@ nav ul li a.active::after {
       justify-content:space-between; 
       align-items:center;
       position:relative;
-      cursor: pointer; 
     }
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size:26px; 
-      font-weight:700;
-      background: linear-gradient(45deg, #FFD700, #FF8C00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      transition:transform 0.3s ease;
-    }
-    .logo:hover {transform:scale(1.1);} 
+    
     .currency-selector {
       background: rgba(255, 255, 255, 0.2);
       border-radius: 20px;
@@ -196,6 +234,8 @@ nav ul li a.active::after {
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+    
+    /* Mobile Responsive Styles */
     @media(max-width:768px){
       header {margin:10px;}
       .header-content {flex-direction:row; flex-wrap:wrap; gap:8px;}
@@ -228,6 +268,15 @@ nav ul li a.active::after {
         margin:10px 0;
         text-align:center;
       }
+      
+      .logo-text {
+        font-size: 22px;
+      }
+      .logo-img {
+        width: 40px;
+        height: 40px;
+      }
+      
       .section-title {font-size:1.8rem;}
       .social-cta {padding:40px 0;}
       .social-cta h2 {font-size:1.8rem;}
@@ -236,7 +285,6 @@ nav ul li a.active::after {
     }
     @media(max-width:576px){
       .products {grid-template-columns:1fr;}
-      .logo {font-size:22px;}
       .hamburger {font-size:20px;}
       .social-button {padding:12px 30px; font-size:1rem;}
       .currency-selector {
@@ -247,7 +295,12 @@ nav ul li a.active::after {
       .currency-selector label {
         margin-bottom: 5px;
       }
+      
+      .logo-text {
+        display: none;
+      }
     }
+    
     .cart-notification {
       position:fixed;
       top:80px;
@@ -351,6 +404,8 @@ nav ul li a.active::after {
       transform:translateY(-2px);
       box-shadow:0 5px 15px rgba(0,0,0,0.2);
     }
+    
+    /* Social CTA with Logo */
     .social-cta {
       background:linear-gradient(135deg,#6B46C1 0%,#9F7AEA 100%); 
       color:white; 
@@ -360,6 +415,26 @@ nav ul li a.active::after {
       border-radius:20px;
       animation:fadeIn 1.5s ease;
     }
+    
+    .social-cta-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .social-cta-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .social-cta h2 {
       font-size:2.2rem; 
       margin-bottom:20px;
@@ -401,9 +476,8 @@ nav ul li a.active::after {
       font-size: 1.2rem;
     }
     .whatsapp-button { background: #25D366; color: white; }
-    .instagram-button { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
-    .snapchat-button { background: #FFFC00; color: black; }
-    .wechat-button { background: #07C160; color: white; }
+    
+    /* Footer with Logo */
     footer {
       background:#333; 
       color:white; 
@@ -429,6 +503,26 @@ nav ul li a.active::after {
       transition:color 0.3s ease;
     }
     .footer-section a:hover {color:#6B46C1;}
+    
+    .footer-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 0 20px 0;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .footer-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
     .social-icons a {
       margin-right:15px; 
       font-size:1.5rem; 
@@ -503,7 +597,12 @@ nav ul li a.active::after {
 <header>
   <div class="container">
     <div class="header-content">
-      <div class="logo" onclick="window.location.href='index.html'">JoliThrifts</div>
+      <div class="logo-container" onclick="window.location.href='index.html'">
+        <div class="logo-img">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
+        <div class="logo-text">JoliThrifts</div>
+      </div>
       <div class="currency-selector">
         <label for="currency-select">Select currency:</label>
         <select id="currency-select">
@@ -2623,6 +2722,9 @@ nav ul li a.active::after {
 <!-- Social CTA -->
   <section class="social-cta">
     <div class="container">
+      <div class="social-cta-logo">
+        <img src="images/clogo.png" alt="JoliThrifts Logo">
+      </div>
       <h2>Ready to Shop?</h2>
       <p>Message us directly on WhatsApp. Our team will assist you with your order and answer any questions you may have.</p>
       
@@ -2637,6 +2739,9 @@ nav ul li a.active::after {
   <div class="container">
     <div class="footer-content">
       <div class="footer-section">
+        <div class="footer-logo">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
         <h3>About Us</h3>
         <p>We offer quality products with direct social media ordering for a seamless shopping experience.</p>
       </div>
@@ -2794,4 +2899,3 @@ nav ul li a.active::after {
 </script>
 </body>
 </html>
-

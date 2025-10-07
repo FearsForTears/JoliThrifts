@@ -222,9 +222,28 @@
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+    
+    /* Mobile Header Controls */
+    .mobile-controls {
+      display: none;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    /* Responsive nav - MODIFIED FOR MOBILE */
     @media(max-width:768px){
       header {margin:10px;}
-      .header-content {flex-direction:row; flex-wrap:wrap; gap:8px;}
+      .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      
+      /* Show mobile controls */
+      .mobile-controls {
+        display: flex;
+      }
+      
       .hamburger {display:block;}
       nav {display:none;}
       .currency-selector {
@@ -254,17 +273,36 @@
         margin:10px 0;
         text-align:center;
       }
+      
+      /* Keep logo and text visible but adjust sizes */
+      .logo-text {
+        font-size: 20px; /* Reduced from 26px */
+      }
+      .logo-img {
+        width: 35px; /* Reduced from 40px */
+        height: 35px; /* Reduced from 40px */
+      }
+      
       .section-title {font-size:1.8rem;}
       .social-cta {padding:40px 0;}
       .social-cta h2 {font-size:1.8rem;}
       .social-cta p {font-size:1rem;}
       .cart-notification {top:70px; right:10px; font-size:0.9rem; padding:8px 15px;}
-      .logo-text {font-size: 22px;}
-      .logo-img {width: 40px; height: 40px;}
     }
+    
     @media(max-width:576px){
       .products {grid-template-columns:1fr;}
-      .logo-text {display:none;}
+      
+      /* Keep logo and text visible even on very small screens */
+      .logo-text {
+        display: block; /* Changed from 'none' to 'block' */
+        font-size: 18px; /* Further reduced for small screens */
+      }
+      .logo-img {
+        width: 30px; /* Further reduced for small screens */
+        height: 30px; /* Further reduced for small screens */
+      }
+      
       .hamburger {font-size:20px;}
       .social-button {padding:12px 30px; font-size:1rem;}
       .currency-selector {
@@ -275,7 +313,18 @@
       .currency-selector label {
         margin-bottom: 5px;
       }
+      
+      /* Adjust header padding for small screens */
+      header {
+        padding: 12px 15px;
+      }
+      
+      /* Adjust mobile controls for very small screens */
+      .mobile-controls {
+        gap: 10px;
+      }
     }
+    
     .cart-notification {
       position:fixed;
       top:80px;
@@ -588,7 +637,11 @@
           <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
         </ul>
       </nav>
-      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      <!-- Mobile controls - cart and hamburger -->
+      <div class="mobile-controls">
+        <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      </div>
     </div>
   </div>
 </header>
@@ -1115,8 +1168,11 @@
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
     function updateCartCount() {
-      const cartCount = document.querySelector('.cart-count');
-      cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const cartCounts = document.querySelectorAll('.cart-count');
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCounts.forEach(cartCount => {
+        cartCount.textContent = count;
+      });
     }
     
     window.addToCart = function(name, price, image) {

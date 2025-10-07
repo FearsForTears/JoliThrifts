@@ -122,7 +122,7 @@
       cursor: pointer;
     }
 
-    /* Responsive nav */
+    /* Responsive nav - MODIFIED FOR MOBILE */
     @media (max-width: 768px) {
       nav ul {
         display: none;
@@ -139,18 +139,36 @@
       nav ul.active { display: flex; }
       .hamburger { display: block; color: white; }
       
+      /* Keep logo and text visible but adjust sizes */
       .logo-text {
-        font-size: 22px;
+        font-size: 20px; /* Reduced from 22px */
       }
       .logo-img {
-        width: 40px;
-        height: 40px;
+        width: 35px; /* Reduced from 40px */
+        height: 35px; /* Reduced from 40px */
       }
     }
     
     @media (max-width: 576px) {
+      /* Keep logo and text visible even on very small screens */
       .logo-text {
-        display: none;
+        display: block; /* Changed from 'none' to 'block' */
+        font-size: 18px; /* Further reduced for small screens */
+      }
+      .logo-img {
+        width: 30px; /* Further reduced for small screens */
+        height: 30px; /* Further reduced for small screens */
+      }
+      
+      /* Adjust header padding for small screens */
+      header {
+        padding: 10px 0;
+      }
+      
+      /* Adjust navigation menu for small screens */
+      nav ul {
+        width: 180px;
+        top: 50px;
       }
     }
 

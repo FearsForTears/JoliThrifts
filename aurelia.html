@@ -233,11 +233,30 @@
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+    
+    /* Mobile Header Controls */
+    .mobile-controls {
+      display: none;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    /* Responsive nav - MODIFIED FOR MOBILE */
     @media(max-width:768px){
       header {margin:10px;}
-      .header-content {flex-direction:row; flex-wrap:wrap; gap:8px;}
+      .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      
+      /* Show mobile controls */
+      .mobile-controls {
+        display: flex;
+      }
+      
       .hamburger {display:block;}
-      nav {display:none;}
+      .desktop-nav {display:none;}
       .currency-selector {
         margin: 10px auto;
         width: 90%;
@@ -255,6 +274,7 @@
         background:linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%);
         border-radius:0 0 15px 15px;
         box-shadow:0 4px 10px rgba(0,0,0,0.15);
+        z-index: 1001;
       }
       .nav-menu.active {display:block;}
       .nav-menu ul {
@@ -265,13 +285,19 @@
         margin:10px 0;
         text-align:center;
       }
+      .nav-menu ul li a {
+        display: block;
+        padding: 10px 0;
+        width: 100%;
+      }
       
+      /* Keep logo and text visible but adjust sizes */
       .logo-text {
-        font-size: 22px;
+        font-size: 20px; /* Reduced from 26px */
       }
       .logo-img {
-        width: 40px;
-        height: 40px;
+        width: 35px; /* Reduced from 40px */
+        height: 35px; /* Reduced from 40px */
       }
       
       .section-title {font-size:1.8rem;}
@@ -280,11 +306,20 @@
       .social-cta p {font-size:1rem;}
       .cart-notification {top:70px; right:10px; font-size:0.9rem; padding:8px 15px;}
     }
+    
     @media(max-width:576px){
       .products {grid-template-columns:1fr;}
+      
+      /* Keep logo and text visible even on very small screens */
       .logo-text {
-        display: none;
+        display: block; /* Changed from 'none' to 'block' */
+        font-size: 18px; /* Further reduced for small screens */
       }
+      .logo-img {
+        width: 30px; /* Further reduced for small screens */
+        height: 30px; /* Further reduced for small screens */
+      }
+      
       .hamburger {font-size:20px;}
       .social-button {padding:12px 30px; font-size:1rem;}
       .currency-selector {
@@ -294,6 +329,16 @@
       }
       .currency-selector label {
         margin-bottom: 5px;
+      }
+      
+      /* Adjust header padding for small screens */
+      header {
+        padding: 12px 15px;
+      }
+      
+      /* Adjust mobile controls for very small screens */
+      .mobile-controls {
+        gap: 10px;
       }
     }
     
@@ -631,7 +676,7 @@
         </select>
         <span id="currency-loading" class="loading" style="display:none;"></span>
       </div>
-      <nav class="nav-menu" id="nav-menu">
+      <nav class="desktop-nav">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="products.html">Products</a></li>
@@ -640,8 +685,21 @@
           <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
         </ul>
       </nav>
-      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      <!-- Mobile controls - cart and hamburger -->
+      <div class="mobile-controls">
+        <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      </div>
     </div>
+    <!-- Mobile Navigation Menu -->
+    <nav class="nav-menu" id="nav-menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -861,8 +919,24 @@
     const currencySelect = document.getElementById('currency-select');
     const currencyLoading = document.getElementById('currency-loading');
     
+    // Hamburger menu functionality
     hamburger.addEventListener('click', () => {
       navMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+    
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
     });
     
     window.addEventListener('scroll', () => {
@@ -908,8 +982,11 @@
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
     function updateCartCount() {
-      const cartCount = document.querySelector('.cart-count');
-      cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const cartCounts = document.querySelectorAll('.cart-count');
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCounts.forEach(cartCount => {
+        cartCount.textContent = count;
+      });
     }
     
     window.addToCart = function(name, price, image) {
