@@ -197,8 +197,15 @@
       transition:transform 0.3s ease;
     }
     .cart-icon:hover .cart-count {transform:scale(1.2);} 
+    
+    /* Mobile menu and cart controls */
+    .mobile-controls {
+      display: none;
+      align-items: center;
+      gap: 15px;
+    }
+    
     .hamburger {
-      display:none;
       font-size:24px;
       color:white;
       cursor:pointer;
@@ -238,8 +245,17 @@
     /* Mobile Responsive Styles */
     @media(max-width:768px){
       header {margin:10px;}
-      .header-content {flex-direction:row; flex-wrap:wrap; gap:8px;}
-      .hamburger {display:block;}
+      .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .mobile-controls {
+        display: flex;
+      }
+      
       nav {display:none;}
       .currency-selector {
         margin: 10px auto;
@@ -258,6 +274,7 @@
         background:linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%);
         border-radius:0 0 15px 15px;
         box-shadow:0 4px 10px rgba(0,0,0,0.15);
+        z-index: 1001;
       }
       .nav-menu.active {display:block;}
       .nav-menu ul {
@@ -296,8 +313,10 @@
         margin-bottom: 5px;
       }
       
+      /* Keep logo text visible on small screens */
       .logo-text {
-        display: none;
+        font-size: 18px;
+        display: block;
       }
     }
     
@@ -622,7 +641,10 @@
           <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
         </ul>
       </nav>
-      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      <div class="mobile-controls">
+        <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      </div>
     </div>
   </div>
 </header>
@@ -2873,8 +2895,11 @@
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
     function updateCartCount() {
-      const cartCount = document.querySelector('.cart-count');
-      cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const cartCount = document.querySelectorAll('.cart-count');
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCount.forEach(element => {
+        element.textContent = count;
+      });
     }
     
     window.addToCart = function(name, price, image) {

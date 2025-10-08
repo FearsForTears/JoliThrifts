@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JoliThrifts - Checkout</title>
+  <link rel="icon" type="image/jpg" href="images/clogo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -27,6 +28,50 @@
       background:linear-gradient(135deg,#5A3AB0 0%, #7A4FF0 100%);
     }
     .header-content {display:flex; justify-content:space-between; align-items:center;}
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-img img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #FFD700, #FF8C00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo-container:hover .logo-text {
+      transform: scale(1.05);
+    }
     .logo {
       font-family: 'Playfair Display', serif;
       font-size:26px; 
@@ -35,8 +80,9 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       transition:transform 0.3s ease;
+      white-space: nowrap;
     }
-    .logo:hover {transform:scale(1.1);}
+    /*.logo:hover {transform:scale(1.1);}*/
     
     /* Currency Selector Styles */
     .currency-selector {
@@ -128,14 +174,57 @@
       transition:transform 0.3s ease;
     }
     .cart-icon:hover .cart-count {transform:scale(1.2);}
-    .hamburger {display:none; font-size:24px; color:white; cursor:pointer; transition:transform 0.3s ease;}
+    
+    /* Mobile menu styles */
+    .mobile-menu-toggle {
+      display: none;
+      align-items: center;
+      gap: 15px;
+    }
+    .hamburger {
+      font-size:24px;
+      color:white;
+      cursor:pointer;
+      transition:transform 0.3s ease;
+    }
     .hamburger:hover {transform:rotate(90deg);}
+    
     .nav-menu {display:block;}
     .nav-menu ul {flex-direction:row;}
+    
     @media(max-width:768px){
       header {margin:10px;}
-      .hamburger {display:block;}
-      nav {display:none;}
+      .mobile-menu-toggle {
+        display: flex;
+      }
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%);
+        border-radius: 0 0 15px 15px;
+        padding: 15px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+      .nav-menu.active {
+        display: block;
+      }
+      .nav-menu ul {
+        flex-direction: column;
+        padding: 0 15px;
+      }
+      .nav-menu ul li {
+        margin: 10px 0;
+        text-align: center;
+      }
+      .nav-menu ul li a {
+        padding: 10px 0;
+        display: block;
+        width: 100%;
+      }
       .currency-selector {
         margin: 10px auto;
         width: 90%;
@@ -144,15 +233,26 @@
       .currency-selector label {
         font-size: 0.8rem;
       }
-      .nav-menu {display:none; position:absolute; top:100%; left:0; right:0;
-        background:linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%); border-radius:0 0 15px 15px;}
-      .nav-menu.active {display:block;}
-      .nav-menu ul {flex-direction:column; padding:15px;}
-      .nav-menu ul li {margin:10px 0; text-align:center;}
+      .logo {
+        font-size: 22px;
+      }
+      .logo-img {
+        width: 35px;
+        height: 35px;
+      }
     }
+    
     @media(max-width:576px){
-      .logo {font-size:22px;}
-      .hamburger {font-size:20px;}
+      .logo {
+        font-size: 18px;
+      }
+      .logo-img {
+        width: 30px;
+        height: 30px;
+      }
+      .hamburger {
+        font-size: 20px;
+      }
       .currency-selector {
         flex-direction: column;
         align-items: flex-start;
@@ -162,6 +262,7 @@
         margin-bottom: 5px;
       }
     }
+    
     .section-title {
       text-align:center; margin:40px 0 30px; font-size:2rem; color:#6B46C1;
       position:relative; animation:fadeInUp 1s ease;
@@ -367,6 +468,32 @@
       margin-right: 8px;
     }
     
+    /* Notification styles */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .notification.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .notification i {
+      font-size: 1.2rem;
+    }
+    
     @media (max-width: 768px) {
       .social-buttons {
         flex-direction: column;
@@ -378,6 +505,11 @@
       .product-display {
         flex-direction: column;
       }
+      .notification {
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+      }
     }
     @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
     @keyframes fadeInUp {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
@@ -385,22 +517,22 @@
 </head>
 <body>
 <div id="toast" style="display:none; position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#333; color:white; padding:10px 20px; border-radius:5px; z-index:10000;"></div>
+
+<!-- Notification element -->
+<div class="notification" id="notification">
+  <i class="fas fa-check-circle"></i>
+  <span id="notification-text">Item added to cart!</span>
+</div>
+
 <header>
   <div class="container">
     <div class="header-content">
-      <div class="logo">JoliThrifts</div>
-     <!--
-      <div class="currency-selector">
-        <label for="currency-select">Select currency:</label>
-        <select id="currency-select">
-          <option value="USD">USD ($)</option>
-          <option value="GHS">GHS (₵)</option>
-          <option value="NGN">NGN (₦)</option>
-          <option value="LRD">LRD ($)</option>
-        </select>
-        <span id="currency-loading" class="loading" style="display:none;"></span>
+      <div class="logo-container">
+        <img src="images/clogo.png" alt="JoliThrifts Logo" class="logo-img">
+        <div class="logo">JoliThrifts</div>
       </div>
-      -->
+      
+      <!-- Desktop Navigation -->
       <nav class="nav-menu" id="nav-menu">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -410,7 +542,12 @@
           <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
         </ul>
       </nav>
-      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      
+      <!-- Mobile Menu Toggle -->
+      <div class="mobile-menu-toggle">
+        <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      </div>
     </div>
   </div>
 </header>
@@ -423,32 +560,6 @@
   <div class="product-display" id="productDisplay">
     <!-- This will be populated by JavaScript -->
   </div>
-  
- <!--
-  <div class="checkout-form">
-    <h2>Your Details</h2>
-    <div class="form-group">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" placeholder="Your Full Name" required>
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Your Email" required>
-    </div>
-    <div class="form-group">
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" placeholder="Your Phone Number" required>
-    </div>
-    <div class="form-group">
-      <label for="address">Shipping Address</label>
-      <input type="text" id="address" placeholder="Your Shipping Address" required>
-    </div>
-    <button class="submit-button" onclick="completeCheckout()">
-      <i class="fab fa-whatsapp"></i> Complete Order via WhatsApp
-    </button>
-  </div>
-
-  -->
 </section>
 
 <section class="social-cta">
@@ -1337,7 +1448,9 @@
 
   function updateCartCount() {
     const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-    document.querySelector('.cart-count').textContent = totalItems;
+    document.querySelectorAll('.cart-count').forEach(el => {
+      el.textContent = totalItems;
+    });
   }
 
   function hasBatteryHealth(productName) {
@@ -1495,224 +1608,161 @@
     document.getElementById('productPrice').textContent = formatCurrency(converted, selectedCurrency);
   }
 
-  function addToCart(productName, baseUSDPrice) {
-    let config = {};
-    let usdPrice = baseUSDPrice;
+  function showNotification(message) {
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notification-text');
     
-    if (phonePricing[productName]) {
-      const storage = document.getElementById('storage').value;
-      if (hasBatteryHealth(productName)) {
-        const battery = document.getElementById('battery').value;
-        usdPrice = phonePricing[productName][storage][battery];
-        config = { storage, battery };
-      } else {
-        usdPrice = phonePricing[productName][storage];
-        config = { storage };
-      }
-    } else if (bras.includes(productName)) {
-      const size = document.getElementById('size').value;
-      config = { size };
-    } else if (shoesAndFlatsHeels.includes(productName) || sneakers.includes(productName)) {
-      const size = document.getElementById('size').value;
-      config = { size };
-    }
+    notificationText.textContent = message;
+    notification.classList.add('show');
     
-    const product = {
-      name: productName,
-      price: usdPrice,
-      config: config,
-      image: productImages[productName] ? productImages[productName][0] : "https://via.placeholder.com/70",
-      quantity: 1
-    };
-    
-    cart.push(product);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    renderCart();
-    
-    // Show toast instead of alert
-    const toast = document.getElementById('toast');
-    toast.textContent = `${productName} has been added to your cart!`;
-    toast.style.display = 'block';
     setTimeout(() => {
-      toast.style.display = 'none';
+      notification.classList.remove('show');
     }, 3000);
   }
 
-  function renderCart() {
-    const cartItems = document.getElementById('cartItems');
-    const cartTotal = document.getElementById('cartTotal');
-    const primaryTotal = cartTotal.querySelector('.primary-total');
-    const secondaryTotal = cartTotal.querySelector('.secondary-total');
-
-    cartItems.innerHTML = '';
-
-    if (cart.length === 0) {
-      cartItems.innerHTML = '<p>Your cart is empty. Please add products from the products page.</p>';
-      primaryTotal.textContent = 'Total: $0.00';
-      secondaryTotal.textContent = '';
-      return;
-    }
-
-    let totalUSD = 0;
-    cart.forEach((item, index) => {
-      const quantity = item.quantity || 1;
-      const itemTotalUSD = item.price * quantity;
-      totalUSD += itemTotalUSD;
-
-      const convertedPrice = item.price * exchangeRates[selectedCurrency];
-      const convertedTotal = itemTotalUSD * exchangeRates[selectedCurrency];
-
-      const description = productDescriptions[item.name] || "Premium quality product.";
-
-      const div = document.createElement('div');
-      div.className = 'cart-item';
-
-      let configDetails = "";
-      if (item.config) {
-        if (item.name.includes("iPhone") || item.name.includes("Smartphone")) {
-          configDetails = `Configuration: ${item.config.storage}${item.config.storage === '1TB' ? '' : 'GB'}, Battery: ${item.config.battery}`;
-        } else if (bras.includes(item.name)) {
-          configDetails = `Size: ${item.config.size}`;
-        } else if (shoesAndFlatsHeels.includes(item.name) || sneakers.includes(item.name)) {
-          configDetails = `Size: ${item.config.size}`;
+  // Update the addToCart function to be more robust
+function addToCart(productName, baseUSDPrice) {
+    let config = {};
+    let usdPrice = baseUSDPrice;
+    
+    // Get configuration based on product type
+    if (phonePricing[productName]) {
+        const storage = document.getElementById('storage') ? document.getElementById('storage').value : Object.keys(phonePricing[productName])[0];
+        if (hasBatteryHealth(productName)) {
+            const battery = document.getElementById('battery') ? document.getElementById('battery').value : "80-84";
+            usdPrice = phonePricing[productName][storage][battery];
+            config = { storage, battery };
+        } else {
+            usdPrice = phonePricing[productName][storage];
+            config = { storage };
         }
-      }
-
-      div.innerHTML = `
-        <img src="${item.image || 'https://via.placeholder.com/70'}" alt="${item.name}">
-        <div class="item-details">
-          <h4>${item.name}</h4>
-          <div class="item-description">${description}</div>
-          ${configDetails ? `<p>${configDetails}</p>` : ''}
-          <p>${formatCurrency(convertedPrice, selectedCurrency)} each</p>
-          <div class="secondary-price">${formatCurrency(item.price, 'USD')} each</div>
-          <p>Quantity: ${quantity}</p>
-          <p>Item Total: ${formatCurrency(convertedTotal, selectedCurrency)}</p>
-          <div class="secondary-price">${formatCurrency(itemTotalUSD, 'USD')}</div>
-        </div>
-      `;
-      cartItems.appendChild(div);
-    });
-
-    const totalConverted = totalUSD * exchangeRates[selectedCurrency];
-
-    if (selectedCurrency !== 'USD') {
-      primaryTotal.textContent = `Total: ${formatCurrency(totalConverted, selectedCurrency)}`;
-      secondaryTotal.textContent = `${formatCurrency(totalUSD, 'USD')}`;
-    } else {
-      primaryTotal.textContent = `Total: ${formatCurrency(totalUSD, 'USD')}`;
-      secondaryTotal.textContent = '';
+    } else if (bras.includes(productName)) {
+        const size = document.getElementById('size') ? document.getElementById('size').value : braSizes[0];
+        config = { size };
+    } else if (shoesAndFlatsHeels.includes(productName) || sneakers.includes(productName)) {
+        const size = document.getElementById('size') ? document.getElementById('size').value : shoeSizes[0];
+        config = { size };
     }
-  }
-
-  function completeCheckout() {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const address = document.getElementById('address').value;
-
-    if (!name || !email || !phone || !address || cart.length === 0) {
-      alert('Please fill in all fields and ensure your cart is not empty.');
-      return;
-    }
-
-    let message = `Hello! I would like to place an order:%0A%0A`;
-    message += `Customer Details:%0A`;
-    message += `Name: ${name}%0A`;
-    message += `Email: ${email}%0A`;
-    message += `Phone: ${phone}%0A`;
-    message += `Address: ${address}%0A%0A`;
-    message += `Order Details:%0A`;
-
-    let totalUSD = 0;
-    cart.forEach((item, i) => {
-      const quantity = item.quantity || 1;
-      const itemTotal = item.price * quantity;
-      totalUSD += itemTotal;
-
-      const description = productDescriptions[item.name] || "Premium quality product.";
-
-      let configDetails = "";
-      if (item.config) {
-        if (item.name.includes("iPhone") || item.name.includes("Smartphone")) {
-          configDetails = `%0A   Configuration: ${item.config.storage}${item.config.storage === '1TB' ? '' : 'GB'}, Battery: ${item.config.battery}`;
-        } else if (bras.includes(item.name)) {
-          configDetails = `%0A   Size: ${item.config.size}`;
-        } else if (shoesAndFlatsHeels.includes(item.name) || sneakers.includes(item.name)) {
-          configDetails = `%0A   Size: ${item.config.size}`;
-        }
-      }
-
-      message += `${i+1}. ${item.name} (Qty: ${quantity}) - $${itemTotal.toFixed(2)}${configDetails}%0A   ${description}%0A%0A`;
-    });
-
-    const totalConverted = totalUSD * exchangeRates[selectedCurrency];
-    message += `Total: ${formatCurrency(totalConverted, selectedCurrency)} (${formatCurrency(totalUSD, 'USD')})`;
-    message += "%0A%0AI would like to proceed with this order.";
-
-    window.open(`https://wa.me/+12167808372?text=${encodeURIComponent(message)}`, '_blank');
-
-    alert('Your order has been sent via WhatsApp!');
-    cart = [];
+    
+    // Create product object
+    const product = {
+        name: productName,
+        price: usdPrice,
+        config: config,
+        image: productImages[productName] ? productImages[productName][0] : "https://via.placeholder.com/70",
+        quantity: 1
+    };
+    
+    // Add to cart
+    cart.push(product);
     localStorage.setItem('cart', JSON.stringify(cart));
-    document.getElementById('name').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('address').value = '';
     updateCartCount();
-    renderCart();
-  }
-
-  // Currency conversion functionality
-  function updatePrices(currency) {
-    const products = document.querySelectorAll('.product-price');
-    products.forEach(product => {
-      const usdPrice = parseFloat(product.getAttribute('data-usd'));
-      const convertedPrice = (usdPrice * exchangeRates[currency]).toFixed(2);
-      const symbol = {
-        USD: '$',
-        GHS: '₵',
-        NGN: '₦',
-        LRD: '$'
-      }[currency];
-      
-      product.querySelector('.primary-price').textContent = `${symbol}${convertedPrice}`;
-      product.querySelector('.secondary-price').textContent = `($${usdPrice.toFixed(2)} USD)`;
-    });
-  }
-
-  // Initialize the page
-  updateCartCount();
-  renderProductDisplay();
-  renderCart();
-
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
-  const currencySelect = document.getElementById('currency-select');
-  const currencyLoading = document.getElementById('currency-loading');
-  
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-
-  currencySelect.addEventListener('change', (e) => {
-    currencyLoading.style.display = 'inline-block';
+    
+    // Show notification
+    showNotification(`${productName} has been added to your cart!`);
+    
+    // Optional: Add visual feedback to the button
+    const addButton = document.querySelector('.add-to-cart-btn');
+    const originalText = addButton.innerHTML;
+    addButton.innerHTML = '<i class="fas fa-check"></i> Added!';
+    addButton.style.backgroundColor = '#4CAF50';
+    
     setTimeout(() => {
-      selectedCurrency = e.target.value;
-      localStorage.setItem('preferredCurrency', selectedCurrency);
-      updateDisplayedProductPrice();
-      renderCart();
-      currencyLoading.style.display = 'none';
-    }, 500);
-  });
+        addButton.innerHTML = originalText;
+        addButton.style.backgroundColor = '';
+    }, 2000);
+}
 
-  // Set initial currency
-  currencySelect.value = selectedCurrency;
+// Enhanced notification function
+function showNotification(message) {
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notification-text');
+    
+    // Set message
+    notificationText.textContent = message;
+    
+    // Show notification with animation
+    notification.classList.add('show');
+    
+    // Hide after 3 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
 
-  window.addEventListener('scroll', () => {
-    document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
-  });
+// Enhanced updateCartCount function
+function updateCartCount() {
+    const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+    
+    // Update all cart count elements
+    document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = totalItems;
+        
+        // Add animation when count changes
+        if (parseInt(el.textContent) !== parseInt(el.dataset.prevCount || 0)) {
+            el.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                el.style.transform = 'scale(1)';
+            }, 300);
+        }
+        el.dataset.prevCount = totalItems;
+    });
+}
+
+// Add this CSS for better button feedback
+const additionalStyles = `
+    .add-to-cart-btn.added {
+        background-color: #4CAF50 !important;
+        transform: scale(0.95);
+    }
+    
+    .cart-count {
+        transition: transform 0.3s ease;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    
+    .cart-count.pulse {
+        animation: pulse 0.5s ease;
+    }
+`;
+
+// Inject additional styles
+const styleSheet = document.createElement('style');
+styleSheet.textContent = additionalStyles;
+document.head.appendChild(styleSheet);
+
+// Initialize cart on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateCartCount();
+    renderProductDisplay();
+    
+    // Mobile menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.mobile-menu-toggle') && !e.target.closest('.nav-menu')) {
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+});
 </script>
 </body>
 </html>
