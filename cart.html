@@ -72,30 +72,270 @@
       transform: scale(1.05);
     }
     
-    nav ul {display:flex; list-style:none;}
-    nav ul li {margin-left:25px; position:relative;}
-    nav ul li a {color:white; text-decoration:none; font-weight:500; padding:6px 0; transition:all .3s ease;}
-    nav ul li a:hover {color:#FFD700; transform:translateY(-2px);}
-    nav ul li a::before, nav ul li a::after {
-      content:""; position:absolute; left:0; right:0; height:2px; background:#FFD700; transform:scaleX(0); transition:transform .3s ease;
+    /* Currency Selector Styles */
+    .currency-selector {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 5px 15px;
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
     }
-    nav ul li a::before {top:0;} nav ul li a::after {bottom:0;}
-    nav ul li a:hover::before, nav ul li a:hover::after {transform:scaleX(1);}
-    .cart-icon {position:relative; cursor:pointer;}
-    .cart-count {
-      position:absolute; top:-8px; right:-10px;
-      background:#FF4757; color:white; font-size:12px;
-      border-radius:50%; width:18px; height:18px;
-      display:flex; align-items:center; justify-content:center;
-      transition:transform 0.3s ease;
+    .currency-selector:hover {
+      background: rgba(255, 255, 255, 0.25);
     }
-    .cart-icon:hover .cart-count {transform:scale(1.2);}
-    .hamburger {display:none; font-size:24px; color:white; cursor:pointer; transition:transform 0.3s ease;}
-    .hamburger:hover {transform:rotate(90deg);}
+    .currency-selector label {
+      margin-right: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .currency-selector select {
+      background: transparent;
+      border: none;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      outline: none;
+      padding: 5px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' %3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 5px center;
+      background-size: 16px;
+      padding-right: 25px;
+    }
+    .currency-selector select:focus {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    .currency-selector select option {
+      color: #333;
+      background: white;
+      padding: 10px;
+      transition: all 0.2s ease;
+    }
+    .currency-selector select option:hover {
+      background: #6B46C1;
+      color: white;
+    }
     
-    /* Navigation menu styles */
-    .nav-menu {display:block;}
-    .nav-menu ul {flex-direction:row;}
+    /* Desktop Navigation */
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+    }
+    
+    .desktop-nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    .desktop-nav ul li {
+      margin-left: 25px;
+      position: relative;
+    }
+    
+    .desktop-nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 0;
+      transition: all .3s ease;
+    }
+    
+    .desktop-nav ul li a:hover {
+      color: #FFD700;
+      transform: translateY(-2px);
+    }
+    
+    .desktop-nav ul li a::before,
+    .desktop-nav ul li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #FFD700;
+      transform: scaleX(0);
+      transition: transform .3s ease;
+    }
+    
+    .desktop-nav ul li a::before {
+      top: 0;
+    }
+    
+    .desktop-nav ul li a::after {
+      bottom: 0;
+    }
+    
+    .desktop-nav ul li a:hover::before,
+    .desktop-nav ul li a:hover::after {
+      transform: scaleX(1);
+    }
+    
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: #FF4757;
+      color: white;
+      font-size: 12px;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .cart-icon:hover .cart-count {
+      transform: scale(1.2);
+    }
+    
+    /* Mobile Navigation */
+    .mobile-controls {
+      display: none;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .hamburger:hover {
+      transform: rotate(90deg);
+    }
+    
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #6B46C1 0%, #9F7AEA 100%);
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      padding: 15px 0;
+      z-index: 1000;
+    }
+    
+    .nav-menu.active {
+      display: block;
+    }
+    
+    .nav-menu ul {
+      flex-direction: column;
+      padding: 0 15px;
+    }
+    
+    .nav-menu ul li {
+      margin: 10px 0;
+      text-align: center;
+    }
+    
+    .nav-menu ul li a {
+      display: block;
+      padding: 10px 0;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all .3s ease;
+    }
+    
+    .nav-menu ul li a:hover {
+      color: #FFD700;
+    }
+    
+    /* Loading Spinner */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Responsive Styles */
+    @media(max-width: 768px){
+      header {
+        margin: 10px;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-controls {
+        display: flex;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .logo-text {
+        font-size: 20px;
+      }
+      
+      .logo-img {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .currency-selector {
+        margin: 10px auto;
+        width: 90%;
+        justify-content: space-between;
+      }
+      
+      .currency-selector label {
+        font-size: 0.8rem;
+      }
+    }
+    
+    @media(max-width: 576px){
+      .logo-text {
+        font-size: 18px;
+      }
+      
+      .hamburger {
+        font-size: 20px;
+      }
+      
+      .currency-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 12px;
+      }
+      
+      .currency-selector label {
+        margin-bottom: 5px;
+      }
+    }
     
     /* Notification styles */
     .notification {
@@ -121,33 +361,6 @@
     
     .notification i {
       font-size: 1.2rem;
-    }
-    
-    @media(max-width:768px){
-      header {margin:10px;}
-      .hamburger {display:block;}
-      nav {display:none;}
-      .nav-menu {display:none; position:absolute; top:100%; left:0; right:0;
-        background:linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%); border-radius:0 0 15px 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2); padding: 15px 0; z-index: 1000;}
-      .nav-menu.active {display:block;}
-      .nav-menu ul {flex-direction:column; padding:0 15px;}
-      .nav-menu ul li {margin:10px 0; text-align:center;}
-      .nav-menu ul li a {display:block; padding:10px 0;}
-      
-      .logo-text {
-        font-size: 20px;
-      }
-      .logo-img {
-        width: 35px;
-        height: 35px;
-      }
-    }
-    @media(max-width:576px){
-      .logo-text {
-        font-size: 18px;
-      }
-      .hamburger {font-size:20px;}
     }
     
     .cart-section {padding:60px 0; text-align:center;}
@@ -240,7 +453,7 @@
     }
     .remove-button:hover {background:#e63946; transform:scale(1.05);}
     .cart-total {font-size:1.3rem; font-weight:bold; text-align:right; margin:20px 0;}
-    .cart-total .secondary-price {font-size: 1rem; color: #666; margin-top: 5px;}
+    .cart-total .secondary-total {font-size: 1rem; color: #666; margin-top: 5px;}
     .checkout-options {
       display: flex;
       flex-wrap: wrap;
@@ -374,16 +587,46 @@
         </div>
         <div class="logo-text">JoliThrifts</div>
       </div>
-      <nav class="nav-menu" id="nav-menu">
+      
+      <!-- Currency Selector -->
+      <div class="currency-selector">
+        <label for="currency-select">Select currency:</label>
+        <select id="currency-select">
+          <option value="USD">USD ($)</option>
+          <option value="GHS">GHS (₵)</option>
+          <option value="NGN">NGN (₦)</option>
+          <option value="LRD">LRD ($)</option>
+        </select>
+        <span id="currency-loading" class="loading" style="display:none;"></span>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="products.html">Products</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
         </ul>
       </nav>
-      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      
+      <!-- Mobile controls - cart and hamburger -->
+      <div class="mobile-controls">
+        <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      </div>
     </div>
+    
+    <!-- Mobile Navigation Menu - Hidden on desktop -->
+    <nav class="nav-menu" id="nav-menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -402,7 +645,7 @@
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-total" id="cartTotal">
     <div class="primary-total">Total: $0.00</div>
-    <!-- <div class="secondary-total"></div> -->
+    <div class="secondary-total"></div>
   </div>
   
   <div class="checkout-options">
@@ -464,6 +707,8 @@
   // Hamburger menu functionality
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
+  const currencySelect = document.getElementById('currency-select');
+  const currencyLoading = document.getElementById('currency-loading');
   
   hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
@@ -501,6 +746,42 @@
     }
   });
 
+  // Currency selector functionality
+  const exchangeRates = {
+    USD: 1,
+    GHS: 12.5,
+    NGN: 1500,
+    LRD: 190
+  };
+  
+  let selectedCurrency = localStorage.getItem('preferredCurrency') || 'USD';
+  
+  // Set the currency selector to the saved preference
+  if (currencySelect) {
+    currencySelect.value = selectedCurrency;
+    
+    currencySelect.addEventListener('change', (e) => {
+      currencyLoading.style.display = 'inline-block';
+      setTimeout(() => {
+        selectedCurrency = e.target.value;
+        localStorage.setItem('preferredCurrency', selectedCurrency);
+        renderCart();
+        currencyLoading.style.display = 'none';
+      }, 500);
+    });
+  }
+  
+  function formatCurrency(amount, currency) {
+    const formatters = {
+      USD: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }),
+      GHS: new Intl.NumberFormat('en-GH', { style: 'currency', currency: 'GHS' }),
+      NGN: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }),
+      LRD: new Intl.NumberFormat('en-LR', { style: 'currency', currency: 'LRD' })
+    };
+    
+    return formatters[currency].format(amount);
+  }
+  
   // All your existing JavaScript code remains exactly the same
   const productDescriptions = {
     "Jordan Air Air Jordan 4 SE": "The Air Jordan 4 SE combines classic Jordan style with modern updates. Featuring premium materials, unique color blocking, and the iconic visible Air unit in the heel for comfort and style.",
@@ -825,24 +1106,6 @@
   ];
 
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  let exchangeRates = JSON.parse(localStorage.getItem('exchangeRates')) || {
-    USD: 1,
-    GHS: 12.5,
-    NGN: 1500,
-    LRD: 190
-  };
-  let selectedCurrency = localStorage.getItem('preferredCurrency') || 'USD';
-  
-  function formatCurrency(amount, currency) {
-    const formatters = {
-      USD: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }),
-      GHS: new Intl.NumberFormat('en-GH', { style: 'currency', currency: 'GHS' }),
-      NGN: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }),
-      LRD: new Intl.NumberFormat('en-LR', { style: 'currency', currency: 'LRD' })
-    };
-    
-    return formatters[currency].format(amount);
-  }
   
   function updateCartCount(){
     const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);

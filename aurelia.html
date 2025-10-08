@@ -205,7 +205,7 @@
     }
     .hamburger:hover {transform:rotate(90deg);} 
     .nav-menu {
-      display:block;
+      display:none; /* Hide mobile menu by default on desktop */
       position:static;
       max-height:none;
       background:none;
@@ -256,17 +256,9 @@
       }
       
       .hamburger {display:block;}
-      .desktop-nav {display:none;}
-      .currency-selector {
-        margin: 10px auto;
-        width: 90%;
-        justify-content: space-between;
-      }
-      .currency-selector label {
-        font-size: 0.8rem;
-      }
+      .desktop-nav {display:none;} /* Hide desktop nav on mobile */
       .nav-menu {
-        display:none;
+        display:none; /* Hide mobile menu by default */
         position:absolute;
         top:100%;
         left:0;
@@ -276,7 +268,7 @@
         box-shadow:0 4px 10px rgba(0,0,0,0.15);
         z-index: 1001;
       }
-      .nav-menu.active {display:block;}
+      .nav-menu.active {display:block;} /* Show mobile menu when active */
       .nav-menu ul {
         flex-direction:column;
         padding:15px;
@@ -691,7 +683,7 @@
         <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
       </div>
     </div>
-    <!-- Mobile Navigation Menu -->
+    <!-- Mobile Navigation Menu - Hidden on desktop by default -->
     <nav class="nav-menu" id="nav-menu">
       <ul>
         <li><a href="index.html">Home</a></li>

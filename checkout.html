@@ -27,7 +27,7 @@
       transform:scale(0.98);
       background:linear-gradient(135deg,#5A3AB0 0%, #7A4FF0 100%);
     }
-    .header-content {display:flex; justify-content:space-between; align-items:center;}
+    .header-content {display:flex; justify-content:space-between; align-items:center; position:relative;}
     .logo-container {
       display: flex;
       align-items: center;
@@ -82,7 +82,6 @@
       transition:transform 0.3s ease;
       white-space: nowrap;
     }
-    /*.logo:hover {transform:scale(1.1);}*/
     
     /* Currency Selector Styles */
     .currency-selector {
@@ -528,8 +527,22 @@
   <div class="container">
     <div class="header-content">
       <div class="logo-container" onclick="window.location.href='index.html'">
-        <img src="images/clogo.png" alt="JoliThrifts Logo" class="logo-img">
-        <div class="logo">JoliThrifts</div>
+        <div class="logo-img">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
+        <div class="logo-text">JoliThrifts</div>
+      </div>
+      
+      <!-- Currency Selector -->
+      <div class="currency-selector">
+        <label for="currency-select">Select currency:</label>
+        <select id="currency-select">
+          <option value="USD">USD ($)</option>
+          <option value="GHS">GHS (₵)</option>
+          <option value="NGN">NGN (₦)</option>
+          <option value="LRD">LRD ($)</option>
+        </select>
+        <span id="currency-loading" class="loading" style="display:none;"></span>
       </div>
       
       <!-- Desktop Navigation -->
@@ -586,6 +599,45 @@
 </footer>
 
 <script>
+  // Currency selector functionality
+  const exchangeRates = {
+    USD: 1,
+    GHS: 12.5,
+    NGN: 1500,
+    LRD: 190
+  };
+  
+  let selectedCurrency = localStorage.getItem('preferredCurrency') || 'USD';
+  
+  // Set the currency selector to the saved preference
+  const currencySelect = document.getElementById('currency-select');
+  const currencyLoading = document.getElementById('currency-loading');
+  
+  if (currencySelect) {
+    currencySelect.value = selectedCurrency;
+    
+    currencySelect.addEventListener('change', (e) => {
+      currencyLoading.style.display = 'inline-block';
+      setTimeout(() => {
+        selectedCurrency = e.target.value;
+        localStorage.setItem('preferredCurrency', selectedCurrency);
+        updateDisplayedProductPrice();
+        currencyLoading.style.display = 'none';
+      }, 500);
+    });
+  }
+  
+  function formatCurrency(amount, currency) {
+    const formatters = {
+      USD: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }),
+      GHS: new Intl.NumberFormat('en-GH', { style: 'currency', currency: 'GHS' }),
+      NGN: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }),
+      LRD: new Intl.NumberFormat('en-LR', { style: 'currency', currency: 'LRD' })
+    };
+    
+    return formatters[currency].format(amount);
+  }
+
   const productDescriptions = {
     "Jordan Air Air Jordan 4 SE": "The Air Jordan 4 SE combines classic Jordan style with modern updates. Featuring premium materials, unique color blocking, and the iconic visible Air unit in the heel for comfort and style.",
     "New Balance NB 9080": "The New Balance 9080 offers a futuristic take on retro running shoes. With a chunky sole, mixed materials, and advanced cushioning for all-day comfort and standout style.",
@@ -648,7 +700,7 @@
     "Luxury Leather Bag": "Product Name: Luxury Leather Bag\nDesign: A structured, top-handle tote bag with a fold-over flap and a signature padlock closure. It features a spacious main compartment and a classic, elegant silhouette.\nMaterial: The bag is made of high-quality grainy or textured leather, which is known for its durability and refined look.\nStyle: This versatile handbag can be carried by its top handles or worn as a shoulder or crossbody bag, making it suitable for both casual and formal occasions.",
     "Satchel Handbag Set": "Product Name: Satchel Handbag Set\nDesign: This handbag features a structured, top-handle design with a crocodile-embossed texture. It has a secure clasp closure and is complemented by gold-tone hardware. The set includes a matching smaller pouch and a cardholder.\nMaterial: The bag is crafted from high-quality faux or PU leather, which is often described as water-resistant and scratch-resistant.\nStyle: The style is a versatile satchel or tote, suitable for both casual and formal occasions. It can be carried by the top handles or worn as a crossbody bag using the detachable shoulder strap.",
     "Woven Clutch Purse": "Product Name: Woven Clutch Purse\nDesign: The bag features a unique, handcrafted woven design with a delicate texture. It has an organ-style structure with clean lines and a distinctive shape. It is a clutch bag that can also be used as a crossbody bag with an adjustable strap.\nMaterial: The bag is made of PU leather.\nStyle: This versatile bag is suitable for both evening and casual use.",
-    "Birken-Inspired Handbag": "Product Name: Birkin-Inspired Handbag\nDesign: This bag features a structured, square tote design with a front flap and a metal buckle closure. It has a contrasting color block pattern, with a white body, brown handles and sides, and a black flap. The bag includes a top handle and a detachable, adjustable shoulder strap for versatile carrying options.\nMaterial: The bag is crafted from high-quality PU leather, which is a type of vegan leather with a litchi pattern texture that mimics genuine leather.\nStyle: This handbag combines a vintage aesthetic with contemporary functionality, making it a versatile accessory suitable for various occasions, from daily commutes to weekend outings. It is a large-capacity bag designed to hold daily essentials while maintaining a sophisticated look.",
+    "Birkin-Inspired Handbag": "Product Name: Birkin-Inspired Handbag\nDesign: This bag features a structured, square tote design with a front flap and a metal buckle closure. It has a contrasting color block pattern, with a white body, brown handles and sides, and a black flap. The bag includes a top handle and a detachable, adjustable shoulder strap for versatile carrying options.\nMaterial: The bag is crafted from high-quality PU leather, which is a type of vegan leather with a litchi pattern texture that mimics genuine leather.\nStyle: This handbag combines a vintage aesthetic with contemporary functionality, making it a versatile accessory suitable for various occasions, from daily commutes to weekend outings. It is a large-capacity bag designed to hold daily essentials while maintaining a sophisticated look.",
     "Lady Dior Bag": "Product Name: Lady Dior Bag\nDesign: The bag features the iconic Cannage topstitching, which creates a quilted, textured effect. It has rounded handles and a detachable shoulder strap. The bag is adorned with the signature 'D.I.O.R.' charm letters hanging from one of the handles.\nMaterial: The bag is typically made from various materials, including lambskin leather, but the specific material for this bag is difficult to determine from the image alone.\nStyle: This is a classic and elegant handbag known for its structured, timeless silhouette. It can be carried by hand using the top handles or worn over the shoulder or crossbody with the detachable strap.",
     "Vintage Bowling Handbag": "Product Name: Vintage Bowling Handbag\nDesign: A unique, rounded design with a structured silhouette, resembling a classic bowling bag. It features a bold, graphic print with vertical black and white stripes and a prominent '96' patch in pink and white on the front. It has a top handle and a detachable shoulder strap for versatile carrying options.\nMaterial: The bag is made from a durable, textured material, possibly faux leather or a similar synthetic fabric, with patent leather-like accents on the handles and trim.\nStyle: This bag has a sporty, vintage-inspired aesthetic with a modern twist. Its design is both casual and trendy, making it suitable for a variety of outfits and occasions.",
     "Puffy Shoulder Bag": "Product Name: Puffy Shoulder Bag\nDesign: The bag features a soft, puffy, and quilted design with a single strap. The main body has a curved, crescent shape.\nMaterial: The material appears to be a soft fabric, likely polyester or a similar synthetic blend, giving it a padded, pillowy texture.\nStyle: This is a versatile, casual bag that can be worn as a shoulder bag or a crossbody bag. It fits a modern, minimalist, and comfortable aesthetic.",
@@ -925,6 +977,14 @@
     "Aurelia's Purple Push-Up Bra"
   ];
 
+  // Bra product pricing
+  const braPricing = {
+    "Aurelia's Black Push-Up Bra": 25.00,
+    "Aurelia's Skin Color Push-Up Bra": 25.00,
+    "Aurelia's Burgundy Red Push-Up Bra": 25.00,
+    "Aurelia's Purple Push-Up Bra": 25.00
+  };
+
   // Product images 
   const productImages = {
     "Aurelia's Purple Push-Up Bra": [
@@ -1094,7 +1154,7 @@
       "images/image41.jpg",
       "images/image42.jpg"
     ],
-    "Birken-Inspired Handbag": [
+    "Birkin-Inspired Handbag": [
       "images/image43.jpg",
       "images/image44.jpg",
       "images/image45.jpg"
@@ -1428,23 +1488,6 @@
   };
 
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  let exchangeRates = JSON.parse(localStorage.getItem('exchangeRates')) || {
-    USD: 1,
-    GHS: 12.5,
-    NGN: 1500,
-    LRD: 190
-  };
-  let selectedCurrency = localStorage.getItem('preferredCurrency') || 'USD';
-
-  function formatCurrency(amount, currency) {
-    const formatters = {
-      USD: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }),
-      GHS: new Intl.NumberFormat('en-GH', { style: 'currency', currency: 'GHS' }),
-      NGN: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }),
-      LRD: new Intl.NumberFormat('en-LR', { style: 'currency', currency: 'LRD' })
-    };
-    return formatters[currency].format(amount);
-  }
 
   function updateCartCount() {
     const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
@@ -1463,6 +1506,12 @@
 
   function getUSDPrice(productName) {
     let usdPrice;
+    
+    // Check if it's a bra product first
+    if (braPricing[productName]) {
+      return braPricing[productName];
+    }
+    
     if (phonePricing[productName]) {
       const storage = document.getElementById('storage') ? document.getElementById('storage').value : Object.keys(phonePricing[productName])[0];
       if (hasBatteryHealth(productName)) {
@@ -1495,7 +1544,7 @@
     // Get product from URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const productName = urlParams.get('product');
-    let usdPrice = parseFloat(urlParams.get('price')) || 49.99;
+    let usdPrice = getUSDPrice(productName);
     
     if (!productName || !productDescriptions[productName]) {
       productDisplay.innerHTML = '<p>Please select a product from the products page.</p>';
@@ -1620,8 +1669,7 @@
     }, 3000);
   }
 
-  // Update the addToCart function to be more robust
-function addToCart(productName, baseUSDPrice) {
+  function addToCart(productName, baseUSDPrice) {
     let config = {};
     let usdPrice = baseUSDPrice;
     
@@ -1671,73 +1719,10 @@ function addToCart(productName, baseUSDPrice) {
         addButton.innerHTML = originalText;
         addButton.style.backgroundColor = '';
     }, 2000);
-}
+  }
 
-// Enhanced notification function
-function showNotification(message) {
-    const notification = document.getElementById('notification');
-    const notificationText = document.getElementById('notification-text');
-    
-    // Set message
-    notificationText.textContent = message;
-    
-    // Show notification with animation
-    notification.classList.add('show');
-    
-    // Hide after 3 seconds
-    setTimeout(() => {
-        notification.classList.remove('show');
-    }, 3000);
-}
-
-// Enhanced updateCartCount function
-function updateCartCount() {
-    const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-    
-    // Update all cart count elements
-    document.querySelectorAll('.cart-count').forEach(el => {
-        el.textContent = totalItems;
-        
-        // Add animation when count changes
-        if (parseInt(el.textContent) !== parseInt(el.dataset.prevCount || 0)) {
-            el.style.transform = 'scale(1.3)';
-            setTimeout(() => {
-                el.style.transform = 'scale(1)';
-            }, 300);
-        }
-        el.dataset.prevCount = totalItems;
-    });
-}
-
-// Add this CSS for better button feedback
-const additionalStyles = `
-    .add-to-cart-btn.added {
-        background-color: #4CAF50 !important;
-        transform: scale(0.95);
-    }
-    
-    .cart-count {
-        transition: transform 0.3s ease;
-    }
-    
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-    }
-    
-    .cart-count.pulse {
-        animation: pulse 0.5s ease;
-    }
-`;
-
-// Inject additional styles
-const styleSheet = document.createElement('style');
-styleSheet.textContent = additionalStyles;
-document.head.appendChild(styleSheet);
-
-// Initialize cart on page load
-document.addEventListener('DOMContentLoaded', function() {
+  // Initialize cart on page load
+  document.addEventListener('DOMContentLoaded', function() {
     updateCartCount();
     renderProductDisplay();
     
@@ -1762,7 +1747,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', () => {
         document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
     });
-});
+  });
 </script>
 </body>
 </html>
