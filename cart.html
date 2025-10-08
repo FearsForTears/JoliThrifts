@@ -92,6 +92,8 @@
     .cart-icon:hover .cart-count {transform:scale(1.2);}
     .hamburger {display:none; font-size:24px; color:white; cursor:pointer; transition:transform 0.3s ease;}
     .hamburger:hover {transform:rotate(90deg);}
+    
+    /* Navigation menu styles */
     .nav-menu {display:block;}
     .nav-menu ul {flex-direction:row;}
     
@@ -127,9 +129,9 @@
       nav {display:none;}
       .nav-menu {display:none; position:absolute; top:100%; left:0; right:0;
         background:linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%); border-radius:0 0 15px 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);}
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2); padding: 15px 0; z-index: 1000;}
       .nav-menu.active {display:block;}
-      .nav-menu ul {flex-direction:column; padding:15px;}
+      .nav-menu ul {flex-direction:column; padding:0 15px;}
       .nav-menu ul li {margin:10px 0; text-align:center;}
       .nav-menu ul li a {display:block; padding:10px 0;}
       
@@ -459,6 +461,46 @@
 </footer>
 
 <script>
+  // Hamburger menu functionality
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    
+    // Change icon based on menu state
+    const icon = hamburger.querySelector('i');
+    if (navMenu.classList.contains('active')) {
+      icon.classList.remove('fa-bars');
+      icon.classList.add('fa-times');
+    } else {
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    }
+  });
+  
+  // Close menu when clicking on a link
+  const navLinks = document.querySelectorAll('.nav-menu a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+      const icon = hamburger.querySelector('i');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    });
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', (event) => {
+    const isClickInsideHeader = event.target.closest('header');
+    if (!isClickInsideHeader && navMenu.classList.contains('active')) {
+      navMenu.classList.remove('active');
+      const icon = hamburger.querySelector('i');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    }
+  });
+
   // All your existing JavaScript code remains exactly the same
   const productDescriptions = {
     "Jordan Air Air Jordan 4 SE": "The Air Jordan 4 SE combines classic Jordan style with modern updates. Featuring premium materials, unique color blocking, and the iconic visible Air unit in the heel for comfort and style.",
@@ -1065,12 +1107,6 @@
   
   updateCartCount();
   renderCart();
-  
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('nav-menu');
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
   
   window.addEventListener('scroll', () => {
     document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
