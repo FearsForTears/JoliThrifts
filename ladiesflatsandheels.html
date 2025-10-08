@@ -38,6 +38,7 @@
       align-items: center;
       gap: 12px;
       cursor: pointer;
+      flex-shrink: 0;
     }
     .logo-img {
       width: 40px;
@@ -222,19 +223,74 @@
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+    
+    /* Mobile Header Layout */
+    .mobile-header-controls {
+      display: none;
+      align-items: center;
+      gap: 15px;
+    }
+    
     @media(max-width:768px){
       header {margin:10px;}
-      .header-content {flex-direction:row; flex-wrap:wrap; gap:8px;}
-      .hamburger {display:block;}
+      .header-content {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      
+      /* Keep logo and logo text visible */
+      .logo-container {
+        flex-shrink: 0;
+      }
+      .logo-text {
+        font-size: 20px;
+      }
+      .logo-img {
+        width: 35px;
+        height: 35px;
+      }
+      
+      /* Hide regular nav and currency selector */
       nav {display:none;}
       .currency-selector {
-        margin: 10px auto;
-        width: 90%;
-        justify-content: space-between;
+        display: none;
       }
-      .currency-selector label {
-        font-size: 0.8rem;
+      
+      /* Show mobile controls */
+      .mobile-header-controls {
+        display: flex;
+        align-items: center;
+        gap: 15px;
       }
+      
+      /* Style cart icon for mobile */
+      .mobile-cart-icon {
+        position: relative;
+        font-size: 22px;
+        color: white;
+        cursor: pointer;
+      }
+      .mobile-cart-icon .cart-count {
+        top: -8px;
+        right: -10px;
+        font-size: 11px;
+        width: 16px;
+        height: 16px;
+      }
+      
+      /* Style hamburger for mobile */
+      .mobile-hamburger {
+        font-size: 22px;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .mobile-hamburger:hover {
+        transform: rotate(90deg);
+      }
+      
+      /* Mobile navigation menu */
       .nav-menu {
         display:none;
         position:absolute;
@@ -244,6 +300,7 @@
         background:linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%);
         border-radius:0 0 15px 15px;
         box-shadow:0 4px 10px rgba(0,0,0,0.15);
+        z-index: 1000;
       }
       .nav-menu.active {display:block;}
       .nav-menu ul {
@@ -254,28 +311,60 @@
         margin:10px 0;
         text-align:center;
       }
+      .nav-menu ul li a {
+        display: block;
+        padding: 12px 0;
+        font-size: 1.1rem;
+      }
+      
+      /* Currency selector in mobile menu */
+      .mobile-currency-selector {
+        padding: 15px;
+        border-top: 1px solid rgba(255,255,255,0.2);
+        margin-top: 10px;
+      }
+      .mobile-currency-selector label {
+        display: block;
+        margin-bottom: 8px;
+        color: white;
+        font-weight: 500;
+      }
+      .mobile-currency-selector select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.2);
+        color: white;
+        border: none;
+      }
+      
       .section-title {font-size:1.8rem;}
       .social-cta {padding:40px 0;}
       .social-cta h2 {font-size:1.8rem;}
       .social-cta p {font-size:1rem;}
       .cart-notification {top:70px; right:10px; font-size:0.9rem; padding:8px 15px;}
-      .logo-text {font-size: 22px;}
-      .logo-img {width: 40px; height: 40px;}
     }
     @media(max-width:576px){
       .products {grid-template-columns:1fr;}
-      .logo-text {display:none;}
       .hamburger {font-size:20px;}
       .social-button {padding:12px 30px; font-size:1rem;}
-      .currency-selector {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 8px 12px;
+      
+      /* Further adjustments for very small screens */
+      .logo-text {
+        font-size: 18px;
       }
-      .currency-selector label {
-        margin-bottom: 5px;
+      .logo-img {
+        width: 32px;
+        height: 32px;
+      }
+      .mobile-cart-icon {
+        font-size: 20px;
+      }
+      .mobile-hamburger {
+        font-size: 20px;
       }
     }
+    
     .cart-notification {
       position:fixed;
       top:80px;
@@ -557,9 +646,6 @@
     .carousel-arrow:hover {
       background: rgba(0, 0, 0, 0.7);
     }
-
-
-    
   </style>
 </head>
 <body>
@@ -572,6 +658,7 @@
         </div>
         <div class="logo-text">JoliThrifts</div>
       </div>
+      
       <div class="currency-selector">
         <label for="currency-select">Select currency:</label>
         <select id="currency-select">
@@ -582,6 +669,7 @@
         </select>
         <span id="currency-loading" class="loading" style="display:none;"></span>
       </div>
+      
       <nav class="nav-menu" id="nav-menu">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -591,7 +679,16 @@
           <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
         </ul>
       </nav>
-      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      
+      <div class="mobile-header-controls">
+        <a href="cart.html" class="mobile-cart-icon">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">0</span>
+        </a>
+        <div class="mobile-hamburger" id="mobile-hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -1257,13 +1354,45 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById('hamburger');
+    const hamburger = document.getElementById('mobile-hamburger');
     const navMenu = document.getElementById('nav-menu');
     const currencySelect = document.getElementById('currency-select');
     const currencyLoading = document.getElementById('currency-loading');
     
     hamburger.addEventListener('click', () => {
       navMenu.classList.toggle('active');
+      
+      // Add currency selector to mobile menu if it's not already there
+      if (!document.querySelector('.mobile-currency-selector')) {
+        const mobileCurrencySelector = document.createElement('div');
+        mobileCurrencySelector.className = 'mobile-currency-selector';
+        mobileCurrencySelector.innerHTML = `
+          <label for="mobile-currency-select">Select currency:</label>
+          <select id="mobile-currency-select">
+            <option value="USD">USD ($)</option>
+            <option value="GHS">GHS (₵)</option>
+            <option value="NGN">NGN (₦)</option>
+            <option value="LRD">LRD ($)</option>
+          </select>
+        `;
+        navMenu.appendChild(mobileCurrencySelector);
+        
+        // Sync mobile currency selector with desktop one
+        const mobileCurrencySelect = document.getElementById('mobile-currency-select');
+        mobileCurrencySelect.value = currencySelect.value;
+        
+        mobileCurrencySelect.addEventListener('change', (e) => {
+          currencySelect.value = e.target.value;
+          currencySelect.dispatchEvent(new Event('change'));
+        });
+      }
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.mobile-header-controls') && !e.target.closest('.nav-menu')) {
+        navMenu.classList.remove('active');
+      }
     });
     
     window.addEventListener('scroll', () => {
@@ -1301,6 +1430,12 @@
       setTimeout(() => {
         updatePrices(e.target.value);
         currencyLoading.style.display = 'none';
+        
+        // Update mobile currency selector if it exists
+        const mobileCurrencySelect = document.getElementById('mobile-currency-select');
+        if (mobileCurrencySelect) {
+          mobileCurrencySelect.value = e.target.value;
+        }
       }, 500);
     });
     
@@ -1309,8 +1444,11 @@
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
     function updateCartCount() {
-      const cartCount = document.querySelector('.cart-count');
-      cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const cartCountElements = document.querySelectorAll('.cart-count');
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCountElements.forEach(el => {
+        el.textContent = count;
+      });
     }
     
     window.addToCart = function(name, price, image) {
