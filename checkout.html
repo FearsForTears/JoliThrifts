@@ -602,9 +602,9 @@
   // Currency selector functionality
   const exchangeRates = {
     USD: 1,
-    GHS: 12.5,
-    NGN: 1500,
-    LRD: 190
+    GHS: 13.50,
+    NGN: 1000,
+    LRD: 230
   };
   
   let selectedCurrency = localStorage.getItem('preferredCurrency') || 'USD';
@@ -639,6 +639,10 @@
   }
 
   const productDescriptions = {
+    "Aurelia's Black Push-Up Bra": "✨AURELIA✨ Black Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
+    "Aurelia's Skin Color Push-Up Bra": "✨AURELIA✨ Skin Color Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
+    "Aurelia's Burgundy Red Push-Up Bra": "✨AURELIA✨ Burgundy Red Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
+    "Aurelia's Purple Push-Up Bra": "✨AURELIA✨ Purple Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
     "Jordan Air Air Jordan 4 SE": "The Air Jordan 4 SE combines classic Jordan style with modern updates. Featuring premium materials, unique color blocking, and the iconic visible Air unit in the heel for comfort and style.",
     "New Balance NB 9080": "The New Balance 9080 offers a futuristic take on retro running shoes. With a chunky sole, mixed materials, and advanced cushioning for all-day comfort and standout style.",
     "New Balance NB 9060 ZGD": "The NB 9060 ZGD features a deconstructed design with premium materials and advanced cushioning technology. Perfect for fashion-forward individuals seeking comfort and style.",
@@ -669,8 +673,95 @@
     "AdiFOM Superstar Slides": "The AdiFOM Superstar Slides reimagine the iconic shell toe in slide form with comfortable, molded construction and classic Three Stripe branding.",
     "Nike Kobe Offcourt Slides": "Inspired by Kobe Bryant, these premium slides feature comfortable foam construction, herringbone traction patterns, and sleek, athletic design.",
     "ALO Slides": "ALO Slides combine yoga-inspired comfort with stylish design. Features comfortable footbeds and minimalist aesthetics for everyday wear.",
-    
-    // Existing product descriptions remain the same
+    "Adidas Campus": "Adidas Campus is a sleek, low-profile design with a suede or leather upper. It has an enlarged, padded tongue and thicker laces compared to the Campus 80s, which gives it a distinct look.",
+    "New Balance 2002r": "New Balance 2002R is a lifestyle sneaker inspired by the technical running shoes of the 2000s, specifically the MR2002 model. It features a retro-inspired silhouette with a modern aesthetic, combining a mesh base with suede and leather overlays.",
+    "Baggy Denim Jeans":"This style has seen a resurgence in popularity, particularly as part of the Y2K (Year 2000) fashion revival. The dark wash and relaxed fit make them versatile for a range of outfits, from a casual look with a T-shirt and trainers to a more elevated style with a blouse and heels",
+    "Wide-Leg Jeans":"The jeans feature a roomy, straight-from-the-hip cut that provides a relaxed and comfortable fit. They have a light blue denim wash with faded or distressed areas on the front of the thighs and knees. The style is characterized by a streamlined silhouette, distinguishing it from baggy jeans",
+    "Distressed Y2K Jeans":"A unique patchwork design with raw-edge, embroidered flame or gothic-style patterns. The denim has a washed black or dark grey finish, giving it a vintage, worn-out appearance. With a baggy, loose fit, these jeans are a statement piece that fits into various streetwear aesthetics, including Y2K, hip-hop, and Harajuku fashion.",
+    "Baggy Wide-Leg Jeans":"Our Wide Leg Baggy Jeans bring effortless style and comfort together with their relaxed fit and premium denim feel. Designed with a flattering high waist and a roomy silhouette, they deliver that perfect blend of casual ease and streetwear edge, ideal for pairing with cropped tops, hoodies, or oversized tees for a cool, laid-back look.",
+    "Distressed Baggy Jeans":"Distressed Baggy Jeans are the perfect mix of edge and comfort, featuring a relaxed fit and ripped detailing that adds bold character to your look. Crafted from premium denim, they sit effortlessly on the waist and flow with a loose, laid-back silhouette — giving you that cool, worn-in vibe that pairs perfectly with any casual or streetwear outfit.",
+    "Patchwork Baggy Jeans":"Patchwork Baggy Jeans make a bold style statement with their unique mix of denim tones and relaxed, oversized fit. Designed for creativity and comfort, these jeans blend retro flair with modern street style — perfect for anyone who loves to stand out effortlessly while keeping things casual and cool.",
+    "Vintage Baggy Jeans":"Vintage Baggy Jeans capture that timeless retro vibe with a relaxed, easygoing fit and classic washed denim finish. Soft yet durable, they bring effortless cool to any outfit — perfect for pairing with your favorite tee or oversized jacket for a laid-back, throwback look.",
+    "Light Wash Baggy Cargo Jeans":"Light wash baggy cargo jeans are a style of denim pant known for their relaxed, loose fit through the leg and a light blue color. The jeans often feature prominent cargo pockets on the sides, as seen in the image, and can be paired with a variety of tops for a casual, streetwear-inspired look.",
+    "Wide-Leg Denim Jeans":"This style is also known as a Y2K or '90s-inspired look. Baggy pants and wide-leg trousers have become a significant fashion trend in recent years, favored for their comfortable and relaxed fit. These jeans offer freedom of movement and a versatile urban style that can be paired with various tops, from a basic T-shirt to a fitted shirt.",
+    "Paint Splatter Gradient Wash Baggy Wide Leg Jeans":"Paint Splatter Gradient Wash Baggy Wide Leg Jeans are a bold fusion of art and street style. Featuring a soft gradient wash with expressive paint splatter details, these jeans stand out with creative flair while keeping a relaxed, wide-leg silhouette for all-day comfort. Perfect for turning heads and showing off your unique vibe with effortless confidence.",
+    "Paint-Splattered Baggy Jeans":"Paint-Splattered Baggy Jeans add an artistic edge to your everyday style with bold paint details and a relaxed, oversized fit. Made from premium denim for durability and comfort, they deliver that effortlessly cool, creative vibe — perfect for standing out while keeping it casual.",
+    "Euphoria Y2K Vintage Jeans":"Our Euphoria Y2K Vintage Jeans bring back early-2000s attitude with a modern twist. Featuring a low-rise fit, subtle fading, and a relaxed vintage cut, these jeans channel nostalgic Y2K energy while keeping you effortlessly stylish. Perfect for pairing with crop tops or baby tees for that iconic throwback vibe.",
+    "Gallery Dept. Jeans":"Our Gallery Dept. Jeans blend artistic flair with streetwear luxury, featuring hand-finished details, paint-splatter accents, and a relaxed, lived-in fit. Crafted from premium denim, each pair embodies individuality and creative expression — perfect for those who appreciate fashion as a form of art.",
+    "Vintage Denim Shorts":"Vintage-Washed Denim Shorts offer a classic, worn-in look with a soft, lived-in feel. Designed with a relaxed fit and subtle fading, they bring effortless vintage charm to your casual style — perfect for pairing with tees, tanks, or oversized shirts for that timeless, laid-back vibe.",
+    "Washed Straight Denim Jorts":"Washed Straight Denim Jorts combine classic denim style with a modern, relaxed edge. Featuring a straight cut and soft washed finish, they offer a clean, versatile look that's perfect for everyday wear — easy to pair with tees, hoodies, or button-ups for a cool, effortless vibe.",
+    "Bermuda Jeans Jorts Thug OG-Asteric":"Bermuda Jeans Jorts Thug OG-Asteric bring bold street energy with a relaxed Bermuda fit and premium denim construction. Designed for comfort and attitude, they feature subtle distressing and signature detailing that capture that raw, OG aesthetic — perfect for elevating your casual or urban look with standout style.",
+    "Icecream Running Dog Denim Shorts":"Icecream Running Dog Denim Shorts fuse playful street style with premium craftsmanship. Featuring the iconic Running Dog graphic and a relaxed fit, these shorts deliver a bold, standout look that blends comfort with personality — perfect for adding a touch of fun and flair to your everyday outfit.",
+    "Hellstar Fire Diamond Denim Shorts":"Hellstar Fire Diamond Denim Shorts ignite your street style with bold flame and diamond detailing that commands attention. Crafted from high-quality denim with a relaxed fit, they blend edgy design with everyday comfort — perfect for making a powerful statement wherever you go.",
+    "Bottega Desires Jorts":"Bottega Desires Jorts embody effortless luxury with a sleek silhouette and refined denim finish. Designed for a modern, fashion-forward look, these jorts combine high-end aesthetics with casual comfort — perfect for elevating your street style with a touch of sophistication.",
+    "Baggy Camouflage Cargo Denim Shorts":"Baggy Camouflage Cargo Denim Shorts blend rugged utility with streetwear edge. Featuring an all-over camo pattern, roomy cargo pockets, and a relaxed baggy fit, they deliver both function and style — perfect for a bold, laid-back look that stands out effortlessly.",
+    "Streetwear Denim Jorts":"Streetwear Retro Patchwork Denim Jorts bring a creative edge to classic street style with their bold mix of denim tones and vintage-inspired design. Featuring a relaxed fit and detailed stitching, these jorts offer both comfort and individuality — perfect for anyone looking to make a statement with a retro-cool vibe.",
+    "Volymoon Y2K Baggy Jean Shorts":"Volymoon Y2K Baggy Jean Shorts channel early-2000s nostalgia with a modern streetwear twist. Designed with a loose, relaxed fit and vintage wash, they capture that effortlessly cool Y2K vibe — perfect for pairing with graphic tees or crop tops for a bold, throwback look.",
+    "Aelfric Eden Jorts":"Aelfric Eden Jorts embody bold streetwear aesthetics with a relaxed fit and statement-making design. Crafted from premium denim and finished with unique detailing, they blend comfort with creative edge — perfect for expressing individuality and modern urban style.",
+    "Camouflage Splicing Design Vintage Baggy Jeans":"Camouflage Splicing Design Vintage Baggy Jeans combine retro denim style with a bold military-inspired twist. Featuring camo panel accents and a loose, relaxed fit, they deliver standout streetwear appeal with a touch of vintage edge — perfect for those who like to mix creativity with comfort.",
+    "Vale Forever Skittles Jorts":"Vale Forever Skittles Jorts burst with color and personality, featuring vibrant patchwork inspired by the playful Skittles aesthetic. Designed with a relaxed fit and premium denim, they blend streetwear energy with creative flair — perfect for standing out with confidence and bold style.",
+    "Sume Double Waisted Jorts":"Sume Double Waisted Jorts redefine modern streetwear with their unique layered waistband design and relaxed fit. Crafted from premium denim, they merge creativity with everyday comfort — giving you a bold, fashion-forward look that stands out effortlessly.",
+    "Fried Denim Jeans Jorts":"Fried Denim Jeans Jorts bring a bold twist to classic denim with their edgy washed texture and relaxed, baggy fit. Designed for standout streetwear appeal, they combine rugged style with everyday comfort — perfect for those who like their look loud, confident, and effortlessly cool.",
+    "High Waist Ripped Jorts":"High Waist Ripped Jorts combine edgy style with a flattering fit, featuring distressed detailing and a sleek high-rise waist. Crafted from soft, durable denim, they offer the perfect balance of comfort and attitude — ideal for creating effortlessly cool, laid-back looks.",
+    "Vintage Retro 90s Washed Shorts":"Vintage Retro 90s Washed Shorts capture the essence of classic '90s style with their faded wash and relaxed fit. Made from soft, durable denim, they deliver that timeless, laid-back vibe — perfect for pairing with tees or oversized shirts for an effortless retro look.",
+    "Acne Studios Judda Keychain Shorts":"Acne Studios Judda Keychain Shorts blend minimalist design with a statement edge. Crafted from premium denim, they feature a relaxed fit and a signature keychain detail that adds a touch of modern sophistication — perfect for effortless, high-fashion streetwear styling.",
+    "Cortiez Jorts":"Cortiez Jorts embody authentic streetwear culture with a relaxed fit and premium denim construction. Featuring subtle detailing and a clean, versatile design, they blend comfort with attitude — perfect for expressing effortless style and everyday confidence.",
+    "Risen King Cropped Zip-Up Hoodie":"Risen King Cropped Zip-Up Hoodie combines streetwear edge with modern comfort. Designed with a sleek cropped cut, premium cotton blend, and bold logo detailing, it delivers a confident, elevated look — perfect for layering or making a statement on its own.",
+    "Fallen Angel Hoodie":"Fallen Angel Hoodie fuses dark street aesthetics with premium comfort. Featuring bold graphic artwork and a relaxed oversized fit, it delivers a statement look that balances edge and style — perfect for those who move with confidence and a touch of rebellion.",
+    "Y2K Star Patchwork Hoodie":"Y2K Star Patchwork Hoodie captures early-2000s nostalgia with a bold, futuristic twist. Featuring vibrant star patchwork detailing and a relaxed, oversized fit, it blends comfort with standout style — perfect for expressing your playful, retro-inspired streetwear vibe.",
+    "Silence of Damned Skull Hoodie":"Silence of Damned Skull Hoodie channels dark streetwear energy with striking skull graphics and a bold distressed finish. Crafted from premium cotton for a soft yet durable feel, it features a relaxed fit that delivers both comfort and attitude — perfect for making a powerful, rebellious style statement.",
+    "Astro-World Hoodie":"Astro-World Hoodie captures cosmic streetwear vibes with bold graphic designs inspired by space and music culture. Crafted from soft, heavyweight cotton, it offers a relaxed fit and premium feel — perfect for those who like to stand out with bold energy and futuristic style.",
+    "Fuzzy Mohair Sweater":"Fuzzy Mohair Sweater brings cozy luxury and effortless style together. Crafted from ultra-soft mohair blend fabric, it offers a warm, lightweight feel with a textured finish that adds depth to any look — perfect for layering or making a chic statement on its own.",
+    "INFW Hoodie":"INFW Hoodie delivers sleek streetwear minimalism with a bold edge. Crafted from premium heavyweight cotton, it features a relaxed fit, clean design, and subtle branding for a modern, elevated look — perfect for everyday wear with effortless confidence.",
+    "Trapstar Hoodie":"Trapstar Hoodie embodies true streetwear attitude with its bold logo design and premium heavyweight feel. Featuring a relaxed fit and soft interior lining, it blends comfort with statement-making style — perfect for repping urban culture with confidence and edge.",
+    "Choppa Krazy Hoodie":"Choppa Krazy Hoodie brings raw street energy with bold graphic detailing and a relaxed, oversized fit. Made from premium cotton for comfort and durability, it's designed to turn heads and showcase confidence — perfect for those who live and breathe unapologetic urban style.",
+    "LMLDUSA Hoodie":"LMLDUSA Hoodie blends classic streetwear style with a modern, minimalist edge. Crafted from premium cotton for a soft yet durable feel, it features bold logo detailing and a relaxed fit — perfect for effortless everyday wear with a touch of urban sophistication.",
+    "Kozy Pullover Hoodie":"Kozy Pullover Hoodie delivers ultimate comfort with a clean, laid-back design. Made from ultra-soft fleece for a warm, plush feel, it features a relaxed fit and minimalist detailing — perfect for everyday wear, lounging, or layering in effortless street style.",
+   "Doll House Hoodie":"Doll House Hoodie blends playful aesthetics with bold streetwear energy. Featuring eye-catching graphics and a relaxed, oversized fit, it's crafted from soft, premium cotton for all-day comfort — perfect for expressing individuality with a stylish, edgy twist.",
+   "Nirvana T-Shirt":"Nirvana T-Shirt pays tribute to iconic rock culture with its classic band graphic and vintage-wash finish. Crafted from soft, breathable cotton, it offers a relaxed fit and timeless edge — perfect for effortless everyday style with a touch of grunge attitude.",
+    "Mötley Crüe T-Shirt":"Mötley Crüe T-Shirt celebrates rock rebellion with bold band graphics and a vintage-inspired wash. Made from soft, premium cotton, it delivers all-day comfort and a worn-in feel — perfect for channeling classic '80s rock energy with effortless style.",
+   "Time Will Tell T-Shirt":"Time Will Tell T-Shirt combines minimalist design with deep streetwear meaning. Featuring a bold graphic print and crafted from soft, premium cotton, it offers a relaxed fit and timeless appeal — perfect for expressing confidence and introspection through effortless style.",
+   "Box Fit Mesh Jerseys":"Box Fit Mesh Jerseys deliver breathable comfort and bold streetwear style. Designed with a loose, boxy silhouette and lightweight mesh fabric, they offer a sporty yet casual look — perfect for layering or rocking solo with effortless urban flair.",
+   "Shadow Face T-Shirt":"Shadow Face T-Shirt brings a mysterious, artistic vibe to your streetwear lineup. Featuring a striking shadowed face graphic on soft, premium cotton, it offers a relaxed fit and minimalist edge — perfect for making a bold yet understated statement.",
+   "Billionaire Studios T-Shirts":"Billionaire Studios T-Shirts embody luxury streetwear at its finest, combining premium cotton fabric with sleek design and bold logo detailing. Offering a relaxed yet refined fit, they deliver effortless style and confidence — perfect for elevating your everyday look with a touch of exclusivity.",
+   "Desire T-Shirt":"Desire T-Shirt blends simplicity with bold emotion, featuring a clean design accented by striking graphic details. Crafted from soft, premium cotton with a relaxed fit, it delivers effortless comfort and modern streetwear appeal — perfect for expressing confidence and individuality.",
+   "Plain T-Shirt":"Plain Tee Shirt is a timeless essential, crafted from soft, high-quality cotton for all-day comfort and durability. Featuring a clean design and relaxed fit, it's perfect for effortless layering or a minimalist, laid-back look that never goes out of style.",
+   "Oversized Anime Cartoon T-Shirt":"Oversized Anime Cartoon T-Shirt brings bold personality and comfort together with vibrant anime-inspired graphics and a relaxed, roomy fit. Crafted from soft, premium cotton, it's perfect for showcasing your love for anime while keeping your streetwear look effortlessly cool and expressive.",
+   "Multi Persona T-Shirt":"Multi Persona T-Shirt explores self-expression through bold, artistic design. Featuring striking multi-face graphics on soft, premium cotton, it offers a relaxed fit and modern streetwear vibe — perfect for those who embrace every side of their personality with style and confidence.",
+   "Vintage Sports Shirt":"Vintage Sports Shirt captures classic athletic style with a retro twist. Made from soft, breathable fabric, it features subtle distressing and old-school detailing for that timeless, worn-in look — perfect for casual wear or adding a nostalgic edge to your street style.",
+   "Striped Crewneck Sweater":"Striped Crewneck Sweater combines classic style with everyday comfort. Featuring bold horizontal stripes and a soft knit texture, it offers a relaxed fit and timeless appeal — perfect for layering or wearing solo for a clean, effortless look.",
+   "Sleeveless Shirt":"Sleeveless Shirt delivers a clean, modern look with a focus on comfort and versatility. Crafted from soft, breathable fabric, it features a relaxed fit that's perfect for layering or wearing solo — ideal for warm days, workouts, or effortless streetwear style.",
+   "Grunge Graphic Long Sleeve":"Grunge Graphic Long Sleeve channels raw, edgy style with bold distressed artwork and a relaxed fit. Crafted from soft, premium cotton, it captures that effortless '90s grunge vibe — perfect for layering or rocking solo with a rebellious streetwear edge.",
+   "Camo Sweater":"Camo Sweater blends rugged military style with premium comfort. Featuring a bold camouflage pattern and a relaxed fit, it's crafted from soft, high-quality knit fabric for a cozy yet edgy look — perfect for adding street-ready attitude to any outfit.",
+   "SSSaint Louis Sweatshirt":"SSSaint Louis Sweatshirt combines classic collegiate style with modern streetwear flair. Crafted from premium heavyweight cotton, it features bold varsity-inspired lettering and a relaxed fit — perfect for staying cozy while keeping your look effortlessly cool and timeless.",
+   "Holy Spirit Rugby Shirt":"Holy Spirit Rugby Shirt blends vintage athletic style with bold streetwear energy. Featuring a classic collared design, contrasting panels, and standout 'Holy Spirit' embroidery, it's crafted from premium cotton for comfort and durability — perfect for a clean yet expressive look.",
+   "Cardinals Jersey Shirt":"Cardinals Jersey Shirt brings sporty energy with a vintage-inspired edge. Featuring bold team graphics, breathable mesh fabric, and a relaxed athletic fit, it captures classic jersey style — perfect for casual streetwear or game-day looks with attitude.",
+   "Gallery Dept. Stadium Uniform Shirt":"Gallery Dept. Stadium Uniform Shirt merges athletic inspiration with high-end streetwear design. Crafted from premium materials, it features bold logo detailing and a relaxed, sporty fit — embodying the brand's signature blend of art, rebellion, and effortless style.",
+   "Graphic Print T-Shirt":"Graphic Print T-Shirt combines bold visual expression with everyday comfort. Featuring eye-catching artwork on soft, premium cotton, it offers a relaxed fit and modern streetwear appeal — perfect for adding personality and edge to any casual look.",
+   "Polo T-Shirt":"Polo T-Shirt delivers classic sophistication with a modern twist. Crafted from soft, breathable cotton, it features a crisp collar, button placket, and tailored fit — perfect for elevating casual looks with timeless style and comfort.",
+   "Embroidered Polo T-Shirt":"Embroidered Polo T-Shirt combines refined style with subtle detailing. Made from premium, breathable cotton, it features intricate embroidery and a structured collar for a polished yet casual look — perfect for everyday wear or smart-casual occasions.",
+   "Jersey Shirt":"Jersey Shirt brings athletic energy and streetwear style together. Featuring bold team-inspired graphics, breathable mesh fabric, and a relaxed fit, it delivers all-day comfort and a sporty edge — perfect for game days or everyday casual wear.",
+   "Enbrand T-Shirt":"Enbrand T-Shirt blends minimalist design with premium streetwear aesthetics. Crafted from soft, high-quality cotton, it features subtle logo detailing and a relaxed fit — perfect for effortless, clean style with a modern edge.",   
+   "Sunshine T-Shirt":"Sunshine T-Shirt radiates positivity and effortless style with its bright graphic design and soft, breathable cotton feel. Featuring a relaxed fit, it's perfect for adding a cheerful touch to your everyday look while keeping things casual and comfortable.",
+   "Shark T-Shirt":"Shark T-Shirt makes a bold statement with its striking shark graphic and modern streetwear vibe. Crafted from soft, premium cotton, it offers a relaxed fit and durable comfort — perfect for adding fearless energy to your casual look.",
+   "Painbows T-Shirt":"Painbows T-Shirt blends emotion and artistry with its striking 'Painbows' graphic — a bold twist on beauty and struggle. Crafted from soft, premium cotton with a relaxed fit, it delivers both comfort and statement-making style for those who wear their feelings with confidence.",
+   "Dunkin Donuts T-Shirt":"Dunkin' Donuts T-Shirt serves up a fun, nostalgic vibe with its bold logo graphic and playful color scheme. Made from soft, breathable cotton with a relaxed fit, it's perfect for casual days and coffee lovers who like their style as fresh as their brew.",
+   "9 GML T-Shirt":"9 GML T-Shirt captures modern streetwear attitude with minimalist branding and a clean, structured fit. Crafted from premium cotton for softness and durability, it delivers effortless style — perfect for everyday wear with a sleek, urban edge.",
+   "Barcelona Shirt":"Barcelona Shirt celebrates iconic football heritage with bold team colors and premium detailing. Crafted from breathable, lightweight fabric, it offers a comfortable athletic fit — perfect for showing your pride on game day or adding sporty style to your everyday look.",
+   "Drew House Secret SS T-Shirt":"Drew House Secret SS T-Shirt blends understated luxury with streetwear attitude. Crafted from premium cotton, it features subtle graphic detailing and a relaxed silhouette — perfect for a clean, modern look that speaks through quiet confidence and refined style.",
+   "Dickies T-Shirt":"Dickies T-Shirt delivers classic workwear durability with everyday comfort. Made from heavyweight cotton for a sturdy yet soft feel, it features the iconic Dickies logo and a relaxed fit — perfect for a timeless, laid-back look that stands up to daily wear.",
+   "Nike Dri-FIT Men Training T-Shirt":"Nike Dri-FIT Men's Training T-Shirt is built for performance and comfort. Made with Nike's moisture-wicking Dri-FIT technology, it keeps you cool and dry during workouts. Featuring a lightweight, breathable fabric and an athletic fit, it's perfect for training, running, or everyday active wear.",
+   "Ribbed Tank Tops":"Ribbed Tank Tops offer a sleek, versatile fit with a soft, stretchy ribbed texture that moves with you. Crafted from breathable cotton blend fabric, they're perfect for layering or wearing solo — combining everyday comfort with effortless style.",
+   "Roughplay Tank Tops":"Roughplay Tank Tops bring bold streetwear energy with a clean, athletic cut and durable cotton construction. Designed for comfort and confidence, they offer a relaxed fit and edgy style — perfect for workouts, casual days, or layering with urban flair.",
+   "Gouge Shorts":"Gouge Shorts combine rugged design with modern streetwear appeal. Crafted from premium denim with distressed detailing, they feature a relaxed fit and durable feel — perfect for adding an edgy, worn-in vibe to your everyday look.",
+   "Georgetown Hoyas Shorts":"Georgetown Hoyas Shorts showcase classic collegiate style with bold team graphics and premium comfort. Made from soft, breathable fabric with an adjustable waistband, they deliver a relaxed athletic fit — perfect for game days, workouts, or everyday streetwear.",
+   "Nike Dri-FIT Shorts":"Nike Dri-FIT Shorts are designed for peak performance and all-day comfort. Featuring Nike's moisture-wicking Dri-FIT technology, they keep you cool and dry through every workout. With a lightweight, breathable feel and an adjustable waistband, they're perfect for training, running, or casual wear.",
+   "Drawstring Shorts":"Drawstring Shorts offer the perfect blend of comfort and casual style. Made from soft, breathable fabric with an adjustable drawstring waistband, they provide a relaxed fit that's ideal for lounging, workouts, or everyday wear.",
+   "Trapstar Shorts":"Trapstar Shorts bring signature streetwear attitude with bold branding and a relaxed fit. Crafted from premium cotton for comfort and durability, they deliver effortless urban style — perfect for pairing with graphic tees or hoodies for a standout look.",
+   "Corteiz Cruise Summer Shorts":"Corteiz Cruise Summer Shorts embody laid-back luxury with a streetwear edge. Made from lightweight, breathable fabric, they feature bold Corteiz branding and a relaxed fit — perfect for staying cool and stylish during warm-weather days.",
+   "Cargo Shorts":"Cargo Shorts combine utility and style with multiple spacious pockets and a relaxed, durable design. Crafted from high-quality cotton fabric, they offer all-day comfort and a rugged streetwear look — perfect for casual outings or everyday wear.",
+   
+   // Existing product descriptions remain the same
     "Wireless Earbuds": "High-quality wireless earbuds with noise cancellation and 24-hour battery life.",
     "Bluetooth Speaker": "Portable Bluetooth speaker with 360° sound and waterproof design.",
     "Smartphone": "Premium smartphone with advanced features and excellent performance.",
@@ -679,10 +770,6 @@
     "Smartwatch": "Feature-rich smartwatch with health monitoring and notification support.",
     "DSLR Camera": "Professional DSLR camera with multiple lenses and 4K video capability.",
     "Drone": "4K camera drone with GPS positioning and obstacle avoidance technology.",
-    "Aurelia's Black Push-Up Bra": "✨AURELIA✨ Black Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
-    "Aurelia's Skin Color Push-Up Bra": "✨AURELIA✨ Skin Color Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
-    "Aurelia's Burgundy Red Push-Up Bra": "✨AURELIA✨ Burgundy Red Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
-    "Aurelia's Purple Push-Up Bra": "✨AURELIA✨ Purple Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
     "Red Color - Fierce Shine": "Product Name: Aurelia Lip 2 in 1\nDescription: This innovative dual-ended lip product combines a rich, long-lasting liquid lip color with a precision lip liner. The liquid lip color provides a vibrant, full-coverage finish, while the creamy lip liner helps define and shape your lips, preventing feathering and ensuring a flawless look all day. Perfect for creating a bold, defined lip with just one product.\nKey Features:\nDual-ended design with liquid lip color and lip liner.\nRich, highly pigmented formula.\nLong-lasting wear.\nPrecision tip for easy application.",
     "Nude Color - Glow Botanica": "Product Name: Aurelia Lip 2 in 1\nDescription: This innovative dual-ended lip product combines a rich, long-lasting liquid lip color with a precision lip liner. The liquid lip color provides a vibrant, full-coverage finish, while the creamy lip liner helps define and shape your lips, preventing feathering and ensuring a flawless look all day. Perfect for creating a bold, defined lip with just one product.\nKey Features:\nDual-ended design with liquid lip color and lip liner.\nRich, highly pigmented formula.\nLong-lasting wear.\nPrecision tip for easy application.",
     "Natural Color - Pure Petal": "Product Name: Aurelia Lip 2 in 1\nDescription: This innovative dual-ended lip product combines a rich, long-lasting liquid lip color with a precision lip liner. The liquid lip color provides a vibrant, full-coverage finish, while the creamy lip liner helps define and shape your lips, preventing feathering and ensuring a flawless look all day. Perfect for creating a bold, defined lip with just one product.\nKey Features:\nDual-ended design with liquid lip color and lip liner.\nRich, highly pigmented formula.\nLong-lasting wear.\nPrecision tip for easy application.",
@@ -874,16 +961,16 @@
       }
     },
     "iPhone 17": {
-      "256": 999.00,
-      "512": 1099.00
+      "256": 1112.00,
+      "512": 1326.00
     },
     "iPhone 17 Pro": {
-      "256": 1099.00,
-      "512": 1199.00
+      "256": 1460.00,
+      "512": 1687.00
     },
     "iPhone 17 Pro Max": {
-      "256": 1199.00,
-      "512": 1299.00
+      "256": 1687.00,
+      "512": 1950.00
     }
   };
 
@@ -903,6 +990,12 @@
     "L(36/80AB)",
     "XL(38/85AB)"
   ];
+
+  // Clothing sizes - Updated to include all requested sizes
+  const clothingSizes = ["M", "L", "XL", "XXL", "XXXL", "XXXXL"];
+  
+  // Colors - Updated to include all requested colors
+  const colors = ["Black", "White", "Blue", "Blue Black", "Brown", "Cream", "Grey", "Ash"];
 
   const shoesAndFlatsHeels = [
     "Black Mary Jane Mesh Shoe",
@@ -975,6 +1068,94 @@
     "Aurelia's Skin Color Push-Up Bra",
     "Aurelia's Burgundy Red Push-Up Bra",
     "Aurelia's Purple Push-Up Bra"
+  ];
+
+  // Clothing products that need size and color options - Updated to include all categories
+  const clothingProducts = [
+    // Hoodies
+    "Risen King Cropped Zip-Up Hoodie",
+    "Fallen Angel Hoodie",
+    "Y2K Star Patchwork Hoodie",
+    "Silence of Damned Skull Hoodie",
+    "Astro-World Hoodie",
+    "INFW Hoodie",
+    "Trapstar Hoodie",
+    "Choppa Krazy Hoodie",
+    "LMLDUSA Hoodie",
+    "Kozy Pullover Hoodie",
+    "Doll House Hoodie",
+    
+    // Shirts
+    "Nirvana T-Shirt",
+    "Mötley Crüe T-Shirt",
+    "Time Will Tell T-Shirt",
+    "Box Fit Mesh Jerseys",
+    "Shadow Face T-Shirt",
+    "Billionaire Studios T-Shirts",
+    "Desire T-Shirt",
+    "Plain T-Shirt",
+    "Oversized Anime Cartoon T-Shirt",
+    "Multi Persona T-Shirt",
+    "Vintage Sports Shirt",
+    "Striped Crewneck Sweater",
+    "Sleeveless Shirt",
+    "Grunge Graphic Long Sleeve",
+    "Camo Sweater",
+    "SSSaint Louis Sweatshirt",
+    "Holy Spirit Rugby Shirt",
+    "Cardinals Jersey Shirt",
+    "Gallery Dept. Stadium Uniform Shirt",
+    
+    // Pullovers & Sweaters
+    "Fuzzy Mohair Sweater",
+    
+    // Jeans & Trousers
+    "Baggy Denim Jeans",
+    "Wide-Leg Jeans",
+    "Distressed Y2K Jeans",
+    "Baggy Wide-Leg Jeans",
+    "Distressed Baggy Jeans",
+    "Patchwork Baggy Jeans",
+    "Vintage Baggy Jeans",
+    "Light Wash Baggy Cargo Jeans",
+    "Wide-Leg Denim Jeans",
+    "Paint Splatter Gradient Wash Baggy Wide Leg Jeans",
+    "Paint-Splattered Baggy Jeans",
+    "Euphoria Y2K Vintage Jeans",
+    "Gallery Dept. Jeans",
+    "Camouflage Splicing Design Vintage Baggy Jeans",
+    
+    // Jorts & Shorts
+    "Vintage Denim Shorts",
+    "Washed Straight Denim Jorts",
+    "Bermuda Jeans Jorts Thug OG-Asteric",
+    "Icecream Running Dog Denim Shorts",
+    "Hellstar Fire Diamond Denim Shorts",
+    "Bottega Desires Jorts",
+    "Baggy Camouflage Cargo Denim Shorts",
+    "Streetwear Denim Jorts",
+    "Volymoon Y2K Baggy Jean Shorts",
+    "Aelfric Eden Jorts",
+    "Vale Forever Skittles Jorts",
+    "Sume Double Waisted Jorts",
+    "Fried Denim Jeans Jorts",
+    "High Waist Ripped Jorts",
+    "Vintage Retro 90s Washed Shorts",
+    "Acne Studios Judda Keychain Shorts",
+    "Cortiez Jorts",
+    
+    // Tank Tops
+    "Ribbed Tank Tops",
+    "Roughplay Tank Tops",
+    
+    // Shorts
+    "Gouge Shorts",
+    "Georgetown Hoyas Shorts",
+    "Nike Dri-FIT Shorts",
+    "Drawstring Shorts",
+    "Trapstar Shorts",
+    "Corteiz Cruise Summer Shorts",
+    "Cargo Shorts"
   ];
 
   // Bra product pricing
@@ -1150,7 +1331,7 @@
     ],
     "Woven Clutch Purse": [
       "images/image39.jpg",
-      "images/image340.jpg",
+      "images/image40.jpg",
       "images/image41.jpg",
       "images/image42.jpg"
     ],
@@ -1484,6 +1665,619 @@
      "Pointed Toe Heels": [
       "images/image207.jpg"
     ],
+    "Adidas Campus": [
+      "images/campus1.jpg",
+      "images/campus2.jpg",
+      "images/campus3.jpg",
+      "images/campus4.jpg",
+    ],
+    "New Balance 2002r": [
+      "images/balance1.jpg",
+      "images/balance2.jpeg",
+      "images/balance3.jpg",
+      "images/balance4.jpg",
+    ],
+    "Baggy Denim Jeans": [
+      "images/jeans1.jpg",
+      "images/jeans2.jpg",
+      "images/jeans3.jpg",
+    ],
+    "Wide-Leg Jeans": [
+      "images/jeans4.jpg",
+      "images/jeans5.jpg",
+      "images/jeans6.jpg",
+      "images/jeans7.jpg",
+    ],
+    "Distressed Y2K Jeans": [
+      "images/jeans8.jpg",
+      "images/jeans9.jpg",
+      "images/jeans10.jpg",
+      "images/jeans11.jpg",
+    ],
+    "Baggy Wide-Leg Jeans": [
+      "images/jeans12.jpg",
+      "images/jeans13.jpg",
+      "images/jeans14.jpg",
+      "images/jeans15.jpg",
+    ],
+    "Distressed Baggy Jeans": [
+      "images/jeans16.jpg",
+      "images/jeans17.jpg",
+      "images/jeans18.jpg",
+      "images/jeans19.jpg",
+    ],
+    "Patchwork Baggy Jeans": [
+      "images/jeans20.jpg",
+      "images/jeans21.jpg",
+      "images/jeans22.jpg",
+      "images/jeans23.jpg",
+    ],
+    "Vintage Baggy Jeans": [
+      "images/jeans24.jpg",
+      "images/jeans25.jpg",
+      "images/jeans26.jpg",
+      "images/jeans27.jpg",
+    ],
+    "Light Wash Baggy Cargo Jeans": [
+      "images/jeans28.jpg",
+      "images/jeans29.jpg",
+      "images/jeans30.jpg",
+      "images/jeans31.jpg",
+      "images/jeans32.jpg",
+      "images/jeans33.jpg",
+    ],
+    "Wide-Leg Denim Jeans": [
+      "images/jeans34.jpg",
+      "images/jeans35.jpg",
+      "images/jeans36.jpg",
+      "images/jeans37.jpg",
+    ],
+    "Paint Splatter Gradient Wash Baggy Wide Leg Jeans": [
+      "images/jeans38.jpg",
+      "images/jeans39.jpg",
+      "images/jeans40.jpg",
+      "images/jeans41.jpg",
+    ],
+     "Paint-Splattered Baggy Jeans": [
+      "images/jeans42.jpg",
+      "images/jeans43.jpg",
+      "images/jeans44.jpg",
+      "images/jeans45.jpg",
+    ],
+    "Euphoria Y2K Vintage Jeans": [
+      "images/jeans46.jpg",
+      "images/jeans47.jpg",
+      "images/jeans48.jpg",
+      "images/jeans49.jpg",
+    ],
+    "Gallery Dept. Jeans": [
+      "images/jeans50.jpg",
+      "images/jeans51.jpg",
+      "images/jeans52.jpg",
+      "images/jeans53.jpg",
+    ],
+    "Vintage Denim Shorts": [
+      "images/jeans54.jpg",
+      "images/jeans55.jpg",
+      "images/jeans56.jpg",
+      "images/jeans57.jpg",
+      "images/jeans58.jpg",
+    ],
+    "Washed Straight Denim Jorts": [
+      "images/jeans59.jpg",
+      "images/jeans60.jpg",
+      "images/jeans61.jpg",
+    ],
+    "Bermuda Jeans Jorts Thug OG-Asteric": [
+      "images/jeans62.jpg",
+      "images/jeans63.jpg",
+      "images/jeans64.jpg",
+      "images/jeans65.jpg",
+    ],
+    "Icecream Running Dog Denim Shorts": [
+      "images/jeans66.jpg",
+      "images/jeans67.jpg",
+      "images/jeans68.jpg",
+      "images/jeans69.jpg",
+      "images/jeans70.jpg",
+      "images/jeans71.jpg",
+    ],
+    "Hellstar Fire Diamond Denim Shorts": [
+      "images/jeans72.jpg",
+      "images/jeans73.jpg",
+      "images/jeans74.jpg",
+      "images/jeans75.jpg",
+      "images/jeans76.jpg",
+      "images/jeans77.jpg",
+    ],
+    "Bottega Desires Jorts": [
+      "images/jeans78.jpg",
+      "images/jeans79.jpg",
+      "images/jeans80.jpg",
+      "images/jeans81.jpg",
+      "images/jeans82.jpg",
+    ],
+    "Baggy Camouflage Cargo Denim Shorts": [
+      "images/jeans83.jpg",
+      "images/jeans84.jpg",
+      "images/jeans85.jpg",
+      "images/jeans86.jpg",
+    ],
+    "Streetwear Denim Jorts": [
+      "images/jeans87.jpg",
+      "images/jeans88.jpg",
+      "images/jeans89.jpg",
+      "images/jeans90.jpg",
+      "images/jeans91.jpg",
+      "images/jeans92.jpg",
+    ],
+    "Volymoon Y2K Baggy Jean Shorts": [
+      "images/jeans93.jpg",
+      "images/jeans94.jpg",
+      "images/jeans95.jpg",
+      "images/jeans96.jpg",
+    ],
+    "Aelfric Eden Jorts": [
+      "images/jeans97.jpg",
+      "images/jeans98.jpg",
+      "images/jeans99.jpg",
+      "images/jeans100.jpg",
+    ],
+    "Camouflage Splicing Design Vintage Baggy Jeans": [
+      "images/jeans101.jpg",
+      "images/jeans102.jpg",
+      "images/jeans103.jpg",
+      "images/jeans104.jpg",
+    ],
+    "Vale Forever Skittles Jorts": [
+      "images/jeans105.jpg",
+      "images/jeans106.jpg",
+      "images/jeans107.jpg",
+      "images/jeans108.jpg",
+    ],
+  "Sume Double Waisted Jorts": [
+      "images/jeans109.jpg",
+      "images/jeans110.jpg",
+      "images/jeans111.jpg",
+      "images/jeans112.jpg",
+    ],
+    "Fried Denim Jeans Jorts": [
+      "images/jeans113.jpg",
+      "images/jeans114.jpg",
+      "images/jeans115.jpg",
+    ],
+    "High Waist Ripped Jorts": [
+      "images/jeans116.jpg",
+      "images/jeans117.jpg",
+      "images/jeans118.jpg",
+      "images/jeans119.jpg",
+    ],
+     "Vintage Retro 90s Washed Shorts": [
+      "images/jeans120.jpg",
+      "images/jeans121.jpg",
+      "images/jeans122.jpg",
+    ],
+    "Acne Studios Judda Keychain Shorts": [
+      "images/jeans123.jpg",
+      "images/jeans124.jpg",
+      "images/jeans125.jpg",
+      "images/jeans126.jpg",
+      "images/jeans127.jpg",
+      "images/jeans128.jpg",
+    ],
+    "Cortiez Jorts": [
+      "images/jeans129.jpg",
+      "images/jeans130.jpg",
+      "images/jeans131.jpg",
+    ],
+    "Risen King Cropped Zip-Up Hoodie": [
+      "images/hoodie1.jpg",
+      "images/hoodie2.jpg",
+      "images/hoodie3.jpg",
+      "images/hoodie4.jpg",
+      "images/hoodie5.jpg",
+    ],
+    "Fallen Angel Hoodie": [
+      "images/hoodie6.jpg",
+      "images/hoodie7.jpg",
+      "images/hoodie8.jpg",
+      "images/hoodie9.jpg",
+      "images/hoodie10.jpg",
+      "images/hoodie11.jpg",
+      "images/hoodie12.jpg",
+    ],
+    "Y2K Star Patchwork Hoodie": [
+      "images/hoodie13.jpg",
+      "images/hoodie14.jpg",
+      "images/hoodie15.jpg",
+      "images/hoodie16.jpg",
+    ],
+     "Silence of Damned Skull Hoodie": [
+      "images/hoodie17.jpg",
+      "images/hoodie18.jpg",
+      "images/hoodie19.jpg",
+    ],
+     "Astro-World Hoodie": [
+      "images/hoodie20.jpg",
+      "images/hoodie21.jpg",
+      "images/hoodie22.jpg",
+    ],
+    "Fuzzy Mohair Sweater": [
+      "images/hoodie23.jpg",
+      "images/hoodie24.jpg",
+      "images/hoodie25.jpg",
+      "images/hoodie26.jpg",
+      "images/hoodie27.jpg",
+    ], 
+    "INFW Hoodie": [
+      "images/hoodie28.jpg",
+      "images/hoodie29.jpg",
+      "images/hoodie30.jpg",
+      "images/hoodie31.jpg",
+      "images/hoodie32.jpg",
+    ],
+    "Trapstar Hoodie": [
+      "images/hoodie33.jpg",
+      "images/hoodie34.jpg",
+      "images/hoodie35.jpg",
+    ],
+    "Choppa Krazy Hoodie": [
+      "images/hoodie36.jpg",
+      "images/hoodie37.jpg",
+      "images/hoodie38.jpg",
+      "images/hoodie39.jpg",
+      "images/hoodie40.jpg",
+    ],
+    "LMLDUSA Hoodie": [
+      "images/hoodie41.jpg",
+      "images/hoodie42.jpg",
+    ],
+    "Kozy Pullover Hoodie": [
+      "images/hoodie43.jpg",
+      "images/hoodie44.jpg",
+      "images/hoodie45.jpg",
+      "images/hoodie46.jpg",
+      "images/hoodie47.jpg",
+    ],
+    "Doll House Hoodie": [
+      "images/hoodie48.jpg",
+      "images/hoodie49.jpg",
+      "images/hoodie50.jpg",
+    ],
+    "Nirvana T-Shirt": [
+      "images/shirt1.jpg",
+      "images/shirt2.jpg",
+      "images/shirt3.jpg",
+      "images/shirt4.jpg",
+      "images/shirt5.jpg",
+      "images/shirt6.jpg",
+      "images/shirt7.jpg",
+      "images/shirt8.jpg",
+      "images/shirt9.jpg",
+    ],
+    "Mötley Crüe T-Shirt": [
+      "images/shirt10.jpg",
+      "images/shirt11.jpg",
+      "images/shirt12.jpg",
+      "images/shirt13.jpg",
+    ],
+    "Time Will Tell T-Shirt": [
+      "images/shirt14.jpg",
+      "images/shirt15.jpg",
+      "images/shirt16.jpg",
+      "images/shirt17.jpg",
+    ],
+    "Box Fit Mesh Jerseys": [
+      "images/shirt18.jpg",
+      "images/shirt19.jpg",
+      "images/shirt20.jpg",
+      "images/shirt21.jpg",
+      "images/shirt22.jpg",
+      "images/shirt23.jpg",
+      "images/shirt24.jpg",
+      "images/shirt25.jpg",
+       "images/shirt26.jpg",
+      "images/shirt27.jpg",
+      "images/shirt28.jpg",
+      "images/shirt29.jpg",
+    ],
+    "Shadow Face T-Shirt": [
+      "images/shirt30.jpg",
+      "images/shirt31.jpg",
+      "images/shirt32.jpg",
+      "images/shirt33.jpg",
+      "images/shirt34.jpg",
+    ],
+    "Billionaire Studios T-Shirts": [
+      "images/shirt35.jpg",
+      "images/shirt36.jpg",
+      "images/shirt37.jpg",
+      "images/shirt38.jpg",
+      "images/shirt39.jpg",
+    ],
+    "Desire T-Shirt": [
+      "images/shirt40.jpg",
+      "images/shirt41.jpg",
+      "images/shirt42.jpg",
+      "images/shirt43.jpg",
+      "images/shirt44.jpg",
+    ],
+    "Desire T-Shirt": [
+      "images/shirt40.jpg",
+      "images/shirt41.jpg",
+      "images/shirt42.jpg",
+      "images/shirt43.jpg",
+      "images/shirt44.jpg",
+    ],
+    "Plain T-Shirt": [
+      "images/shirt45.jpg",
+      "images/shirt46.jpg",
+      "images/shirt47.jpg",
+      "images/shirt48.jpg",
+      "images/shirt49.jpg",
+      "images/shirt50.jpg",
+      "images/shirt51.jpg",
+      "images/shirt52.jpg",
+    ],
+    "Oversized Anime Cartoon T-Shirt": [
+      "images/shirt53.jpg",
+      "images/shirt54.jpg",
+      "images/shirt55.jpg",
+      "images/shirt56.jpg",
+      "images/shirt57.jpg",
+      "images/shirt58.jpg",
+      "images/shirt59.jpg",
+      "images/shirt60.jpg",
+    ],
+    "Multi Persona T-Shirt": [
+      "images/shirt61.jpg",
+      "images/shirt62.jpg",
+      "images/shirt63.jpg",
+      "images/shirt64.jpg",
+      "images/shirt65.jpg",
+      "images/shirt66.jpg",
+      "images/shirt67.jpg",
+      
+    ],
+    "Vintage Sports Shirt": [
+      "images/shirt68.jpg",
+      "images/shirt69.jpg",
+      "images/shirt70.jpg",
+      "images/shirt71.jpg",
+      "images/shirt72.jpg",
+      "images/shirt73.jpg",
+      "images/shirt74.jpg",
+      "images/shirt75.jpg",
+    ],
+    "Striped Crewneck Sweater": [
+      "images/shirt76.jpg",
+      "images/shirt77.jpg",
+      "images/shirt78.jpg",
+      "images/shirt79.jpg",
+      "images/shirt80.jpg",
+    ],
+    "Sleeveless Shirt": [
+      "images/shirt81.jpg",
+      "images/shirt82.jpg",
+      "images/shirt83.jpg",
+      "images/shirt84.jpg",
+      "images/shirt85.jpg",
+      "images/shirt86.jpg",
+    ],
+    "Grunge Graphic Long Sleeve": [
+      "images/shirt87.jpg",
+      "images/shirt88.jpg",
+      "images/shirt89.jpg",
+      "images/shirt90.jpg",
+      "images/shirt91.jpg",
+      "images/shirt92.jpg",
+      "images/shirt93.jpg",
+    ],
+    "Camo Sweater": [
+      "images/shirt94.jpg",
+      "images/shirt95.jpg",
+      "images/shirt96.jpg",
+      "images/shirt97.jpg",
+    ],
+    "SSSaint Louis Sweatshirt": [
+      "images/shirt98.jpg",
+      "images/shirt99.jpg",
+      "images/shirt100.jpg",
+      "images/shirt101.jpg",
+      "images/shirt102.jpg",
+      "images/shirt103.jpg",
+    ],
+    "Holy Spirit Rugby Shirt": [
+      "images/shirt104.jpg",
+      "images/shirt105.jpg",
+      "images/shirt106.jpg",
+      "images/shirt107.jpg",
+      "images/shirt108.jpg",
+      "images/shirt109.jpg",
+      "images/shirt110.jpg",
+      "images/shirt111.jpg",
+      "images/shirt112.jpg",
+    ],
+    "Cardinals Jersey Shirt": [
+      "images/shirt113.jpg",
+      "images/shirt114.jpg",
+      "images/shirt115.jpg",
+      "images/shirt116.jpg",
+      "images/shirt117.jpg",
+    ],
+    "Gallery Dept. Stadium Uniform Shirt": [
+      "images/shirt118.jpg",
+      "images/shirt119.jpg",
+      "images/shirt120.jpg",
+      "images/shirt121.jpg",
+      "images/shirt122.jpg",
+      "images/shirt123.jpg",
+    ],
+    "Graphic Print T-Shirt": [
+      "images/shirt124.jpg",
+      "images/shirt125.jpg",
+    ],
+    "Polo T-Shirt": [
+      "images/shirt126.jpg",
+      "images/shirt127.jpg",
+      "images/shirt128.jpg",
+      "images/shirt129.jpg",
+      "images/shirt130.jpg",
+      "images/shirt131.jpg",
+    ],
+    "Embroidered Polo T-Shirt": [
+      "images/shirt132.jpg",
+      "images/shirt133.jpg",
+      "images/shirt134.jpg",
+      "images/shirt135.jpg",
+    ],
+    "Jersey Shirt": [
+      "images/shirt136.jpg",
+      "images/shirt137.jpg",
+      "images/shirt138.jpg",
+      "images/shirt139.jpg",
+      "images/shirt140.jpg",
+    ],
+    "Enbrand T-Shirt": [
+      "images/shirt141.jpg",
+      "images/shirt142.jpg",
+    ],
+    "Sunshine T-Shirt": [
+      "images/shirt143.jpg",
+      "images/shirt144.jpg",
+      "images/shirt145.jpg",
+      "images/shirt146.jpg",
+      "images/shirt147.jpg",
+    ],
+    "Shark T-Shirt": [
+      "images/shirt148.jpg",
+      "images/shirt149.jpg",
+      "images/shirt150.jpg",
+      "images/shirt151.jpg",
+      "images/shirt152.jpg",
+      "images/shirt153.jpg",
+    ],
+    "Painbows T-Shirt": [
+      "images/shirt154.jpg",
+      "images/shirt155.jpg",
+      "images/shirt156.jpg",
+      "images/shirt157.jpg",
+      "images/shirt158.jpg",
+    ],
+    "Dunkin Donuts T-Shirt": [
+      "images/shirt159.jpg",
+      "images/shirt160.jpg",
+      "images/shirt161.jpg",
+      "images/shirt162.jpg",
+      "images/shirt163.jpg",
+    ],
+     "9 GML T-Shirt": [
+      "images/shirt164.jpg",
+      "images/shirt165.jpg",
+      "images/shirt166.jpg",
+    ],
+    "Barcelona Shirt": [
+      "images/shirt167.jpg",
+      "images/shirt168.jpg",
+      "images/shirt169.jpg",
+      "images/shirt170.jpg",
+      "images/shirt171.jpg",
+      "images/shirt172.jpg",
+    ],
+    "Drew House Secret SS T-Shirt": [
+      "images/shirt173.jpg",
+      "images/shirt174.jpg",
+      "images/shirt175.jpg",
+      "images/shirt176.jpg",
+      "images/shirt177.jpg",
+      "images/shirt178.jpg",
+      "images/shirt179.jpg",
+      "images/shirt180.jpg",
+    ],
+    "Dickies T-Shirt": [
+      "images/shirt181.jpg",
+      "images/shirt182.jpg",
+      "images/shirt183.jpg",
+      "images/shirt184.jpg",
+      "images/shirt185.jpg",
+      "images/shirt186.jpg",
+      "images/shirt187.jpg",
+    ],
+     "Nike Dri-FIT Men Training T-Shirt": [
+      "images/shirt188.jpg",
+      "images/shirt189.jpg",
+      "images/shirt190.jpg",
+      "images/shirt191.jpg",
+    ],
+ "Ribbed Tank Tops": [
+      "images/shirt192.jpg",
+      "images/shirt193.jpg",
+      "images/shirt194.jpg",
+      "images/shirt195.jpg",
+      "images/shirt196.jpg",
+      "images/shirt197.jpg",
+      "images/shirt198.jpg",
+    ],
+    "Roughplay Tank Tops": [
+      "images/shirt199.jpg",
+      "images/shirt200.jpg",
+      "images/shirt201.jpg",
+      "images/shirt202.jpg",
+      "images/shirt203.jpg",
+      "images/shirt204.jpg",
+      "images/shirt205.jpg",
+    ],
+    "Gouge Shorts": [
+      "images/shorts1.jpg",
+      "images/shorts2.jpg",
+    ],
+    "Georgetown Hoyas Shorts": [
+      "images/shorts3.jpg",
+      "images/shorts4.jpg",
+      "images/shorts5.jpg",
+      "images/shorts6.jpg",
+      "images/shorts7.jpg",
+    ],
+    "Nike Dri-FIT Shorts": [
+      "images/shorts8.jpg",
+      "images/shorts9.jpg",
+      "images/shorts10.jpg",
+      "images/shorts11.jpg",
+      "images/shorts12.jpg",
+      "images/shorts13.jpg",
+      "images/shorts14.jpg",
+    ],
+    "Drawstring Shorts": [
+      "images/shorts15.jpg",
+      "images/shorts16.jpg",
+      "images/shorts17.jpg",
+    ],
+    "Trapstar Shorts": [
+      "images/shorts18.jpg",
+      "images/shorts19.jpg",
+      "images/shorts20.jpg",
+      "images/shorts21.jpg",
+      "images/shorts22.jpg",
+      "images/shorts23.jpg",
+    ],
+    "Corteiz Cruise Summer Shorts": [
+      "images/shorts28.jpg",
+      "images/shorts29.jpg",
+      "images/shorts30.jpg",
+      "images/shorts31.jpg",
+    ],
+    "Cargo Shorts": [
+      "images/shorts32.jpg",
+      "images/shorts33.jpg",
+      "images/shorts34.jpg",
+      "images/shorts35.jpg",
+      "images/shorts36.jpg",
+      "images/shorts37.jpg",
+      "images/shorts38.jpg",
+      "images/shorts39.jpg",
+      "images/shorts40.jpg",
+      "images/shorts41.jpg",
+    ],
     // Add more product images as needed
   };
 
@@ -1609,6 +2403,22 @@
           </select>
         </div>
       `;
+    } else if (clothingProducts.includes(productName)) {
+      // Clothing product - add size and color options
+      configOptions = `
+        <div class="config-option">
+          <label for="size">Size</label>
+          <select id="size">
+            ${clothingSizes.map(size => `<option value="${size}">${size}</option>`).join('')}
+          </select>
+        </div>
+        <div class="config-option">
+          <label for="color">Color</label>
+          <select id="color">
+            ${colors.map(color => `<option value="${color}">${color}</option>`).join('')}
+          </select>
+        </div>
+      `;
     }
     
     const convertedPrice = usdPrice * exchangeRates[selectedCurrency];
@@ -1687,9 +2497,14 @@
     } else if (bras.includes(productName)) {
         const size = document.getElementById('size') ? document.getElementById('size').value : braSizes[0];
         config = { size };
+        usdPrice = braPricing[productName]; // Use bra pricing
     } else if (shoesAndFlatsHeels.includes(productName) || sneakers.includes(productName)) {
         const size = document.getElementById('size') ? document.getElementById('size').value : shoeSizes[0];
         config = { size };
+    } else if (clothingProducts.includes(productName)) {
+        const size = document.getElementById('size') ? document.getElementById('size').value : clothingSizes[0];
+        const color = document.getElementById('color') ? document.getElementById('color').value : colors[0];
+        config = { size, color };
     }
     
     // Create product object
@@ -1747,6 +2562,14 @@
     window.addEventListener('scroll', () => {
         document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
     });
+  });
+
+  // Auto-refresh when returning to the page
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+      // Page was loaded from cache (back/forward navigation)
+      location.reload();
+    }
   });
 </script>
 </body>

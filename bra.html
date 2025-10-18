@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoliThrifts - Bra Product</title>
+  <link rel="icon" type="image/jpg" href="images/clogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif;}
+    body {background:#f8f9fa; color:#333; line-height:1.6; overflow-x:hidden;}
+    .container {max-width:1200px; margin:0 auto; padding:0 15px;}
+    header {
+      background: linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%);
+      color:white;
+      padding:15px 20px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.15);
+      border-radius:20px;
+      margin:15px;
+      position:sticky;
+      top:15px;
+      z-index:1000;
+      transition:transform 0.3s ease, background 0.3s ease;
+    }
+    header.scrolled {
+      transform:scale(0.98);
+      background:linear-gradient(135deg,#5A3AB0 0%, #7A4FF0 100%);
+    }
+    .header-content {display:flex; justify-content:space-between; align-items:center; position:relative;}
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-img img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #FFD700, #FF8C00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo-container:hover .logo-text {
+      transform: scale(1.05);
+    }
+    
+    /* Currency Selector Styles */
+    .currency-selector {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 5px 15px;
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .currency-selector:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .currency-selector label {
+      margin-right: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .currency-selector select {
+      background: transparent;
+      border: none;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      outline: none;
+      padding: 5px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' %3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 5px center;
+      background-size: 16px;
+      padding-right: 25px;
+    }
+    .currency-selector select:focus {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    .currency-selector select option {
+      color: #333;
+      background: white;
+      padding: 10px;
+      transition: all 0.2s ease;
+    }
+    .currency-selector select option:hover {
+      background: #6B46C1;
+      color: white;
+    }
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    nav ul {display:flex; list-style:none;}
+    nav ul li {margin-left:25px; position:relative;}
+    nav ul li a {
+      color:white; text-decoration:none; font-weight:500; padding:6px 0; display:inline-block;
+      transition:all .3s ease;
+    }
+    nav ul li a:hover {color:#FFD700; transform:translateY(-2px);}
+    nav ul li a::before,
+    nav ul li a::after {
+      content:""; position:absolute; left:0; right:0; height:2px; background:#FFD700; transform:scaleX(0);
+      transition:transform .3s ease;
+    }
+    nav ul li a::before {top:0;}
+    nav ul li a::after {bottom:0;}
+    nav ul li a:hover::before,nav ul li a:hover::after {transform:scaleX(1);}
+    .cart-icon {position:relative; cursor:pointer;}
+    .cart-count {
+      position:absolute; top:-8px; right:-10px;
+      background:#FF4757; color:white; font-size:12px;
+      border-radius:50%; width:18px; height:18px;
+      display:flex; align-items:center; justify-content:center;
+      transition:transform 0.3s ease;
+    }
+    .cart-icon:hover .cart-count {transform:scale(1.2);}
+    
+    /* Mobile menu styles */
+    .mobile-menu-toggle {
+      display: none;
+      align-items: center;
+      gap: 15px;
+    }
+    .hamburger {
+      font-size:24px;
+      color:white;
+      cursor:pointer;
+      transition:transform 0.3s ease;
+    }
+    .hamburger:hover {transform:rotate(90deg);}
+    
+    .nav-menu {display:block;}
+    .nav-menu ul {flex-direction:row;}
+    
+    @media(max-width:768px){
+      header {margin:10px;}
+      .mobile-menu-toggle {
+        display: flex;
+      }
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg,#6B46C1 0%, #9F7AEA 100%);
+        border-radius: 0 0 15px 15px;
+        padding: 15px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+      .nav-menu.active {
+        display: block;
+      }
+      .nav-menu ul {
+        flex-direction: column;
+        padding: 0 15px;
+      }
+      .nav-menu ul li {
+        margin: 10px 0;
+        text-align: center;
+      }
+      .nav-menu ul li a {
+        padding: 10px 0;
+        display: block;
+        width: 100%;
+      }
+      .currency-selector {
+        margin: 10px auto;
+        width: 90%;
+        justify-content: space-between;
+      }
+      .currency-selector label {
+        font-size: 0.8rem;
+      }
+      .logo-text {
+        font-size: 22px;
+      }
+      .logo-img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+    
+    @media(max-width:576px){
+      .logo-text {
+        font-size: 18px;
+      }
+      .logo-img {
+        width: 30px;
+        height: 30px;
+      }
+      .hamburger {
+        font-size: 20px;
+      }
+      .currency-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 12px;
+      }
+      .currency-selector label {
+        margin-bottom: 5px;
+      }
+    }
+    
+    .section-title {
+      text-align:center; margin:40px 0 30px; font-size:2rem; color:#6B46C1;
+      position:relative; animation:fadeInUp 1s ease;
+    }
+    .checkout-section {padding:60px 0;}
+    .checkout-section p {text-align:center; max-width:800px; margin:0 auto 40px; color:#555;}
+    
+    /* Product Display */
+    .product-display {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .product-images {
+      flex: 1;
+      min-width: 300px;
+    }
+    .main-image {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .main-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .image-thumbnails {
+      display: flex;
+      gap: 10px;
+    }
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    .thumbnail.active {
+      border-color: #6B46C1;
+    }
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .product-details {
+      flex: 1;
+      min-width: 300px;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    .product-details h2 {
+      color: #6B46C1;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+    .product-description {
+      margin-bottom: 20px;
+      line-height: 1.6;
+      color: #555;
+    }
+    .product-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #6B46C1;
+      margin-bottom: 20px;
+    }
+    .product-config {
+      margin-bottom: 20px;
+    }
+    .config-option {
+      margin-bottom: 15px;
+    }
+    .config-option label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .config-option select, .config-option input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .add-to-cart-btn {
+      background: #6B46C1;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .add-to-cart-btn:hover {
+      background: #FFD700;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .add-to-cart-btn i {
+      margin-right: 8px;
+    }
+    
+    /* Notification styles */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .notification.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .notification i {
+      font-size: 1.2rem;
+    }
+    
+    .social-cta {
+      background:linear-gradient(135deg,#6B46C1 0%,#9F7AEA 100%);
+      color:white; text-align:center; padding:60px 0; margin:40px 15px;
+      border-radius:20px;
+    }
+    .social-cta h2 {font-size:2.2rem; margin-bottom:20px;}
+    .social-cta p {font-size:1.2rem; max-width:700px; margin:0 auto 30px;}
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .social-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #25D366;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .social-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      background: #128C7E;
+    }
+    .social-button i {
+      margin-right: 8px;
+      font-size: 1.2rem;
+    }
+    footer {background:#333; color:white; padding:40px 0 20px;}
+    .footer-content {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; margin-bottom:30px;
+    }
+    .footer-section h3 {font-size:1.2rem; margin-bottom:15px; color:#FFD700;}
+    .footer-section a,.footer-section p {
+      color:#ddd; text-decoration:none; margin-bottom:10px; display:block; transition:color 0.3s ease;
+    }
+    .footer-section a:hover {color:#6B46C1;}
+    .social-icons a {margin-right:15px; font-size:1.5rem; color:#ddd; transition:transform 0.3s ease, color 0.3s ease;}
+    .social-icons a:hover {color:#6B46C1; transform:scale(1.2);}
+    .footer-bottom {text-align:center; padding-top:20px; border-top:1px solid #444;}
+    
+    @media (max-width: 768px) {
+      .social-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .social-button {
+        width: 220px;
+      }
+      .product-display {
+        flex-direction: column;
+      }
+      .notification {
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+      }
+    }
+    
+    @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
+    @keyframes fadeInUp {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
+  </style>
+</head>
+<body>
+<!-- Notification element -->
+<div class="notification" id="notification">
+  <i class="fas fa-check-circle"></i>
+  <span id="notification-text">Item added to cart!</span>
+</div>
+
+<header>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo-container" onclick="window.location.href='index.html'">
+        <div class="logo-img">
+          <img src="images/clogo.png" alt="JoliThrifts Logo">
+        </div>
+        <div class="logo-text">JoliThrifts</div>
+      </div>
+      
+      <!-- Currency Selector -->
+      <div class="currency-selector">
+        <label for="currency-select">Select currency:</label>
+        <select id="currency-select">
+          <option value="USD">USD ($)</option>
+          <option value="GHS">GHS (₵)</option>
+          <option value="NGN">NGN (₦)</option>
+          <option value="LRD">LRD ($)</option>
+        </select>
+        <span id="currency-loading" class="loading" style="display:none;"></span>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <nav class="nav-menu" id="nav-menu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
+        </ul>
+      </nav>
+      
+      <!-- Mobile Menu Toggle -->
+      <div class="mobile-menu-toggle">
+        <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="checkout-section container">
+  <h2 class="section-title">AURELIA PUSH-UP BRA</h2>
+  <p>Lift, shape, and comfort in one. No sense of restraint, light air, gather supporting breast.</p>
+  
+  <!-- Product Display Section -->
+  <div class="product-display" id="productDisplay">
+    <!-- This will be populated by JavaScript -->
+  </div>
+</section>
+
+<section class="social-cta">
+  <div class="container">
+    <h2>Need Assistance?</h2>
+    <p>Have questions about your order? Reach out to us on WhatsApp for quick support.</p>
+    <div class="social-buttons">
+      <a href="https://wa.me/+8616671705298?text=Hi%20I'm%20contacting%20you%20from%20JoliThrifts%20about%20my%20order" target="_blank" class="social-button">
+        <i class="fab fa-whatsapp"></i> WhatsApp Support
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section"><h3>About Us</h3><p>We offer quality products with direct WhatsApp ordering for a seamless shopping experience.</p></div>
+      <div class="footer-section"><h3>Quick Links</h3><a href="index.html">Home</a><a href="products.html">Products</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+      <div class="footer-section"><h3>Contact Us</h3><p>Email: jolithrifts876@gmail.com</p><p>Phone: +8616671705298</p><div class="social-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 JoliThrifts. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<script>
+  // Currency selector functionality
+  const exchangeRates = {
+    USD: 1,
+    GHS: 13.7,
+    NGN: 1500,
+    LRD: 190
+  };
+  
+  let selectedCurrency = localStorage.getItem('preferredCurrency') || 'USD';
+  
+  // Set the currency selector to the saved preference
+  const currencySelect = document.getElementById('currency-select');
+  const currencyLoading = document.getElementById('currency-loading');
+  
+  if (currencySelect) {
+    currencySelect.value = selectedCurrency;
+    
+    currencySelect.addEventListener('change', (e) => {
+      currencyLoading.style.display = 'inline-block';
+      setTimeout(() => {
+        selectedCurrency = e.target.value;
+        localStorage.setItem('preferredCurrency', selectedCurrency);
+        updateAllPrices();
+        currencyLoading.style.display = 'none';
+      }, 500);
+    });
+  }
+  
+  function formatCurrency(amount, currency) {
+    const formatters = {
+      USD: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }),
+      GHS: new Intl.NumberFormat('en-GH', { style: 'currency', currency: 'GHS' }),
+      NGN: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }),
+      LRD: new Intl.NumberFormat('en-LR', { style: 'currency', currency: 'LRD' })
+    };
+    
+    return formatters[currency].format(amount);
+  }
+
+  // Bra products data - Updated price to $23
+  const braProducts = {
+    "black": {
+      id: "black",
+      name: "Aurelia's Black Push-Up Bra",
+      description: "✨AURELIA✨ Black Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
+      price: 23.00, // Updated price
+      images: ["images/image64.jpg"],
+      sizes: ["S(32/70AB)", "M(34/75AB)", "L(36/80AB)", "XL(38/85AB)"]
+    },
+    "skin": {
+      id: "skin",
+      name: "Aurelia's Skin Color Push-Up Bra",
+      description: "✨AURELIA✨ Skin Color Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
+      price: 23.00, // Updated price
+      images: ["images/image63.jpg"],
+      sizes: ["S(32/70AB)", "M(34/75AB)", "L(36/80AB)", "XL(38/85AB)"]
+    },
+    "burgundy": {
+      id: "burgundy",
+      name: "Aurelia's Burgundy Red Push-Up Bra",
+      description: "✨AURELIA✨ Burgundy Red Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
+      price: 23.00, // Updated price
+      images: ["images/image62.jpg"],
+      sizes: ["S(32/70AB)", "M(34/75AB)", "L(36/80AB)", "XL(38/85AB)"]
+    },
+    "purple": {
+      id: "purple",
+      name: "Aurelia's Purple Push-Up Bra",
+      description: "✨AURELIA✨ Purple Push Up Bra\nLift, shape, and comfort in one.\nNo sense of restraint, light air, gather supporting breast. With adjustable multi-way straps, a sleek backless option, and a natural rounded lift, it's perfect. This bra is designed to give you that flawless push-up effect without compromising on comfort.",
+      price: 23.00, // Updated price
+      images: ["images/image61.jpg"],
+      sizes: ["S(32/70AB)", "M(34/75AB)", "L(36/80AB)", "XL(38/85AB)"]
+    }
+  };
+
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  function updateCartCount() {
+    const totalItems = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+    document.querySelectorAll('.cart-count').forEach(el => {
+      el.textContent = totalItems;
+    });
+  }
+
+  function showNotification(message) {
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notification-text');
+    
+    notificationText.textContent = message;
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 3000);
+  }
+
+  function getProductFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+    return braProducts[productId] || braProducts["black"]; // Default to black if not found
+  }
+
+  function renderProduct() {
+    const product = getProductFromURL();
+    const productDisplay = document.getElementById('productDisplay');
+    
+    const convertedPrice = product.price * exchangeRates[selectedCurrency];
+    
+    const productHTML = `
+      <div class="product-images">
+        <div class="main-image">
+          <img src="${product.images[0]}" alt="${product.name}" id="mainProductImage">
+        </div>
+        <div class="image-thumbnails">
+          ${product.images.map((img, index) => `
+            <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="changeMainImage('${img}', this)">
+              <img src="${img}" alt="${product.name} ${index + 1}">
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="product-details">
+        <h2>${product.name}</h2>
+        <div class="product-description">${product.description.replace(/\n/g, '<br>')}</div>
+        <div class="product-price" id="productPrice">${formatCurrency(convertedPrice, selectedCurrency)}</div>
+        <div class="product-config">
+          <div class="config-option">
+            <label for="size">Size</label>
+            <select id="size">
+              ${product.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+        <button class="add-to-cart-btn" onclick="addToCart()">
+          <i class="fas fa-shopping-cart"></i> Add to Cart
+        </button>
+      </div>
+    `;
+    
+    productDisplay.innerHTML = productHTML;
+  }
+
+  function changeMainImage(src, element) {
+    document.getElementById('mainProductImage').src = src;
+    
+    // Update active thumbnail
+    document.querySelectorAll('.thumbnail').forEach(thumb => {
+      thumb.classList.remove('active');
+    });
+    element.classList.add('active');
+  }
+
+  function addToCart() {
+    const product = getProductFromURL();
+    const sizeSelect = document.getElementById('size');
+    const selectedSize = sizeSelect ? sizeSelect.value : product.sizes[0];
+    
+    const cartItem = {
+      id: `${product.id}-${selectedSize}`,
+      name: product.name,
+      price: product.price,
+      size: selectedSize,
+      image: product.images[0],
+      quantity: 1
+    };
+    
+    // Check if item already exists in cart
+    const existingItemIndex = cart.findIndex(item => item.id === cartItem.id);
+    
+    if (existingItemIndex > -1) {
+      cart[existingItemIndex].quantity += 1;
+    } else {
+      cart.push(cartItem);
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    
+    showNotification(`${product.name} (${selectedSize}) added to cart!`);
+    
+    // Visual feedback
+    const addButton = document.querySelector('.add-to-cart-btn');
+    const originalText = addButton.innerHTML;
+    addButton.innerHTML = '<i class="fas fa-check"></i> Added!';
+    addButton.style.backgroundColor = '#4CAF50';
+    
+    setTimeout(() => {
+      addButton.innerHTML = originalText;
+      addButton.style.backgroundColor = '';
+    }, 2000);
+  }
+
+  function updateAllPrices() {
+    renderProduct();
+  }
+
+  // Initialize page
+  document.addEventListener('DOMContentLoaded', function() {
+    updateCartCount();
+    renderProduct();
+    
+    // Mobile menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+      });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.mobile-menu-toggle') && !e.target.closest('.nav-menu')) {
+        navMenu.classList.remove('active');
+      }
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  });
+
+  // Auto-refresh when returning to the page
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+      // Page was loaded from cache (back/forward navigation)
+      updateCartCount();
+    }
+  });
+
+  // Handle page visibility change for cart updates
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+      // Page is visible again
+      const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (JSON.stringify(savedCart) !== JSON.stringify(cart)) {
+        cart = savedCart;
+        updateCartCount();
+      }
+    }
+  });
+</script>
+</body>
+</html>

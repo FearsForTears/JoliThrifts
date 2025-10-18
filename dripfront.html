@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DripFront - JoliThrifts</title>
+  
+  <!-- Open Graph Meta Tags for Social Media Previews -->
+  <meta property="og:title" content="DripFront - JoliThrifts">
+  <meta property="og:description" content="Explore our DripFront collection featuring Plain Tees, Vintage Shirts, Hoodies, Jeans, and more.">
+  <meta property="og:image" content="https://jolithrifts.com/images/clogo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:url" content="https://jolithrifts.com/dripfront.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="JoliThrifts">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DripFront - JoliThrifts">
+  <meta name="twitter:description" content="Explore our DripFront collection featuring Plain Tees, Vintage Shirts, Hoodies, Jeans, and more.">
+  <meta name="twitter:image" content="https://jolithrifts.com/images/clogo.png">
+  <meta name="twitter:site" content="@JoliThrifts">
+  
+  <!-- Additional Meta Tags -->
+  <meta name="description" content="Explore our DripFront collection featuring Plain Tees, Vintage Shirts, Hoodies, Jeans, and more.">
+  
+  <link rel="icon" type="image/png" href="images/clogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+    body { background-color: #f8f9fa; color: #333; line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+
+    /* ================= HEADER ================= */
+    header {
+      background: linear-gradient(135deg, #6B46C1 0%, #9F7AEA 100%);
+      color: white; padding: 15px 0;
+      position: sticky; top: 10px;
+      margin: 10px 15px; border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 1000; transition: all 0.4s ease;
+    }
+    header:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+
+    .header-content {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    
+    /* Logo Container */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-img img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .logo-img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      background: linear-gradient(45deg, #FFD700, #FF8C00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo-container:hover .logo-text {
+      transform: scale(1.05);
+    }
+
+    nav { position: relative; }
+    nav ul {
+      display: flex; list-style: none;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: white; text-decoration: none; font-weight: 500;
+      padding: 8px 12px; border-radius: 5px; position: relative;
+      transition: all 0.4s ease;
+    }
+    nav ul li a::before,
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0%; height: 2px;
+      background: #FFD700;
+      transition: 0.4s ease;
+    }
+    nav ul li a::before { top: 0; left: 0; }
+    nav ul li a::after { bottom: 0; right: 0; }
+    nav ul li a:hover::before,
+    nav ul li a:hover::after { width: 100%; }
+    
+    /* Active menu item styling */
+    nav ul li a.active {
+      color: #FFD700;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    nav ul li a.active::before,
+    nav ul li a.active::after {
+      width: 100%;
+    }
+
+    .cart-icon { position: relative; cursor: pointer; }
+    .cart-count {
+      position: absolute; top: -8px; right: -8px;
+      background-color: #FF4757; color: white;
+      font-size: 12px; border-radius: 50%;
+      width: 18px; height: 18px; display: flex;
+      justify-content: center; align-items: center;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Responsive nav - MODIFIED FOR MOBILE */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #6B46C1;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+      }
+      nav ul.active { display: flex; }
+      .hamburger { display: block; color: white; }
+      
+      /* Keep logo and text visible but adjust sizes */
+      .logo-text {
+        font-size: 20px; /* Reduced from 22px */
+      }
+      .logo-img {
+        width: 35px; /* Reduced from 40px */
+        height: 35px; /* Reduced from 40px */
+      }
+    }
+    
+    @media (max-width: 576px) {
+      /* Keep logo and text visible even on very small screens */
+      .logo-text {
+        display: block; /* Changed from 'none' to 'block' */
+        font-size: 18px; /* Further reduced for small screens */
+      }
+      .logo-img {
+        width: 30px; /* Further reduced for small screens */
+        height: 30px; /* Further reduced for small screens */
+      }
+      
+      /* Adjust header padding for small screens */
+      header {
+        padding: 10px 0;
+      }
+      
+      /* Adjust navigation menu for small screens */
+      nav ul {
+        width: 180px;
+        top: 50px;
+      }
+    }
+
+    /* ================= DRIPFRONT HERO ================= */
+    .dripfront-hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white; text-align: center; padding: 60px 20px;
+      margin: 20px 15px; border-radius: 15px; animation: fadeIn 1.5s ease-in-out;
+      position: relative; overflow: hidden;
+    }
+    .dripfront-hero::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; background: url('https://images.unsplash.com/photo-1558769132-cb25c5d1d5e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+      opacity: 0.3;
+    }
+    .dripfront-hero-content { 
+      position: relative; 
+      max-width: 800px; 
+      margin: 0 auto;
+      animation: slideUp 1.2s ease-in-out; 
+    }
+    
+    .dripfront-hero-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      border-radius: 15px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .dripfront-hero-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .dripfront-hero h1 { 
+      font-size: 2.5rem; 
+      margin-bottom: 20px; 
+      font-family: 'Playfair Display', serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .dripfront-hero p { 
+      font-size: 1.2rem; 
+      margin-bottom: 30px; 
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ================= DRIPFRONT CATEGORIES ================= */
+    .section-title { 
+      text-align: center; 
+      margin: 40px 0 30px; 
+      font-size: 2rem; 
+      color: #333; 
+      animation: fadeIn 2s ease; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .section-title-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .section-title-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .dripfront-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    
+    .dripfront-category { 
+      position: relative; 
+      border-radius: 20px; 
+      overflow: hidden; 
+      cursor: pointer; 
+      transition: all 0.4s ease; 
+      border: 2px solid transparent; 
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+    
+    .dripfront-category img { 
+      width: 100%; 
+      height: 300px; 
+      object-fit: cover; 
+      filter: brightness(0.9); 
+      transition: transform 0.5s ease, filter 0.4s ease; 
+    }
+    
+    .dripfront-category-content { 
+      position: absolute; 
+      bottom: 0; 
+      left: 0; 
+      right: 0; 
+      padding: 20px; 
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: white;
+      text-align: center;
+    }
+    
+    .dripfront-category-link {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      padding: 12px 24px;
+      border: 2px solid white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+    
+    .dripfront-category-link:hover {
+      background: rgba(255,255,255,0.3);
+      border-color: #FFD700;
+      color: #FFD700;
+      transform: translateY(-3px);
+    }
+    
+    .dripfront-category:hover img { 
+      transform: scale(1.05); 
+      filter: brightness(1); 
+    }
+    
+    .dripfront-category:hover {
+      border-color: #6B46C1;
+      box-shadow: 0 10px 25px rgba(107, 70, 193, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      .dripfront-categories {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .dripfront-category img { 
+        height: 250px; 
+      }
+      .dripfront-category-link { 
+        font-size: 1.1rem; 
+        padding: 10px 20px; 
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .dripfront-categories {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      .dripfront-category img { 
+        height: 220px; 
+      }
+      .dripfront-category-link { 
+        font-size: 1rem; 
+        padding: 8px 16px; 
+      }
+    }
+
+    /* ================= SOCIAL CTA ================= */
+    .social-cta {
+      background: linear-gradient(135deg, #6B46C1 0%, #9F7AEA 100%);
+      color: white; text-align: center; padding: 60px 20px;
+      margin: 40px 15px; border-radius: 15px; animation: fadeIn 2s ease;
+    }
+    
+    .social-cta-logo {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .social-cta-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .social-button {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: white; color: #6B46C1;
+      padding: 12px 25px; border-radius: 30px;
+      font-weight: bold; font-size: 1rem;
+      text-decoration: none; transition: all 0.3s ease;
+    }
+    .social-button:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+    .social-button i { margin-right: 8px; font-size: 1.2rem; }
+    
+    /* Specific button colors */
+    .whatsapp-button { background: #25D366; color: white; }
+
+    /* ================= FOOTER ================= */
+    footer { background: #333; color: white; padding: 40px 0 20px; }
+    
+    .footer-logo {
+      width: 70px;
+      height: 70px;
+      margin: 20 auto 20px;
+      border-radius: 12px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .footer-logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    
+    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 30px; margin-bottom: 30px; }
+    .footer-section h3 { font-size: 1.2rem; margin-bottom: 15px; color: #FFD700; }
+    .footer-section p, .footer-section a { color: #ddd; margin-bottom: 10px; text-decoration: none; }
+    .footer-section a:hover { color: #FFD700; }
+    .social-icons {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+    }
+    .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    .social-icons a:hover {
+      color: #FFD700;
+      transform: translateY(-3px);
+    }
+    .footer-bottom { text-align: center; border-top: 1px solid #444; padding-top: 20px; }
+
+    /* ================= ANIMATIONS ================= */
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    @keyframes slideUp { from {transform: translateY(30px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
+    
+    /* Responsive adjustments for social buttons */
+    @media (max-width: 768px) {
+      .social-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .social-button {
+        width: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo-container" onclick="window.location.href='index.html'">
+          <div class="logo-img">
+            <img src="images/clogo.png" alt="JoliThrifts Logo">
+          </div>
+          <div class="logo-text">JoliThrifts</div>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
+          </ul>
+          <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- DripFront Hero -->
+  <section class="dripfront-hero">
+    <div class="dripfront-hero-content">
+      <div class="dripfront-hero-logo">
+        <img src="images/clogo.png" alt="DripFront Logo">
+      </div>
+      <h1>DripFront Collection</h1>
+      <p>Elevate your style with our premium streetwear collection. From comfortable basics to statement pieces, find your perfect fit.</p>
+    </div>
+  </section>
+
+  <!-- DripFront Categories -->
+  <section class="container">
+    <h2 class="section-title">
+      <div class="section-title-logo">
+        <img src="images/clogo.png" alt="DripFront Logo">
+      </div>
+      Explore Our Collection
+    </h2>
+    <div class="dripfront-categories">
+
+      <!-- Shirts -->
+      <div class="dripfront-category">
+        <img src="images/shirt1.jpg" alt="Shirts">
+        <div class="dripfront-category-content">
+          <a href="shirt.html" class="dripfront-category-link">Shirts</a>
+        </div>
+      </div>
+      
+      <!-- Hoodies -->
+      <div class="dripfront-category">
+        <img src="images/hoodie13.jpg" alt="Hoodies">
+        <div class="dripfront-category-content">
+          <a href="hoodies.html" class="dripfront-category-link">Hoodies</a>
+        </div>
+      </div>
+      
+      <!-- Jeans -->
+      <div class="dripfront-category">
+        <img src="images/jeans10.jpg" alt="Jeans">
+        <div class="dripfront-category-content">
+          <a href="jeans.html" class="dripfront-category-link">Jeans</a>
+        </div>
+      </div>
+      
+      <!-- Jorts -->
+      <div class="dripfront-category">
+        <img src="images/jeans98.jpg" alt="Jorts">
+        <div class="dripfront-category-content">
+          <a href="jorts.html" class="dripfront-category-link">Jorts</a>
+        </div>
+      </div>
+      
+      <!-- Tank Tops -->
+      <div class="dripfront-category">
+        <img src="images/shorts30.jpg" alt="shorts">
+        <div class="dripfront-category-content">
+          <a href="shorts.html" class="dripfront-category-link">Shorts</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="social-cta">
+    <div class="container">
+      <div class="social-cta-logo">
+        <img src="images/clogo.png" alt="JoliThrifts Logo">
+      </div>
+      <h2>Ready to Elevate Your Style?</h2>
+      <p>Message us directly on WhatsApp to order from our DripFront collection. Our team will assist you with sizing and styling recommendations.</p>
+      <div class="social-buttons">
+        <a href="https://wa.me/+8616671705298?text=Hi, I am interested in DripFront collection" class="social-button whatsapp-button" target="_blank">
+          <i class="fab fa-whatsapp"></i> Shop DripFront via WhatsApp
+        </a>
+        <a href="https://wa.me/+8616671705298?text=Hi, I need help with DripFront sizing" class="social-button" target="_blank">
+          <i class="fas fa-ruler"></i> Sizing Assistance
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <img src="images/clogo.png" alt="JoliThrifts Logo">
+          </div>
+          <h3>About DripFront</h3>
+          <p>Our premium streetwear collection featuring quality materials and contemporary designs for the modern fashion enthusiast.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="index.html">Home</a>
+          <a href="products.html">Products</a>
+          <a href="dripfront.html">DripFront</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>Email: jolithrifts876@gmail.com</p>
+          <p>Phone: +8616671705298</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 JoliThrifts. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    function updateCartCount() {
+      document.querySelector('.cart-count').textContent = cart.length;
+    }
+    updateCartCount();
+
+    // Hamburger toggle
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector("nav ul");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // Set active menu item based on current page
+    function setActiveMenuItem() {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      const menuItems = document.querySelectorAll('nav ul li a');
+      
+      menuItems.forEach(item => {
+        // Remove active class from all items
+        item.classList.remove('active');
+        
+        // Add active class to current page
+        if (item.getAttribute('href') === currentPage) {
+          item.classList.add('active');
+        }
+      });
+    }
+
+    // Initialize active menu item
+    setActiveMenuItem();
+
+    function trackVisitor() {
+      const analyticsData = JSON.parse(localStorage.getItem('jolithriftsAnalytics')) || {
+          totalVisitors: 0,
+          todayVisitors: 0,
+          pageViews: {},
+          lastVisit: null
+      };
+
+      const today = new Date().toDateString();
+      
+      // Update total visitors
+      analyticsData.totalVisitors++;
+      
+      // Update today's visitors
+      if (analyticsData.lastVisit !== today) {
+          analyticsData.todayVisitors = 1;
+          analyticsData.lastVisit = today;
+      } else {
+          analyticsData.todayVisitors++;
+      }
+      
+      // Track page view
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      analyticsData.pageViews[currentPage] = (analyticsData.pageViews[currentPage] || 0) + 1;
+      
+      // Save updated data
+      localStorage.setItem('jolithriftsAnalytics', JSON.stringify(analyticsData));
+    }
+
+    // Track visitor when page loads
+    document.addEventListener('DOMContentLoaded', trackVisitor);
+  </script>
+</body>
+</html>

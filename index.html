@@ -4,7 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JoliThrifts - Social Shopping</title>
-  <link rel="icon" type="image/x-icon" href="images/clogo.png">
+  
+  <!-- Open Graph Meta Tags for Social Media Previews -->
+  <meta property="og:title" content="JoliThrifts - Social Shopping">
+  <meta property="og:description" content="Shop Direct Via WhatsApp with JoliThrifts. Discover amazing products at great prices with direct WhatsApp ordering.">
+  <meta property="og:image" content="https://jolithrifts.com/images/clogo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:url" content="https://jolithrifts.com">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="JoliThrifts">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JoliThrifts - Social Shopping">
+  <meta name="twitter:description" content="Shop Direct Via WhatsApp with JoliThrifts. Discover amazing products at great prices.">
+  <meta name="twitter:image" content="https://jolithrifts.com/images/clogo.png">
+  <meta name="twitter:site" content="@JoliThrifts">
+  
+  <!-- Additional Meta Tags -->
+  <meta name="description" content="Shop Direct Via WhatsApp with JoliThrifts. Discover amazing products at great prices with direct WhatsApp ordering.">
+  
+  <link rel="icon" type="image/png" href="images/clogo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -306,12 +328,60 @@
       color: #FFD700;
       box-shadow: 0 6px 15px rgba(0,0,0,0.4);
     }
+    
+    /* ================= DRIPFRONT CONTAINER ================= */
+    .dripfront-container { 
+      grid-column: span 4; 
+      position: relative; 
+      border-radius: 20px; 
+      overflow: hidden; 
+      margin-top: 30px;
+    }
+    .dripfront-container img { 
+      width: 100%; 
+      height: 280px; 
+      object-fit: cover; 
+      filter: brightness(0.8); 
+    }
+    .dripfront-content { 
+      position: absolute; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      text-align: center; 
+    }
+    .dripfront-link {
+      display: inline-block;
+      background: transparent;
+      color: white;
+      padding: 12px 24px;
+      border: 2px solid white;
+      border-radius: 12px;
+      text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .dripfront-link:hover {
+      background: rgba(255,255,255,0.2);
+      border-color: #FFD700;
+      color: #FFD700;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+    
     @media (max-width: 768px) {
       .category img { height: 220px; }
       .aurelia-brands-container { grid-column: span 2; }
       .aurelia-brands-container img { height: 220px; }
       .aurelia-brands-link { font-size: 1.4rem; padding: 10px 20px; }
       .category-link { font-size: 1rem; padding: 10px 20px; }
+      .dripfront-container { grid-column: span 2; }
+      .dripfront-container img { height: 220px; }
+      .dripfront-link { font-size: 1.4rem; padding: 10px 20px; }
     }
     @media (max-width: 576px) {
       .category img { height: 180px; }
@@ -319,6 +389,9 @@
       .aurelia-brands-container img { height: 180px; }
       .aurelia-brands-link { font-size: 1.2rem; padding: 8px 16px; }
       .category-link { font-size: 0.9rem; padding: 8px 16px; }
+      .dripfront-container { grid-column: span 1; }
+      .dripfront-container img { height: 180px; }
+      .dripfront-link { font-size: 1.2rem; padding: 8px 16px; }
     }
 
     /* ================= SOCIAL CTA ================= */
@@ -546,6 +619,12 @@
         <img src="images/image203.jpg" alt="ladies flat & heels">
         <div class="category-content"><a href="ladiesflatsandheels.html" class="category-link">Ladies Flats and Heels</a></div>
       </div>
+      
+      <!-- New DripFront Container -->
+      <div class="dripfront-container">
+        <img src="images/dripfront.png" alt="DripFront">
+        <div class="dripfront-content"><a href="dripfront.html" class="dripfront-link">DripFront</a></div>
+      </div>
     </div>
   </section>
 
@@ -635,6 +714,39 @@
 
     // Initialize active menu item
     setActiveMenuItem();
+
+    
+function trackVisitor() {
+    const analyticsData = JSON.parse(localStorage.getItem('jolithriftsAnalytics')) || {
+        totalVisitors: 0,
+        todayVisitors: 0,
+        pageViews: {},
+        lastVisit: null
+    };
+
+    const today = new Date().toDateString();
+    
+    // Update total visitors
+    analyticsData.totalVisitors++;
+    
+    // Update today's visitors
+    if (analyticsData.lastVisit !== today) {
+        analyticsData.todayVisitors = 1;
+        analyticsData.lastVisit = today;
+    } else {
+        analyticsData.todayVisitors++;
+    }
+    
+    // Track page view
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    analyticsData.pageViews[currentPage] = (analyticsData.pageViews[currentPage] || 0) + 1;
+    
+    // Save updated data
+    localStorage.setItem('jolithriftsAnalytics', JSON.stringify(analyticsData));
+}
+
+// Track visitor when page loads
+document.addEventListener('DOMContentLoaded', trackVisitor);
   </script>
 </body>
 </html>

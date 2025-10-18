@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JoliThrifts - Aurelia Products</title>
-  <link rel="icon" type="image/x-icon" href="images/clogo.png">
+  <link rel="icon" type="image/png" href="images/clogo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -300,8 +300,6 @@
     }
     
     @media(max-width:576px){
-      .products {grid-template-columns:1fr;}
-      
       /* Keep logo and text visible even on very small screens */
       .logo-text {
         display: block; /* Changed from 'none' to 'block' */
@@ -365,12 +363,29 @@
     }
     
     .category-section {margin-bottom:50px;}
+    
+    /* MODIFIED: Products grid with 2 columns on mobile */
     .products {
       display:grid; 
       grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); 
       gap:25px;
       animation:fadeIn 1s ease;
     }
+    
+    @media (max-width: 768px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+        gap: 15px; /* Slightly smaller gap on mobile */
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr); /* Still 2 columns on very small screens */
+        gap: 10px; /* Even smaller gap on very small screens */
+      }
+    }
+    
     .product {
       background:white; 
       border-radius:12px; 
@@ -708,7 +723,7 @@
     <div class="products">
       <div class="product">
         <div class="product-img-container">
-          <a href="checkout.html?product=Aurelia's Purple Push-Up Bra&price=23.00&image=images/image61.jpg">
+          <a href="bra.html?product=purple">
             <img src="images/image61.jpg" class="product-img">
           </a>
         </div>
@@ -724,7 +739,7 @@
       
       <div class="product">
         <div class="product-img-container">
-          <a href="checkout.html?product=Aurelia's Burgundy Red Push-Up Bra&price=23.00&image=images/image62.jpg">
+          <a href="bra.html?product=burgundy">
             <img src="images/image62.jpg" class="product-img">
           </a>
         </div>
@@ -740,7 +755,7 @@
       
       <div class="product">
         <div class="product-img-container">
-          <a href="checkout.html?product=Aurelia's Skin Color Push-Up Bra&price=23.00&image=images/image63.jpg">
+          <a href="bra.html?product=skin">
             <img src="images/image63.jpg" class="product-img">
           </a>
         </div>
@@ -756,7 +771,7 @@
       
       <div class="product">
         <div class="product-img-container">
-          <a href="checkout.html?product=Aurelia's Black Push-Up Bra&price=23.00&image=images/image64.jpg">
+          <a href="bra.html?product=black">
             <img src="images/image64.jpg" class="product-img">
           </a>
         </div>
@@ -938,9 +953,9 @@
     
     const exchangeRates = {
       USD: 1,
-      GHS: 12.50,
-      NGN: 1650,
-      LRD: 195
+      GHS: 13.50,
+      NGN: 1000,
+      LRD: 230
     };
     
     function updatePrices(currency) {

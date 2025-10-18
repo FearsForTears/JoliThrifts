@@ -572,6 +572,13 @@
     .social-icons a:hover {color:#6B46C1; transform:scale(1.2);}
     .footer-bottom {text-align:center; padding-top:20px; border-top:1px solid #444;}
     
+    .config-note {
+      font-size: 0.8rem;
+      color: #777;
+      margin-top: 5px;
+      font-style: italic;
+    }
+    
     @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
     @keyframes fadeInUp {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
   </style>
@@ -749,9 +756,9 @@
   // Currency selector functionality
   const exchangeRates = {
     USD: 1,
-    GHS: 12.5,
-    NGN: 1500,
-    LRD: 190
+    GHS: 13.50,
+    NGN: 1000,
+    LRD: 230
   };
   
   let selectedCurrency = localStorage.getItem('preferredCurrency') || 'USD';
@@ -782,7 +789,7 @@
     return formatters[currency].format(amount);
   }
   
-  // All your existing JavaScript code remains exactly the same
+  // Product descriptions
   const productDescriptions = {
     "Jordan Air Air Jordan 4 SE": "The Air Jordan 4 SE combines classic Jordan style with modern updates. Featuring premium materials, unique color blocking, and the iconic visible Air unit in the heel for comfort and style.",
     "New Balance NB 9080": "The New Balance 9080 offers a futuristic take on retro running shoes. With a chunky sole, mixed materials, and advanced cushioning for all-day comfort and standout style.",
@@ -814,7 +821,94 @@
     "AdiFOM Superstar Slides": "The AdiFOM Superstar Slides reimagine the iconic shell toe in slide form with comfortable, molded construction and classic Three Stripe branding.",
     "Nike Kobe Offcourt Slides": "Inspired by Kobe Bryant, these premium slides feature comfortable foam construction, herringbone traction patterns, and sleek, athletic design.",
     "ALO Slides": "ALO Slides combine yoga-inspired comfort with stylish design. Features comfortable footbeds and minimalist aesthetics for everyday wear.",
-    
+    "Adidas Campus": "Adidas Campus is a sleek, low-profile design with a suede or leather upper. It has an enlarged, padded tongue and thicker laces compared to the Campus 80s, which gives it a distinct look.",
+    "New Balance 2002r": "New Balance 2002R is a lifestyle sneaker inspired by the technical running shoes of the 2000s, specifically the MR2002 model. It features a retro-inspired silhouette with a modern aesthetic, combining a mesh base with suede and leather overlays.",
+    "Baggy Denim Jeans":"This style has seen a resurgence in popularity, particularly as part of the Y2K (Year 2000) fashion revival. The dark wash and relaxed fit make them versatile for a range of outfits, from a casual look with a T-shirt and trainers to a more elevated style with a blouse and heels",
+    "Wide-Leg Jeans":"The jeans feature a roomy, straight-from-the-hip cut that provides a relaxed and comfortable fit. They have a light blue denim wash with faded or distressed areas on the front of the thighs and knees. The style is characterized by a streamlined silhouette, distinguishing it from baggy jeans",
+    "Distressed Y2K Jeans":"A unique patchwork design with raw-edge, embroidered flame or gothic-style patterns. The denim has a washed black or dark grey finish, giving it a vintage, worn-out appearance. With a baggy, loose fit, these jeans are a statement piece that fits into various streetwear aesthetics, including Y2K, hip-hop, and Harajuku fashion.",
+    "Baggy Wide-Leg Jeans":"Our Wide Leg Baggy Jeans bring effortless style and comfort together with their relaxed fit and premium denim feel. Designed with a flattering high waist and a roomy silhouette, they deliver that perfect blend of casual ease and streetwear edge, ideal for pairing with cropped tops, hoodies, or oversized tees for a cool, laid-back look.",
+    "Distressed Baggy Jeans":"Distressed Baggy Jeans are the perfect mix of edge and comfort, featuring a relaxed fit and ripped detailing that adds bold character to your look. Crafted from premium denim, they sit effortlessly on the waist and flow with a loose, laid-back silhouette — giving you that cool, worn-in vibe that pairs perfectly with any casual or streetwear outfit.",
+    "Patchwork Baggy Jeans":"Patchwork Baggy Jeans make a bold style statement with their unique mix of denim tones and relaxed, oversized fit. Designed for creativity and comfort, these jeans blend retro flair with modern street style — perfect for anyone who loves to stand out effortlessly while keeping things casual and cool.",
+    "Vintage Baggy Jeans":"Vintage Baggy Jeans capture that timeless retro vibe with a relaxed, easygoing fit and classic washed denim finish. Soft yet durable, they bring effortless cool to any outfit — perfect for pairing with your favorite tee or oversized jacket for a laid-back, throwback look.",
+    "Light Wash Baggy Cargo Jeans":"Light wash baggy cargo jeans are a style of denim pant known for their relaxed, loose fit through the leg and a light blue color. The jeans often feature prominent cargo pockets on the sides, as seen in the image, and can be paired with a variety of tops for a casual, streetwear-inspired look.",
+    "Wide-Leg Denim Jeans":"This style is also known as a Y2K or '90s-inspired look. Baggy pants and wide-leg trousers have become a significant fashion trend in recent years, favored for their comfortable and relaxed fit. These jeans offer freedom of movement and a versatile urban style that can be paired with various tops, from a basic T-shirt to a fitted shirt.",
+    "Paint Splatter Gradient Wash Baggy Wide Leg Jeans":"Paint Splatter Gradient Wash Baggy Wide Leg Jeans are a bold fusion of art and street style. Featuring a soft gradient wash with expressive paint splatter details, these jeans stand out with creative flair while keeping a relaxed, wide-leg silhouette for all-day comfort. Perfect for turning heads and showing off your unique vibe with effortless confidence.",
+    "Paint-Splattered Baggy Jeans":"Paint-Splattered Baggy Jeans add an artistic edge to your everyday style with bold paint details and a relaxed, oversized fit. Made from premium denim for durability and comfort, they deliver that effortlessly cool, creative vibe — perfect for standing out while keeping it casual.",
+    "Euphoria Y2K Vintage Jeans":"Our Euphoria Y2K Vintage Jeans bring back early-2000s attitude with a modern twist. Featuring a low-rise fit, subtle fading, and a relaxed vintage cut, these jeans channel nostalgic Y2K energy while keeping you effortlessly stylish. Perfect for pairing with crop tops or baby tees for that iconic throwback vibe.",
+    "Gallery Dept. Jeans":"Our Gallery Dept. Jeans blend artistic flair with streetwear luxury, featuring hand-finished details, paint-splatter accents, and a relaxed, lived-in fit. Crafted from premium denim, each pair embodies individuality and creative expression — perfect for those who appreciate fashion as a form of art.",
+    "Vintage Denim Shorts":"Vintage-Washed Denim Shorts offer a classic, worn-in look with a soft, lived-in feel. Designed with a relaxed fit and subtle fading, they bring effortless vintage charm to your casual style — perfect for pairing with tees, tanks, or oversized shirts for that timeless, laid-back vibe.",
+    "Washed Straight Denim Jorts":"Washed Straight Denim Jorts combine classic denim style with a modern, relaxed edge. Featuring a straight cut and soft washed finish, they offer a clean, versatile look that's perfect for everyday wear — easy to pair with tees, hoodies, or button-ups for a cool, effortless vibe.",
+    "Bermuda Jeans Jorts Thug OG-Asteric":"Bermuda Jeans Jorts Thug OG-Asteric bring bold street energy with a relaxed Bermuda fit and premium denim construction. Designed for comfort and attitude, they feature subtle distressing and signature detailing that capture that raw, OG aesthetic — perfect for elevating your casual or urban look with standout style.",
+    "Icecream Running Dog Denim Shorts":"Icecream Running Dog Denim Shorts fuse playful street style with premium craftsmanship. Featuring the iconic Running Dog graphic and a relaxed fit, these shorts deliver a bold, standout look that blends comfort with personality — perfect for adding a touch of fun and flair to your everyday outfit.",
+    "Hellstar Fire Diamond Denim Shorts":"Hellstar Fire Diamond Denim Shorts ignite your street style with bold flame and diamond detailing that commands attention. Crafted from high-quality denim with a relaxed fit, they blend edgy design with everyday comfort — perfect for making a powerful statement wherever you go.",
+    "Bottega Desires Jorts":"Bottega Desires Jorts embody effortless luxury with a sleek silhouette and refined denim finish. Designed for a modern, fashion-forward look, these jorts combine high-end aesthetics with casual comfort — perfect for elevating your street style with a touch of sophistication.",
+    "Baggy Camouflage Cargo Denim Shorts":"Baggy Camouflage Cargo Denim Shorts blend rugged utility with streetwear edge. Featuring an all-over camo pattern, roomy cargo pockets, and a relaxed baggy fit, they deliver both function and style — perfect for a bold, laid-back look that stands out effortlessly.",
+    "Streetwear Denim Jorts":"Streetwear Retro Patchwork Denim Jorts bring a creative edge to classic street style with their bold mix of denim tones and vintage-inspired design. Featuring a relaxed fit and detailed stitching, these jorts offer both comfort and individuality — perfect for anyone looking to make a statement with a retro-cool vibe.",
+    "Volymoon Y2K Baggy Jean Shorts":"Volymoon Y2K Baggy Jean Shorts channel early-2000s nostalgia with a modern streetwear twist. Designed with a loose, relaxed fit and vintage wash, they capture that effortlessly cool Y2K vibe — perfect for pairing with graphic tees or crop tops for a bold, throwback look.",
+    "Aelfric Eden Jorts":"Aelfric Eden Jorts embody bold streetwear aesthetics with a relaxed fit and statement-making design. Crafted from premium denim and finished with unique detailing, they blend comfort with creative edge — perfect for expressing individuality and modern urban style.",
+    "Camouflage Splicing Design Vintage Baggy Jeans":"Camouflage Splicing Design Vintage Baggy Jeans combine retro denim style with a bold military-inspired twist. Featuring camo panel accents and a loose, relaxed fit, they deliver standout streetwear appeal with a touch of vintage edge — perfect for those who like to mix creativity with comfort.",
+    "Vale Forever Skittles Jorts":"Vale Forever Skittles Jorts burst with color and personality, featuring vibrant patchwork inspired by the playful Skittles aesthetic. Designed with a relaxed fit and premium denim, they blend streetwear energy with creative flair — perfect for standing out with confidence and bold style.",
+    "Sume Double Waisted Jorts":"Sume Double Waisted Jorts redefine modern streetwear with their unique layered waistband design and relaxed fit. Crafted from premium denim, they merge creativity with everyday comfort — giving you a bold, fashion-forward look that stands out effortlessly.",
+    "Fried Denim Jeans Jorts":"Fried Denim Jeans Jorts bring a bold twist to classic denim with their edgy washed texture and relaxed, baggy fit. Designed for standout streetwear appeal, they combine rugged style with everyday comfort — perfect for those who like their look loud, confident, and effortlessly cool.",
+    "High Waist Ripped Jorts":"High Waist Ripped Jorts combine edgy style with a flattering fit, featuring distressed detailing and a sleek high-rise waist. Crafted from soft, durable denim, they offer the perfect balance of comfort and attitude — ideal for creating effortlessly cool, laid-back looks.",
+    "Vintage Retro 90s Washed Shorts":"Vintage Retro 90s Washed Shorts capture the essence of classic '90s style with their faded wash and relaxed fit. Made from soft, durable denim, they deliver that timeless, laid-back vibe — perfect for pairing with tees or oversized shirts for an effortless retro look.",
+    "Acne Studios Judda Keychain Shorts":"Acne Studios Judda Keychain Shorts blend minimalist design with a statement edge. Crafted from premium denim, they feature a relaxed fit and a signature keychain detail that adds a touch of modern sophistication — perfect for effortless, high-fashion streetwear styling.",
+    "Risen King Cropped Zip-Up Hoodie":"Risen King Cropped Zip-Up Hoodie combines streetwear edge with modern comfort. Designed with a sleek cropped cut, premium cotton blend, and bold logo detailing, it delivers a confident, elevated look — perfect for layering or making a statement on its own.",
+    "Fallen Angel Hoodie":"Fallen Angel Hoodie fuses dark street aesthetics with premium comfort. Featuring bold graphic artwork and a relaxed oversized fit, it delivers a statement look that balances edge and style — perfect for those who move with confidence and a touch of rebellion.",
+    "Y2K Star Patchwork Hoodie":"Y2K Star Patchwork Hoodie captures early-2000s nostalgia with a bold, futuristic twist. Featuring vibrant star patchwork detailing and a relaxed, oversized fit, it blends comfort with standout style — perfect for expressing your playful, retro-inspired streetwear vibe.",
+    "Silence of Damned Skull Hoodie":"Silence of Damned Skull Hoodie channels dark streetwear energy with striking skull graphics and a bold distressed finish. Crafted from premium cotton for a soft yet durable feel, it features a relaxed fit that delivers both comfort and attitude — perfect for making a powerful, rebellious style statement.",
+    "Astro-World Hoodie":"Astro-World Hoodie captures cosmic streetwear vibes with bold graphic designs inspired by space and music culture. Crafted from soft, heavyweight cotton, it offers a relaxed fit and premium feel — perfect for those who like to stand out with bold energy and futuristic style.",
+    "Fuzzy Mohair Sweater":"Fuzzy Mohair Sweater brings cozy luxury and effortless style together. Crafted from ultra-soft mohair blend fabric, it offers a warm, lightweight feel with a textured finish that adds depth to any look — perfect for layering or making a chic statement on its own.",
+    "INFW Hoodie":"INFW Hoodie delivers sleek streetwear minimalism with a bold edge. Crafted from premium heavyweight cotton, it features a relaxed fit, clean design, and subtle branding for a modern, elevated look — perfect for everyday wear with effortless confidence.",
+    "Trapstar Hoodie":"Trapstar Hoodie embodies true streetwear attitude with its bold logo design and premium heavyweight feel. Featuring a relaxed fit and soft interior lining, it blends comfort with statement-making style — perfect for repping urban culture with confidence and edge.",
+    "Choppa Krazy Hoodie":"Choppa Krazy Hoodie brings raw street energy with bold graphic detailing and a relaxed, oversized fit. Made from premium cotton for comfort and durability, it's designed to turn heads and showcase confidence — perfect for those who live and breathe unapologetic urban style.",
+    "LMLDUSA Hoodie":"LMLDUSA Hoodie blends classic streetwear style with a modern, minimalist edge. Crafted from premium cotton for a soft yet durable feel, it features bold logo detailing and a relaxed fit — perfect for effortless everyday wear with a touch of urban sophistication.",
+    "Kozy Pullover Hoodie":"Kozy Pullover Hoodie delivers ultimate comfort with a clean, laid-back design. Made from ultra-soft fleece for a warm, plush feel, it features a relaxed fit and minimalist detailing — perfect for everyday wear, lounging, or layering in effortless street style.",
+    "Doll House Hoodie":"Doll House Hoodie blends playful aesthetics with bold streetwear energy. Featuring eye-catching graphics and a relaxed, oversized fit, it's crafted from soft, premium cotton for all-day comfort — perfect for expressing individuality with a stylish, edgy twist.",
+   "Nirvana T-Shirt":"Nirvana T-Shirt pays tribute to iconic rock culture with its classic band graphic and vintage-wash finish. Crafted from soft, breathable cotton, it offers a relaxed fit and timeless edge — perfect for effortless everyday style with a touch of grunge attitude.",
+    "Mötley Crüe T-Shirt":"Mötley Crüe T-Shirt celebrates rock rebellion with bold band graphics and a vintage-inspired wash. Made from soft, premium cotton, it delivers all-day comfort and a worn-in feel — perfect for channeling classic '80s rock energy with effortless style.",
+   "Time Will Tell T-Shirt":"Time Will Tell T-Shirt combines minimalist design with deep streetwear meaning. Featuring a bold graphic print and crafted from soft, premium cotton, it offers a relaxed fit and timeless appeal — perfect for expressing confidence and introspection through effortless style.",
+   "Box Fit Mesh Jerseys":"Box Fit Mesh Jerseys deliver breathable comfort and bold streetwear style. Designed with a loose, boxy silhouette and lightweight mesh fabric, they offer a sporty yet casual look — perfect for layering or rocking solo with effortless urban flair.",
+   "Shadow Face T-Shirt":"Shadow Face T-Shirt brings a mysterious, artistic vibe to your streetwear lineup. Featuring a striking shadowed face graphic on soft, premium cotton, it offers a relaxed fit and minimalist edge — perfect for making a bold yet understated statement.",
+   "Billionaire Studios T-Shirts":"Billionaire Studios T-Shirts embody luxury streetwear at its finest, combining premium cotton fabric with sleek design and bold logo detailing. Offering a relaxed yet refined fit, they deliver effortless style and confidence — perfect for elevating your everyday look with a touch of exclusivity.",
+   "Desire T-Shirt":"Desire T-Shirt blends simplicity with bold emotion, featuring a clean design accented by striking graphic details. Crafted from soft, premium cotton with a relaxed fit, it delivers effortless comfort and modern streetwear appeal — perfect for expressing confidence and individuality.",
+   "Plain T-Shirt":"Plain Tee Shirt is a timeless essential, crafted from soft, high-quality cotton for all-day comfort and durability. Featuring a clean design and relaxed fit, it's perfect for effortless layering or a minimalist, laid-back look that never goes out of style.",
+   "Oversized Anime Cartoon T-Shirt":"Oversized Anime Cartoon T-Shirt brings bold personality and comfort together with vibrant anime-inspired graphics and a relaxed, roomy fit. Crafted from soft, premium cotton, it's perfect for showcasing your love for anime while keeping your streetwear look effortlessly cool and expressive.",
+   "Multi Persona T-Shirt":"Multi Persona T-Shirt explores self-expression through bold, artistic design. Featuring striking multi-face graphics on soft, premium cotton, it offers a relaxed fit and modern streetwear vibe — perfect for those who embrace every side of their personality with style and confidence.",
+   "Vintage Sports Shirt":"Vintage Sports Shirt captures classic athletic style with a retro twist. Made from soft, breathable fabric, it features subtle distressing and old-school detailing for that timeless, worn-in look — perfect for casual wear or adding a nostalgic edge to your street style.",
+   "Striped Crewneck Sweater":"Striped Crewneck Sweater combines classic style with everyday comfort. Featuring bold horizontal stripes and a soft knit texture, it offers a relaxed fit and timeless appeal — perfect for layering or wearing solo for a clean, effortless look.",
+   "Sleeveless Shirt":"Sleeveless Shirt delivers a clean, modern look with a focus on comfort and versatility. Crafted from soft, breathable fabric, it features a relaxed fit that's perfect for layering or wearing solo — ideal for warm days, workouts, or effortless streetwear style.",
+   "Grunge Graphic Long Sleeve":"Grunge Graphic Long Sleeve channels raw, edgy style with bold distressed artwork and a relaxed fit. Crafted from soft, premium cotton, it captures that effortless '90s grunge vibe — perfect for layering or rocking solo with a rebellious streetwear edge.",
+   "Camo Sweater":"Camo Sweater blends rugged military style with premium comfort. Featuring a bold camouflage pattern and a relaxed fit, it's crafted from soft, high-quality knit fabric for a cozy yet edgy look — perfect for adding street-ready attitude to any outfit.",
+   "SSSaint Louis Sweatshirt":"SSSaint Louis Sweatshirt combines classic collegiate style with modern streetwear flair. Crafted from premium heavyweight cotton, it features bold varsity-inspired lettering and a relaxed fit — perfect for staying cozy while keeping your look effortlessly cool and timeless.",
+   "Holy Spirit Rugby Shirt":"Holy Spirit Rugby Shirt blends vintage athletic style with bold streetwear energy. Featuring a classic collared design, contrasting panels, and standout 'Holy Spirit' embroidery, it's crafted from premium cotton for comfort and durability — perfect for a clean yet expressive look.",
+   "Cardinals Jersey Shirt":"Cardinals Jersey Shirt brings sporty energy with a vintage-inspired edge. Featuring bold team graphics, breathable mesh fabric, and a relaxed athletic fit, it captures classic jersey style — perfect for casual streetwear or game-day looks with attitude.",
+   "Gallery Dept. Stadium Uniform Shirt":"Gallery Dept. Stadium Uniform Shirt merges athletic inspiration with high-end streetwear design. Crafted from premium materials, it features bold logo detailing and a relaxed, sporty fit — embodying the brand's signature blend of art, rebellion, and effortless style.",
+   "Graphic Print T-Shirt":"Graphic Print T-Shirt combines bold visual expression with everyday comfort. Featuring eye-catching artwork on soft, premium cotton, it offers a relaxed fit and modern streetwear appeal — perfect for adding personality and edge to any casual look.",
+   "Polo T-Shirt":"Polo T-Shirt delivers classic sophistication with a modern twist. Crafted from soft, breathable cotton, it features a crisp collar, button placket, and tailored fit — perfect for elevating casual looks with timeless style and comfort.",
+   "Embroidered Polo T-Shirt":"Embroidered Polo T-Shirt combines refined style with subtle detailing. Made from premium, breathable cotton, it features intricate embroidery and a structured collar for a polished yet casual look — perfect for everyday wear or smart-casual occasions.",
+   "Jersey Shirt":"Jersey Shirt brings athletic energy and streetwear style together. Featuring bold team-inspired graphics, breathable mesh fabric, and a relaxed fit, it delivers all-day comfort and a sporty edge — perfect for game days or everyday casual wear.",
+   "Enbrand T-Shirt":"Enbrand T-Shirt blends minimalist design with premium streetwear aesthetics. Crafted from soft, high-quality cotton, it features subtle logo detailing and a relaxed fit — perfect for effortless, clean style with a modern edge.",   
+   "Sunshine T-Shirt":"Sunshine T-Shirt radiates positivity and effortless style with its bright graphic design and soft, breathable cotton feel. Featuring a relaxed fit, it's perfect for adding a cheerful touch to your everyday look while keeping things casual and comfortable.",
+   "Shark T-Shirt":"Shark T-Shirt makes a bold statement with its striking shark graphic and modern streetwear vibe. Crafted from soft, premium cotton, it offers a relaxed fit and durable comfort — perfect for adding fearless energy to your casual look.",
+   "Painbows T-Shirt":"Painbows T-Shirt blends emotion and artistry with its striking 'Painbows' graphic — a bold twist on beauty and struggle. Crafted from soft, premium cotton with a relaxed fit, it delivers both comfort and statement-making style for those who wear their feelings with confidence.",
+   "Dunkin Donuts T-Shirt":"Dunkin' Donuts T-Shirt serves up a fun, nostalgic vibe with its bold logo graphic and playful color scheme. Made from soft, breathable cotton with a relaxed fit, it's perfect for casual days and coffee lovers who like their style as fresh as their brew.",
+   "9 GML T-Shirt":"9 GML T-Shirt captures modern streetwear attitude with minimalist branding and a clean, structured fit. Crafted from premium cotton for softness and durability, it delivers effortless style — perfect for everyday wear with a sleek, urban edge.",
+   "Barcelona Shirt":"Barcelona Shirt celebrates iconic football heritage with bold team colors and premium detailing. Crafted from breathable, lightweight fabric, it offers a comfortable athletic fit — perfect for showing your pride on game day or adding sporty style to your everyday look.",
+   "Drew House Secret SS T-Shirt":"Drew House Secret SS T-Shirt blends understated luxury with streetwear attitude. Crafted from premium cotton, it features subtle graphic detailing and a relaxed silhouette — perfect for a clean, modern look that speaks through quiet confidence and refined style.",
+   "Dickies T-Shirt":"Dickies T-Shirt delivers classic workwear durability with everyday comfort. Made from heavyweight cotton for a sturdy yet soft feel, it features the iconic Dickies logo and a relaxed fit — perfect for a timeless, laid-back look that stands up to daily wear.",
+   "Nike Dri-FIT Men Training T-Shirt":"Nike Dri-FIT Men's Training T-Shirt is built for performance and comfort. Made with Nike's moisture-wicking Dri-FIT technology, it keeps you cool and dry during workouts. Featuring a lightweight, breathable fabric and an athletic fit, it's perfect for training, running, or everyday active wear.",
+   "Ribbed Tank Tops":"Ribbed Tank Tops offer a sleek, versatile fit with a soft, stretchy ribbed texture that moves with you. Crafted from breathable cotton blend fabric, they're perfect for layering or wearing solo — combining everyday comfort with effortless style.",
+   "Roughplay Tank Tops":"Roughplay Tank Tops bring bold streetwear energy with a clean, athletic cut and durable cotton construction. Designed for comfort and confidence, they offer a relaxed fit and edgy style — perfect for workouts, casual days, or layering with urban flair.",
+   "Gouge Shorts":"Gouge Shorts combine rugged design with modern streetwear appeal. Crafted from premium denim with distressed detailing, they feature a relaxed fit and durable feel — perfect for adding an edgy, worn-in vibe to your everyday look.",
+   "Georgetown Hoyas Shorts":"Georgetown Hoyas Shorts showcase classic collegiate style with bold team graphics and premium comfort. Made from soft, breathable fabric with an adjustable waistband, they deliver a relaxed athletic fit — perfect for game days, workouts, or everyday streetwear.",
+   "Nike Dri-FIT Shorts":"Nike Dri-FIT Shorts are designed for peak performance and all-day comfort. Featuring Nike's moisture-wicking Dri-FIT technology, they keep you cool and dry through every workout. With a lightweight, breathable feel and an adjustable waistband, they're perfect for training, running, or casual wear.",
+   "Drawstring Shorts":"Drawstring Shorts offer the perfect blend of comfort and casual style. Made from soft, breathable fabric with an adjustable drawstring waistband, they provide a relaxed fit that's ideal for lounging, workouts, or everyday wear.",
+   "Trapstar Shorts":"Trapstar Shorts bring signature streetwear attitude with bold branding and a relaxed fit. Crafted from premium cotton for comfort and durability, they deliver effortless urban style — perfect for pairing with graphic tees or hoodies for a standout look.",
+   "Corteiz Cruise Summer Shorts":"Corteiz Cruise Summer Shorts embody laid-back luxury with a streetwear edge. Made from lightweight, breathable fabric, they feature bold Corteiz branding and a relaxed fit — perfect for staying cool and stylish during warm-weather days.",
+   "Cargo Shorts":"Cargo Shorts combine utility and style with multiple spacious pockets and a relaxed, durable design. Crafted from high-quality cotton fabric, they offer all-day comfort and a rugged streetwear look — perfect for casual outings or everyday wear.",
+
+
     // Existing product descriptions remain the same
     "Wireless Earbuds": "High-quality wireless earbuds with noise cancellation and 24-hour battery life.",
     "Bluetooth Speaker": "Portable Bluetooth speaker with 360° sound and waterproof design.",
@@ -1019,16 +1113,16 @@
       }
     },
     "iPhone 17": {
-      "256": 999.00,
-      "512": 1099.00
+      "256": 1112.00,
+      "512": 1326.00
     },
     "iPhone 17 Pro": {
-      "256": 1099.00,
-      "512": 1199.00
+      "256": 1460.00,
+      "512": 1687.00
     },
     "iPhone 17 Pro Max": {
-      "256": 1199.00,
-      "512": 1299.00
+      "256": 1687.00,
+      "512": 1950.00
     }
   };
 
@@ -1040,6 +1134,8 @@
   };
 
   const shoeSizes = ["38", "39", "40", "41", "42", "43", "44", "45"];
+  const clothingSizes = ["M", "L", "XL", "XXL", "XXXL", "XXXXL"];
+  const colors = ["Black", "White", "Blue", "Blue Black", "Brown", "Cream", "Grey", "Ash"];
 
   const shoesAndFlatsHeels = [
     "Black Mary Jane Mesh Shoe",
@@ -1103,6 +1199,132 @@
     "AdiFOM Superstar Slides",
     "Nike Kobe Offcourt Slides",
     "ALO Slides",
+    "Adidas Campus",
+    "New Balance 2002r",
+  ];
+
+  // Define clothing categories
+  const hoodies = [
+    "Risen King Cropped Zip-Up Hoodie",
+    "Fallen Angel Hoodie",
+    "Y2K Star Patchwork Hoodie",
+    "Silence of Damned Skull Hoodie",
+    "Astro-World Hoodie",
+    "INFW Hoodie",
+    "Trapstar Hoodie",
+    "Choppa Krazy Hoodie",
+    "LMLDUSA Hoodie",
+    "Kozy Pullover Hoodie",
+    "Doll House Hoodie"
+  ];
+
+  const shirts = [
+    "Nirvana T-Shirt",
+    "Mötley Crüe T-Shirt",
+    "Time Will Tell T-Shirt",
+    "Box Fit Mesh Jerseys",
+    "Shadow Face T-Shirt",
+    "Billionaire Studios T-Shirts",
+    "Desire T-Shirt",
+    "Plain T-Shirt",
+    "Oversized Anime Cartoon T-Shirt",
+    "Multi Persona T-Shirt",
+    "Vintage Sports Shirt",
+    "Striped Crewneck Sweater",
+    "Sleeveless Shirt",
+    "Grunge Graphic Long Sleeve",
+    "Camo Sweater",
+    "SSSaint Louis Sweatshirt",
+    "Holy Spirit Rugby Shirt",
+    "Cardinals Jersey Shirt",
+    "Gallery Dept. Stadium Uniform Shirt",
+    "Graphic Print T-Shirt",
+    "Polo T-Shirt",
+    "Embroidered Polo T-Shirt",
+    "Jersey Shirt",
+    "Enbrand T-Shirt",
+    "Sunshine T-Shirt",
+    "Shark T-Shirt",
+    "Painbows T-Shirt",
+    "Dunkin Donuts T-Shirt",
+    "9 GML T-Shirt",
+    "Barcelona Shirt",
+    "Drew House Secret SS T-Shirt",
+    "Dickies T-Shirt",
+    "Nike Dri-FIT Men Training T-Shirt"
+  ];
+
+  const sweaters = [
+    "Fuzzy Mohair Sweater",
+    "Striped Crewneck Sweater",
+    "Camo Sweater"
+  ];
+
+  const tankTops = [
+    "Ribbed Tank Tops",
+    "Roughplay Tank Tops"
+  ];
+
+  const jeans = [
+    "Baggy Denim Jeans",
+    "Wide-Leg Jeans",
+    "Distressed Y2K Jeans",
+    "Baggy Wide-Leg Jeans",
+    "Distressed Baggy Jeans",
+    "Patchwork Baggy Jeans",
+    "Vintage Baggy Jeans",
+    "Light Wash Baggy Cargo Jeans",
+    "Wide-Leg Denim Jeans",
+    "Paint Splatter Gradient Wash Baggy Wide Leg Jeans",
+    "Paint-Splattered Baggy Jeans",
+    "Euphoria Y2K Vintage Jeans",
+    "Gallery Dept. Jeans",
+    "Camouflage Splicing Design Vintage Baggy Jeans"
+  ];
+
+  const trousers = [
+    // Add trouser items here if any
+  ];
+
+  const jorts = [
+    "Vintage Denim Shorts",
+    "Washed Straight Denim Jorts",
+    "Bermuda Jeans Jorts Thug OG-Asteric",
+    "Icecream Running Dog Denim Shorts",
+    "Hellstar Fire Diamond Denim Shorts",
+    "Bottega Desires Jorts",
+    "Baggy Camouflage Cargo Denim Shorts",
+    "Streetwear Denim Jorts",
+    "Volymoon Y2K Baggy Jean Shorts",
+    "Aelfric Eden Jorts",
+    "Vale Forever Skittles Jorts",
+    "Sume Double Waisted Jorts",
+    "Fried Denim Jeans Jorts",
+    "High Waist Ripped Jorts",
+    "Vintage Retro 90s Washed Shorts",
+    "Acne Studios Judda Keychain Shorts"
+  ];
+
+  const shorts = [
+    "Gouge Shorts",
+    "Georgetown Hoyas Shorts",
+    "Nike Dri-FIT Shorts",
+    "Drawstring Shorts",
+    "Trapstar Shorts",
+    "Corteiz Cruise Summer Shorts",
+    "Cargo Shorts"
+  ];
+
+  // Combine all clothing items that need size and color options
+  const clothingItems = [
+    ...hoodies,
+    ...shirts,
+    ...sweaters,
+    ...tankTops,
+    ...jeans,
+    ...trousers,
+    ...jorts,
+    ...shorts
   ];
 
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -1157,7 +1379,39 @@
       const isBra = item.name.includes("Aurelia's");
       const isShoe = shoesAndFlatsHeels.includes(item.name);
       const isSneaker = sneakers.includes(item.name);
+      const isClothing = clothingItems.includes(item.name);
       const isIPhone17Series = ["iPhone 17", "iPhone 17 Pro", "iPhone 17 Pro Max"].includes(item.name);
+      
+      // Set default configuration for iPhones if not already set
+      if (isPhone && !item.config) {
+        const defaultGig = getDefaultStorageOption(item.name);
+        const defaultBattery = isIPhone17Series ? undefined : "80-84";
+        
+        item.config = {
+          gig: defaultGig,
+          battery: defaultBattery
+        };
+        
+        // Update price based on default configuration
+        if (phonePricing[item.name]) {
+          if (isIPhone17Series) {
+            item.price = phonePricing[item.name][defaultGig];
+          } else if (phonePricing[item.name][defaultGig] && phonePricing[item.name][defaultGig][defaultBattery]) {
+            item.price = phonePricing[item.name][defaultGig][defaultBattery];
+          }
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+      
+      // Set default configuration for clothing items if not already set
+      if (isClothing && !item.config) {
+        item.config = {
+          size: "M",
+          color: "Black"
+        };
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
       
       div.innerHTML = `
         <img src="${item.image}">
@@ -1194,6 +1448,18 @@
               ${shoeSizes.map(size => `<option value="${size}" ${item.config && item.config.size === size ? 'selected' : ''}>Size ${size}</option>`).join('')}
             </select>
           </div>
+          ` : isClothing ? `
+          <div class="configuration-options">
+            <select class="config-select" id="size-${index}" onchange="updateClothingConfiguration(${index})">
+              <option value="" disabled ${!item.config || !item.config.size ? 'selected' : ''}>Select Size</option>
+              ${clothingSizes.map(size => `<option value="${size}" ${item.config && item.config.size === size ? 'selected' : ''}>${size}</option>`).join('')}
+            </select>
+            <select class="config-select" id="color-${index}" onchange="updateClothingConfiguration(${index})">
+              <option value="" disabled ${!item.config || !item.config.color ? 'selected' : ''}>Select Color</option>
+              ${colors.map(color => `<option value="${color}" ${item.config && item.config.color === color ? 'selected' : ''}>${color}</option>`).join('')}
+            </select>
+          </div>
+          <div class="config-note">If you don't find your preferred color or size, please type them in the checkout message when placing the order. Thank you!</div>
           ` : ''}
           
           <p>${formatCurrency(convertedPrice, selectedCurrency)} each</p>
@@ -1224,6 +1490,18 @@
     } else {
       primaryTotal.textContent = `Total: ${formatCurrency(totalUSD, 'USD')}`;
       secondaryTotal.textContent = '';
+    }
+  }
+  
+  function getDefaultStorageOption(phoneModel) {
+    const modelPricing = phonePricing[phoneModel];
+    
+    if (modelPricing) {
+      // Return the first available storage option
+      return Object.keys(modelPricing)[0];
+    } else {
+      // Default to 128GB if no specific pricing is found
+      return "128";
     }
   }
   
@@ -1304,6 +1582,24 @@
     renderCart();
   }
   
+  function updateClothingConfiguration(index) {
+    const sizeSelect = document.getElementById(`size-${index}`);
+    const colorSelect = document.getElementById(`color-${index}`);
+    
+    if (!sizeSelect || !colorSelect) return;
+    
+    const size = sizeSelect.value;
+    const color = colorSelect.value;
+    
+    cart[index].config = {
+      size: size,
+      color: color
+    };
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+  }
+  
   function updateQuantity(index, newQuantity) {
     if (newQuantity < 1) newQuantity = 1;
     cart[index].quantity = newQuantity;
@@ -1342,14 +1638,41 @@
       const description = productDescriptions[item.name] || "Premium quality product.";
       
       let configDetails = "";
-      if (item.config) {
-        if (item.name.includes("iPhone") || item.name.includes("Smartphone")) {
-          configDetails = `%0A   Configuration: ${item.config.gig}${item.config.gig === '1TB' ? '' : 'GB'}${item.config.battery ? `, Battery: ${item.config.battery}` : ''}`;
-        } else if (item.name.includes("Aurelia's")) {
-          configDetails = `%0A   Size: ${item.config.size}`;
-        } else if (shoesAndFlatsHeels.includes(item.name) || sneakers.includes(item.name)) {
-          configDetails = `%0A   Size: ${item.config.size}`;
+      if (item.name.includes("iPhone") || item.name.includes("Smartphone")) {
+        // Always include configuration details for iPhones
+        const isIPhone17Series = ["iPhone 17", "iPhone 17 Pro", "iPhone 17 Pro Max"].includes(item.name);
+        
+        // Get the current configuration from the dropdowns or use the stored config
+        const gigSelect = document.getElementById(`gig-${i}`);
+        const batterySelect = document.getElementById(`battery-${i}`);
+        
+        const gig = gigSelect ? gigSelect.value : (item.config ? item.config.gig : getDefaultStorageOption(item.name));
+        const battery = batterySelect ? batterySelect.value : (item.config ? item.config.battery : "80-84");
+        
+        configDetails = `%0A   Configuration: ${gig}${gig === '1TB' ? '' : 'GB'}`;
+        
+        // Add Battery Health for all iPhones except 17 series
+        if (!isIPhone17Series && battery) {
+          configDetails += `, Battery Health: ${battery}`;
         }
+      } else if (item.name.includes("Aurelia's")) {
+        const sizeSelect = document.getElementById(`size-${i}`);
+        const size = sizeSelect ? sizeSelect.value : (item.config ? item.config.size : "S(32/70AB)");
+        configDetails = `%0A   Size: ${size}`;
+      } else if (shoesAndFlatsHeels.includes(item.name) || sneakers.includes(item.name)) {
+        const sizeSelect = document.getElementById(`size-${i}`);
+        const size = sizeSelect ? sizeSelect.value : (item.config ? item.config.size : "");
+        if (size) {
+          configDetails = `%0A   Size: ${size}`;
+        }
+      } else if (clothingItems.includes(item.name)) {
+        const sizeSelect = document.getElementById(`size-${i}`);
+        const colorSelect = document.getElementById(`color-${i}`);
+        
+        const size = sizeSelect ? sizeSelect.value : (item.config ? item.config.size : "M");
+        const color = colorSelect ? colorSelect.value : (item.config ? item.config.color : "Black");
+        
+        configDetails = `%0A   Size: ${size}, Color: ${color}`;
       }
       
       message += `${i+1}. ${item.name} (Qty: ${quantity}) - $${itemTotal.toFixed(2)}${configDetails}%0A   ${description}%0A%0A`;

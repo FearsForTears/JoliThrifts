@@ -606,6 +606,24 @@
     .carousel-arrow:hover {
       background: rgba(0, 0, 0, 0.7);
     }
+
+    /* Default desktop layout */
+.products {
+  display:grid; 
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); 
+  gap:25px;
+  animation:fadeIn 1s ease;
+}
+
+/* Mobile layout - 2 columns */
+@media(max-width:768px){
+  .products {grid-template-columns: repeat(2, 1fr); gap:20px;}
+}
+
+/* Small mobile layout - still 2 columns */
+@media(max-width:576px){
+  .products {grid-template-columns: repeat(2, 1fr); gap:15px;}
+}
   </style>
 </head>
 <body>
@@ -783,7 +801,7 @@
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=New Balance NB 530&price=58.10&image=images/image90.jpg">
+          <a href="checkout.html?product=New Balance NB 530&price=60.00&image=images/image90.jpg">
             <div class="carousel-images">
               <img src="images/image90.jpg" class="product-img">
               <img src="images/image91.jpg" class="product-img">
@@ -796,11 +814,11 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">New Balance NB 530</h3>
-          <p class="product-price" data-usd="58.10">
-            <span class="primary-price">$58.10</span>
+          <p class="product-price" data-usd="60.00">
+            <span class="primary-price">$60.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('New Balance NB 530',58.10,'images/image90.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('New Balance NB 530',60.00,'images/image90.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
@@ -827,7 +845,7 @@
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Nike Air Force 1 Low&price=15.00&image=images/image98.jpg">
+          <a href="checkout.html?product=Nike Air Force 1 Low&price=40.00&image=images/image98.jpg">
             <div class="carousel-images">
               <img src="images/image98.jpg" class="product-img">
               <img src="images/image99.jpg" class="product-img">
@@ -839,16 +857,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Nike Air Force 1 Low</h3>
-          <p class="product-price" data-usd="15.00">
-            <span class="primary-price">$15.00</span>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Nike Air Force 1 Low',15.00,'images/image98.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Nike Air Force 1 Low',40.00,'images/image98.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Converse Chuck Taylor All Stars&price=20.00&image=images/image102.jpg">
+          <a href="checkout.html?product=Converse Chuck Taylor All Stars&price=37.00&image=images/image102.jpg">
             <div class="carousel-images">
               <img src="images/image102.jpg" class="product-img">
             </div>
@@ -858,16 +876,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Converse Chuck Taylor All Stars</h3>
-          <p class="product-price" data-usd="20.00">
-            <span class="primary-price">$20.00</span>
+          <p class="product-price" data-usd="37.00">
+            <span class="primary-price">$37.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Converse Chuck Taylor All Stars',20.00,'images/image102.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Converse Chuck Taylor All Stars',37.00,'images/image102.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Adidas Samba&price=21.00&image=images/image103.jpg">
+          <a href="checkout.html?product=Adidas Samba&price=40.00&image=images/image103.jpg">
             <div class="carousel-images">
               <img src="images/image103.jpg" class="product-img">
               <img src="images/samba+1.jpg" class="product-img">
@@ -879,16 +897,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Adidas Samba</h3>
-          <p class="product-price" data-usd="21.00">
-            <span class="primary-price">$21.00</span>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Adidas Samba',21.00,'images/image103.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Adidas Samba',40.00,'images/image103.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Nike Dunk Low Sneakers&price=45.00&image=images/image104.jpg">
+          <a href="checkout.html?product=Nike Dunk Low Sneakers&price=50.00&image=images/image104.jpg">
             <div class="carousel-images">
               <img src="images/image104.jpg" class="product-img">
               <img src="images/nike+1.jpg" class="product-img">
@@ -900,16 +918,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Nike Dunk Low Sneakers</h3>
-          <p class="product-price" data-usd="45.00">
-            <span class="primary-price">$45.00</span>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Nike Dunk Low Sneakers',45.00,'images/image104.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Nike Dunk Low Sneakers',50.00,'images/image104.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Chuck Taylor All Stars Low & High&price=22.00&image=images/image105.jpg">
+          <a href="checkout.html?product=Chuck Taylor All Stars Low & High&price=45.00&image=images/image105.jpg">
             <div class="carousel-images">
               <img src="images/image105.jpg" class="product-img">
               <img src="images/chucktaylor+1.jpg" class="product-img">
@@ -922,16 +940,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Chuck Taylor All Stars Low & High</h3>
-          <p class="product-price" data-usd="22.00">
-            <span class="primary-price">$22.00</span>
+          <p class="product-price" data-usd="45.00">
+            <span class="primary-price">$45.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Chuck Taylor All Stars Low & High',22.00,'images/image105.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Chuck Taylor All Stars Low & High',45.00,'images/image105.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Adidas Forum 84 Low&price=25.00&image=images/image108.jpg">
+          <a href="checkout.html?product=Adidas Forum 84 Low&price=50.00&image=images/image108.jpg">
             <div class="carousel-images">
               <img src="images/image108.jpg" class="product-img">
               <img src="images/adidas+1.jpg" class="product-img">
@@ -943,16 +961,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Adidas Forum 84 Low</h3>
-          <p class="product-price" data-usd="25.00">
-            <span class="primary-price">$25.00</span>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Adidas Forum 84 Low',25.00,'images/image108.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Adidas Forum 84 Low',50.00,'images/image108.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=New Balance 327&price=26.50&image=images/image109.jpg">
+          <a href="checkout.html?product=New Balance 327&price=50.00&image=images/image109.jpg">
             <div class="carousel-images">
               <img src="images/image109.jpg" class="product-img">
             </div>
@@ -962,16 +980,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">New Balance 327</h3>
-          <p class="product-price" data-usd="26.50">
-            <span class="primary-price">$26.50</span>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('New Balance 327',26.50,'images/image109.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('New Balance 327',50.00,'images/image109.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Adidas Super Star&price=30.00&image=images/image110.jpg">
+          <a href="checkout.html?product=Adidas Super Star&price=50.00&image=images/image110.jpg">
             <div class="carousel-images">
               <img src="images/image110.jpg" class="product-img">
               <img src="images/image111.jpg" class="product-img">
@@ -983,16 +1001,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Adidas Super Star</h3>
-          <p class="product-price" data-usd="30.00">
-            <span class="primary-price">$30.00</span>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Adidas Super Star',30.00,'images/image110.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Adidas Super Star',50.00,'images/image110.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Hoka&price=30.28&image=images/image113.jpg">
+          <a href="checkout.html?product=Hoka&price=50.00&image=images/image113.jpg">
             <div class="carousel-images">
               <img src="images/image113.jpg" class="product-img">
             </div>
@@ -1002,16 +1020,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Hoka</h3>
-          <p class="product-price" data-usd="30.28">
-            <span class="primary-price">$30.28</span>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Hoka',30.28,'images/image113.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Hoka',50.00,'images/image113.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Vans Mother Earth Era&price=30.00&image=images/image114.jpg">
+          <a href="checkout.html?product=Vans Mother Earth Era&price=40.00&image=images/image114.jpg">
             <div class="carousel-images">
               <img src="images/image114.jpg" class="product-img">
             </div>
@@ -1021,16 +1039,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Vans Mother Earth Era</h3>
-          <p class="product-price" data-usd="30.00">
-            <span class="primary-price">$30.00</span>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Vans Mother Earth Era',30.00,'images/image114.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Vans Mother Earth Era',40.00,'images/image114.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Vans&price=30.00&image=images/image115.jpg">
+          <a href="checkout.html?product=Vans&price=40.00&image=images/image115.jpg">
             <div class="carousel-images">
               <img src="images/image115.jpg" class="product-img">
             </div>
@@ -1040,16 +1058,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Vans</h3>
-          <p class="product-price" data-usd="30.00">
-            <span class="primary-price">$30.00</span>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Vans',30.00,'images/image115.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Vans',40.00,'images/image115.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Vans Old Skool Reissue&price=31.50&image=images/image116.jpg">
+          <a href="checkout.html?product=Vans Old Skool Reissue&price=45.00&image=images/image116.jpg">
             <div class="carousel-images">
               <img src="images/image116.jpg" class="product-img">
               <img src="images/image117.jpg" class="product-img">
@@ -1060,16 +1078,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Vans Old Skool Reissue</h3>
-          <p class="product-price" data-usd="31.50">
-            <span class="primary-price">$31.50</span>
+          <p class="product-price" data-usd="45.00">
+            <span class="primary-price">$45.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Vans Old Skool Reissue',31.50,'images/image116.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Vans Old Skool Reissue',45.00,'images/image116.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Vans Knu Skool&price=39.00&image=images/image119.jpg">
+          <a href="checkout.html?product=Vans Knu Skool&price=50.00&image=images/image119.jpg">
             <div class="carousel-images">
               <img src="images/image119.jpg" class="product-img">
               <img src="images/image120.jpg" class="product-img">
@@ -1082,16 +1100,16 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Vans Knu Skool</h3>
-          <p class="product-price" data-usd="39.00">
-            <span class="primary-price">$39.00</span>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Vans Knu Skool',39.00,'images/image119.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Vans Knu Skool',50.00,'images/image119.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
         <div class="product-img-container carousel-container">
-          <a href="checkout.html?product=Nike AJ1 Low&price=35.00&image=images/image123.jpg">
+          <a href="checkout.html?product=Nike AJ1 Low&price=50.00&image=images/image123.jpg">
             <div class="carousel-images">
               <img src="images/image123.jpg" class="product-img">
               <img src="images/image124.jpg" class="product-img">
@@ -1104,11 +1122,11 @@
         </div>
         <div class="product-content">
           <h3 class="product-title">Nike AJ1 Low</h3>
-          <p class="product-price" data-usd="35.00">
-            <span class="primary-price">$35.00</span>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
             <span class="secondary-price"></span>
           </p>
-          <button class="add-to-cart" onclick="addToCart('Nike AJ1 Low',35.00,'images/image123.jpg')">Add to Cart</button>
+          <button class="add-to-cart" onclick="addToCart('Nike AJ1 Low',50.00,'images/image123.jpg')">Add to Cart</button>
         </div>
       </div>
       <div class="product">
@@ -1150,6 +1168,54 @@
           <button class="add-to-cart" onclick="addToCart('TimberLand',71.50,'images/image128.jpg')">Add to Cart</button>
         </div>
       </div>
+
+
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Adidas Campus&price=50.00&image=images/campus1.jpg">
+            <div class="carousel-images">
+              <img src="images/campus1.jpg" class="product-img">
+              <img src="images/campus2.jpg" class="product-img">
+              <img src="images/campus3.jpg" class="product-img">
+              <img src="images/campus4.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Adidas Campus</h3>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Adidas Campus',50.00,'images/image128.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=New Balance 2002r&price=55.00&image=images/balance1.jpg">
+            <div class="carousel-images">
+              <img src="images/balance1.jpg" class="product-img">
+              <img src="images/balance2.jpeg" class="product-img">
+              <img src="images/balance3.jpg" class="product-img">
+              <img src="images/balance4.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">New Balance 2002r</h3>
+          <p class="product-price" data-usd="55.00">
+            <span class="primary-price">$55.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('New Balance 2002r',55.00,'images/image128.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
       <div class="product">
         <div class="product-img-container carousel-container">
           <a href="checkout.html?product=Salehe Bembury X Crocs Pollex Clog&price=40.00&image=images/image130.jpg">
@@ -1344,10 +1410,10 @@
     });
     
     const exchangeRates = {
-      USD: 1,
-      GHS: 12.50,
-      NGN: 1650,
-      LRD: 195
+     USD: 1,
+      GHS: 13.50,
+      NGN: 1000,
+      LRD: 230
     };
     
     function updatePrices(currency) {

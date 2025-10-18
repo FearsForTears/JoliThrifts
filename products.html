@@ -610,6 +610,174 @@
     .carousel-arrow:hover {
       background: rgba(0, 0, 0, 0.7);
     }
+    
+    /* Search Bar Styles */
+    .search-container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 15px;
+      position: relative;
+    }
+    
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 30px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 15px rgba(107, 70, 193, 0.15);
+      transition: all 0.3s ease;
+    }
+    
+    .search-box:focus-within {
+      box-shadow: 0 6px 20px rgba(107, 70, 193, 0.25);
+      transform: translateY(-2px);
+    }
+    
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 10px;
+      font-size: 1rem;
+      background: transparent;
+    }
+    
+    .search-box button {
+      background: #6B46C1;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .search-box button:hover {
+      background: #FFD700;
+      transform: scale(1.05);
+    }
+    
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 15px;
+      right: 15px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+    }
+    
+    .search-result-item {
+      padding: 12px 20px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      display: flex;
+      align-items: center;
+    }
+    
+    .search-result-item:hover {
+      background: #f8f9fa;
+    }
+    
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+    
+    .search-result-item img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 15px;
+    }
+    
+    .search-result-item .product-info {
+      flex: 1;
+    }
+    
+    .search-result-item .product-name {
+      font-weight: 500;
+      color: #333;
+    }
+    
+    .search-result-item .product-price {
+      font-size: 0.9rem;
+      color: #6B46C1;
+      font-weight: bold;
+    }
+    
+    .search-result-item .product-category {
+      font-size: 0.8rem;
+      color: #666;
+    }
+    
+    .no-results {
+      padding: 20px;
+      text-align: center;
+      color: #666;
+    }
+    
+    .search-highlight {
+      background-color: #FFD700;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+    
+    /* Hide category sections when searching */
+    .category-section.hidden {
+      display: none;
+    }
+    
+    /* Show only matching products when searching */
+    .product.hidden {
+      display: none;
+    }
+    
+    /* Search info message */
+    .search-info {
+      text-align: center;
+      margin: 20px 0;
+      color: #6B46C1;
+      font-weight: 500;
+      display: none;
+    }
+    
+    /* Clear search button */
+    .clear-search {
+      background: transparent;
+      border: none;
+      color: #6B46C1;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-left: 10px;
+      display: none;
+    }
+    
+    /* Responsive styles for search */
+    @media (max-width: 768px) {
+      .search-container {
+        margin: 15px auto;
+      }
+      
+      .search-box {
+        padding: 8px 15px;
+      }
+      
+      .search-results {
+        left: 15px;
+        right: 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -648,6 +816,19 @@
     </div>
   </div>
 </header>
+
+<!-- Search Bar -->
+<div class="search-container">
+  <div class="search-box">
+    <input type="text" id="search-input" placeholder="Search for products...">
+    <button id="search-button"><i class="fas fa-search"></i></button>
+    <button class="clear-search" id="clear-search">Clear</button>
+  </div>
+  <div class="search-results" id="search-results"></div>
+</div>
+
+<div class="search-info" id="search-info"></div>
+
 <section class="container">
   <h2 class="section-title">All Products</h2>
   
@@ -986,49 +1167,49 @@
   
   <div class="product">
     <div class="product-img-container">
-      <a href="checkout.html?product=iPhone 17&price=956&image=images/iPhone17.jpg">
+      <a href="checkout.html?product=iPhone 17&price=1112&image=images/iPhone17.jpg">
         <img src="images/iPhone17.jpg" class="product-img">
       </a>
     </div>
     <div class="product-content">
       <h3 class="product-title">iPhone 17</h3>
-      <p class="product-price" data-usd="956">
-        <span class="primary-price">$956</span>
+      <p class="product-price" data-usd="1112">
+        <span class="primary-price">$1112</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('iPhone 17',956,'images/iPhone17.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('iPhone 17',1112,'images/iPhone17.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container">
-      <a href="checkout.html?product=iPhone 17 Pro&price=1255.00&image=images/iPhone17Pro.jpg">
+      <a href="checkout.html?product=iPhone 17 Pro&price=1460.00&image=images/iPhone17Pro.jpg">
         <img src="images/iPhone17Pro.jpg" class="product-img">
       </a>
     </div>
     <div class="product-content">
       <h3 class="product-title">iPhone 17 Pro</h3>
-      <p class="product-price" data-usd="1255.00">
-        <span class="primary-price">$1255.00</span>
+      <p class="product-price" data-usd="1460.00">
+        <span class="primary-price">$1460.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('iPhone 17 Pro',1255.00,'images/iPhone17Pro.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('iPhone 17 Pro',1460.00,'images/iPhone17Pro.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container">
-      <a href="checkout.html?product=iPhone 17 Pro Max&price=1453&image=images/iPhone17ProMax.jpg">
+      <a href="checkout.html?product=iPhone 17 Pro Max&price=1687&image=images/iPhone17ProMax.jpg">
         <img src="images/iPhone17ProMax.jpg" class="product-img">
       </a>
     </div>
     <div class="product-content">
       <h3 class="product-title">iPhone 17 Pro Max</h3>
-      <p class="product-price" data-usd="1453">
-        <span class="primary-price">$1453</span>
+      <p class="product-price" data-usd="1687">
+        <span class="primary-price">$1687</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('iPhone 17 Pro Max',1453,'images/iPhone17ProMax.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('iPhone 17 Pro Max',1687,'images/iPhone17ProMax.jpg')">Add to Cart</button>
     </div>
   </div>
 </div>
@@ -1603,7 +1784,7 @@
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=New Balance NB 530&price=58.10&image=images/image90.jpg">
+      <a href="checkout.html?product=New Balance NB 530&price=60.00&image=images/image90.jpg">
         <div class="carousel-images">
           <img src="images/image90.jpg" class="product-img">
           <img src="images/image91.jpg" class="product-img">
@@ -1616,11 +1797,11 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">New Balance NB 530</h3>
-      <p class="product-price" data-usd="58.10">
-        <span class="primary-price">$58.10</span>
+      <p class="product-price" data-usd="60.00">
+        <span class="primary-price">$60.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('New Balance NB 530',58.10,'images/image90.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('New Balance NB 530',60.00,'images/image90.jpg')">Add to Cart</button>
     </div>
   </div>
   
@@ -1649,7 +1830,7 @@
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Nike Air Force 1 Low&price=15.00&image=images/image98.jpg">
+      <a href="checkout.html?product=Nike Air Force 1 Low&price=40.00&image=images/image98.jpg">
         <div class="carousel-images">
           <img src="images/image98.jpg" class="product-img">
           <img src="images/image99.jpg" class="product-img">
@@ -1661,17 +1842,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Nike Air Force 1 Low</h3>
-      <p class="product-price" data-usd="15.00">
-        <span class="primary-price">$15.00</span>
+      <p class="product-price" data-usd="40.00">
+        <span class="primary-price">$40.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Nike Air Force 1 Low',15.00,'images/image98.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Nike Air Force 1 Low',40.00,'images/image98.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Converse Chuck Taylor All Stars&price=20.00&image=images/image102.jpg">
+      <a href="checkout.html?product=Converse Chuck Taylor All Stars&price=37.00&image=images/image102.jpg">
         <div class="carousel-images">
           <img src="images/image102.jpg" class="product-img">
         </div>
@@ -1681,17 +1862,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Converse Chuck Taylor All Stars</h3>
-      <p class="product-price" data-usd="20.00">
-        <span class="primary-price">$20.00</span>
+      <p class="product-price" data-usd="37.00">
+        <span class="primary-price">$37.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Converse Chuck Taylor All Stars',20.00,'images/image102.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Converse Chuck Taylor All Stars',37.00,'images/image102.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Adidas Samba&price=21.00&image=images/image103.jpg">
+      <a href="checkout.html?product=Adidas Samba&price=40.00&image=images/image103.jpg">
         <div class="carousel-images">
          <img src="images/image103.jpg" class="product-img">
           <img src="images/samba+1.jpg" class="product-img">
@@ -1703,17 +1884,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Adidas Samba</h3>
-      <p class="product-price" data-usd="21.00">
-        <span class="primary-price">$21.00</span>
+      <p class="product-price" data-usd="40.00">
+        <span class="primary-price">$40.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Adidas Samba',21.00,'images/image103.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Adidas Samba',40.00,'images/image103.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Nike Dunk Low Sneakers&price=45.00&image=images/image104.jpg">
+      <a href="checkout.html?product=Nike Dunk Low Sneakers&price=50.00&image=images/image104.jpg">
         <div class="carousel-images">
          <img src="images/image104.jpg" class="product-img">
           <img src="images/nike+1.jpg" class="product-img">
@@ -1725,17 +1906,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Nike Dunk Low Sneakers</h3>
-      <p class="product-price" data-usd="45.00">
-        <span class="primary-price">$45.00</span>
+      <p class="product-price" data-usd="50.00">
+        <span class="primary-price">$50.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Nike Dunk Low Sneakers',45.00,'images/image104.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Nike Dunk Low Sneakers',50.00,'images/image104.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Chuck Taylor All Stars Low & High&price=22.00&image=images/image105.jpg">
+      <a href="checkout.html?product=Chuck Taylor All Stars Low & High&price=45.00&image=images/image105.jpg">
         <div class="carousel-images">
           <img src="images/image105.jpg" class="product-img">
           <img src="https://images.unsplash.com/photo-1549298916-b4d3a77d9731" class="product-img">
@@ -1748,17 +1929,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Chuck Taylor All Stars Low & High</h3>
-      <p class="product-price" data-usd="22.00">
-        <span class="primary-price">$22.00</span>
+      <p class="product-price" data-usd="45.00">
+        <span class="primary-price">$45.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Chuck Taylor All Stars Low & High',22.00,'images/image105.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Chuck Taylor All Stars Low & High',45.00,'images/image105.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Adidas Forum 84 Low&price=25.00&image=images/image108.jpg">
+      <a href="checkout.html?product=Adidas Forum 84 Low&price=50.00&image=images/image108.jpg">
         <div class="carousel-images">
           <img src="images/image108.jpg" class="product-img">
           <img src="images/adidas+1.jpg" class="product-img">
@@ -1770,17 +1951,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Adidas Forum 84 Low</h3>
-      <p class="product-price" data-usd="25.00">
-        <span class="primary-price">$25.00</span>
+      <p class="product-price" data-usd="50.00">
+        <span class="primary-price">$50.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Adidas Forum 84 Low',25.00,'images/image108.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Adidas Forum 84 Low',50.00,'images/image108.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=New Balance 327&price=26.50&image=images/image109.jpg">
+      <a href="checkout.html?product=New Balance 327&price=50.00&image=images/image109.jpg">
         <div class="carousel-images">
           <img src="images/image109.jpg" class="product-img">
         </div>
@@ -1790,17 +1971,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">New Balance 327</h3>
-      <p class="product-price" data-usd="26.50">
-        <span class="primary-price">$26.50</span>
+      <p class="product-price" data-usd="50.00">
+        <span class="primary-price">$50.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('New Balance 327',26.50,'images/image109.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('New Balance 327',50.00,'images/image109.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Adidas Super Star&price=30.00&image=images/image110.jpg">
+      <a href="checkout.html?product=Adidas Super Star&price=50.00&image=images/image110.jpg">
         <div class="carousel-images">
           <img src="images/image110.jpg" class="product-img">
           <img src="images/image111.jpg" class="product-img">
@@ -1812,17 +1993,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Adidas Super Star</h3>
-      <p class="product-price" data-usd="30.00">
-        <span class="primary-price">$30.00</span>
+      <p class="product-price" data-usd="50.00">
+        <span class="primary-price">$50.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Adidas Super Star',30.00,'images/image110.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Adidas Super Star',50.00,'images/image110.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Hoka&price=30.28&image=images/image113.jpg">
+      <a href="checkout.html?product=Hoka&price=50.00&image=images/image113.jpg">
         <div class="carousel-images">
           <img src="images/image113.jpg" class="product-img">
         </div>
@@ -1832,17 +2013,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Hoka</h3>
-      <p class="product-price" data-usd="30.28">
-        <span class="primary-price">$30.28</span>
+      <p class="product-price" data-usd="50.00">
+        <span class="primary-price">$50.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Hoka',30.28,'images/image113.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Hoka',50.00,'images/image113.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Vans Mother Earth Era&price=30.00&image=images/image114.jpg">
+      <a href="checkout.html?product=Vans Mother Earth Era&price=40.00&image=images/image114.jpg">
         <div class="carousel-images">
           <img src="images/image114.jpg" class="product-img">
         </div>
@@ -1852,17 +2033,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Vans Mother Earth Era</h3>
-      <p class="product-price" data-usd="30.00">
-        <span class="primary-price">$30.00</span>
+      <p class="product-price" data-usd="40.00">
+        <span class="primary-price">$40.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Vans Mother Earth Era',30.00,'images/image114.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Vans Mother Earth Era',40.00,'images/image114.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Vans&price=30.00&image=images/image115.jpg">
+      <a href="checkout.html?product=Vans&price=40.00&image=images/image115.jpg">
         <div class="carousel-images">
           <img src="images/image115.jpg" class="product-img">
         </div>
@@ -1872,17 +2053,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Vans</h3>
-      <p class="product-price" data-usd="30.00">
-        <span class="primary-price">$30.00</span>
+      <p class="product-price" data-usd="40.00">
+        <span class="primary-price">$40.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Vans',30.00,'images/image115.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Vans',40.00,'images/image115.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Vans Old Skool Reissue&price=31.50&image=images/image116.jpg">
+      <a href="checkout.html?product=Vans Old Skool Reissue&price=45.00&image=images/image116.jpg">
         <div class="carousel-images">
           <img src="images/image116.jpg" class="product-img">
           <img src="images/image117.jpg" class="product-img">
@@ -1893,17 +2074,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Vans Old Skool Reissue</h3>
-      <p class="product-price" data-usd="31.50">
-        <span class="primary-price">$31.50</span>
+      <p class="product-price" data-usd="45.00">
+        <span class="primary-price">$45.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Vans Old Skool Reissue',31.50,'images/image116.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Vans Old Skool Reissue',45.00,'images/image116.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Vans Knu Skool&price=39.00&image=images/image119.jpg">
+      <a href="checkout.html?product=Vans Knu Skool&price=50.00&image=images/image119.jpg">
         <div class="carousel-images">
           <img src="images/image119.jpg" class="product-img">
           <img src="images/image120.jpg" class="product-img">
@@ -1916,17 +2097,17 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Vans Knu Skool</h3>
-      <p class="product-price" data-usd="39.00">
-        <span class="primary-price">$39.00</span>
+      <p class="product-price" data-usd="50.00">
+        <span class="primary-price">$50.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Vans Knu Skool',39.00,'images/image119.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Vans Knu Skool',50.00,'images/image119.jpg')">Add to Cart</button>
     </div>
   </div>
   
   <div class="product">
     <div class="product-img-container carousel-container">
-      <a href="checkout.html?product=Nike AJ1 Low&price=35.00&image=images/image123.jpg">
+      <a href="checkout.html?product=Nike AJ1 Low&price=50.00&image=images/image123.jpg">
         <div class="carousel-images">
           <img src="images/image123.jpg" class="product-img">
           <img src="images/image124.jpg" class="product-img">
@@ -1939,11 +2120,11 @@
     </div>
     <div class="product-content">
       <h3 class="product-title">Nike AJ1 Low</h3>
-      <p class="product-price" data-usd="35.00">
-        <span class="primary-price">$35.00</span>
+      <p class="product-price" data-usd="50.00">
+        <span class="primary-price">$50.00</span>
         <span class="secondary-price"></span>
       </p>
-      <button class="add-to-cart" onclick="addToCart('Nike AJ1 Low',35.00,'images/image123.jpg')">Add to Cart</button>
+      <button class="add-to-cart" onclick="addToCart('Nike AJ1 Low',50.00,'images/image123.jpg')">Add to Cart</button>
     </div>
   </div>
   
@@ -1988,6 +2169,52 @@
     </div>
   </div>
   
+  <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=Adidas Campus&price=50.00&image=images/campus1.jpg">
+            <div class="carousel-images">
+              <img src="images/campus1.jpg" class="product-img">
+              <img src="images/campus2.jpg" class="product-img">
+              <img src="images/campus3.jpg" class="product-img">
+              <img src="images/campus4.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Adidas Campus</h3>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Adidas Campus',50.00,'images/campus1.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container carousel-container">
+          <a href="checkout.html?product=New Balance 2002r&price=55.00&image=images/balance1.jpg">
+            <div class="carousel-images">
+              <img src="images/balance1.jpg" class="product-img">
+              <img src="images/balance2.jpeg" class="product-img">
+              <img src="images/balance3.jpg" class="product-img">
+              <img src="images/balance4.jpg" class="product-img">
+            </div>
+          </a>
+          <button class="carousel-arrow left"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-arrow right"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">New Balance 2002r</h3>
+          <p class="product-price" data-usd="55.00">
+            <span class="primary-price">$55.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('New Balance 2002r',55.00,'images/balance1.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
   <div class="product">
     <div class="product-img-container carousel-container">
       <a href="checkout.html?product=Salehe Bembury X Crocs Pollex Clog&price=40.00&image=images/image130.jpg">
@@ -2739,7 +2966,1399 @@
     </div>
   </div>
 </div>
+</div>
+
+      <div class="category-section" id="jeans-collection">
+    <h3 class="section-title">Classic Jeans</h3>
+    <div class="products">
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Baggy Denim Jeans&price=30.00.00&image=images/jeans1.jpg">
+            <img src="images/jeans1.jpg" class="product-img" alt="Baggy Denim Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Baggy Denim Jeans</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Baggy Denim Jeans',30.00,'images/jeans1.jpg')">Add to Cart</button>
+        </div>
       </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Wide-Leg Jeans&price=30.00.00&image=images/jeans4.jpg">
+            <img src="images/jeans4.jpg" class="product-img" alt="Wide-Leg Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Wide-Leg Jeans</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Wide-Leg Jeans',30.00,'images/jeans4.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Distressed Y2K Jeans&price=30.00.00&image=images/jeans8.jpg">
+            <img src="images/jeans8.jpg" class="product-img" alt="Distressed Y2K Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Distressed Y2K Jeans</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Distressed Y2K Jeans',30.00,'images/jeans8.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Baggy Wide-Leg Jeans&price=35.00.00&image=images/jeans12.jpg">
+            <img src="images/jeans12.jpg" class="product-img" alt="Baggy Wide-Leg Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Baggy Wide-Leg Jeans</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Baggy Wide-Leg Jeans',35.00,'images/jeans12.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+        <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Distressed Baggy Jeans&price=35.00.00&image=images/jeans16.jpg">
+            <img src="images/jeans16.jpg" class="product-img" alt="Distressed Baggy Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Distressed Baggy Jeans</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Distressed Baggy Jeans',35.00,'images/jeans16.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Patchwork Baggy Jeans&price=35.00.00&image=images/jeans20.jpg">
+            <img src="images/jeans20.jpg" class="product-img" alt="Patchwork Baggy Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Patchwork Baggy Jeans</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+      </p>
+      <button class="add-to-cart" onclick="addToCart('Patchwork Baggy Jeans',35.00,'images/jeans20.jpg')">Add to Cart</button>
+    </div>
+  </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Vintage Baggy Jeans&price=40.00.00&image=images/jeans24.jpg">
+            <img src="images/jeans24.jpg" class="product-img" alt="Vintage Baggy Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Vintage Baggy Jeans</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Vintage Baggy Jeans',40.00,'images/jeans24.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Light Wash Baggy Cargo Jeans&price=40.00.00&image=images/jeans28.jpg">
+            <img src="images/jeans28.jpg" class="product-img" alt="Light Wash Baggy Cargo Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Light Wash Baggy Cargo Jeans</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Light Wash Baggy Cargo Jeans',40.00,'images/jeans28.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+        <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Wide-Leg Denim Jeans&price=40.00.00&image=images/jeans34.jpg">
+            <img src="images/jeans34.jpg" class="product-img" alt="Wide-Leg Denim Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Wide-Leg Denim Jeans</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Wide-Leg Denim Jeans',40.00,'images/jeans34.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Paint Splatter Gradient Wash Baggy Wide Leg Jeans&price=40.00.00&image=images/jeans34.jpg">
+            <img src="images/jeans38.jpg" class="product-img" alt="Paint Splatter Gradient Wash Baggy Wide Leg Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Paint Splatter Gradient Wash Baggy Wide Leg Jeans</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Paint Splatter Gradient Wash Baggy Wide Leg Jeans',40.00,'images/jeans34.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Paint-Splattered Baggy Jeans&price=40.00.00&image=images/jeans34.jpg">
+            <img src="images/jeans42.jpg" class="product-img" alt="Paint-Splattered Baggy Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Paint-Splattered Baggy Jeans</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Paint-Splattered Baggy Jeans',40.00,'images/jeans42.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Euphoria Y2K Vintage Jeans&price=40.00.00&image=images/jeans46.jpg">
+            <img src="images/jeans46.jpg" class="product-img" alt="Euphoria Y2K Vintage Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Euphoria Y2K Vintage Jeans</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Euphoria Y2K Vintage Jeans',40.00,'images/jeans46.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Gallery Dept. Jeans&price=40.00.00&image=images/jeans50.jpg">
+            <img src="images/jeans50.jpg" class="product-img" alt="Euphoria Y2K Vintage Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Gallery Dept. Jeans</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Gallery Dept. Jeans',40.00,'images/jeans50.jpg')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="category-section" id="jorts-collection">
+    <h3 class="section-title">Casual Denim Jorts</h3>
+    <div class="products">
+     <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Vintage Denim Shorts&price=28.00.00&image=images/jeans54.jpg">
+            <img src="images/jeans54.jpg" class="product-img" alt="Vintage Denim Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Vintage Denim Shorts</h3>
+          <p class="product-price" data-usd="28.00">
+            <span class="primary-price">$28.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Vintage Denim Shorts',28.00,'images/jeans54.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Washed Straight Denim Jorts&price=30.00.00&image=images/jeans59.jpg">
+            <img src="images/jeans59.jpg" class="product-img" alt="Washed Straight Denim Jorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Washed Straight Denim Jorts</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Washed Straight Denim Jorts',30.00,'images/jeans59.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+     <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Bermuda Jeans Jorts Thug OG-Asteric&price=28.00.00&image=images/jeans62.jpg">
+            <img src="images/jeans62.jpg" class="product-img" alt="Bermuda Jeans Jorts Thug OG-Asteric">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Bermuda Jeans Jorts Thug OG-Asteric</h3>
+          <p class="product-price" data-usd="28.00">
+            <span class="primary-price">$28.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Bermuda Jeans Jorts Thug OG-Asteric',28.00,'images/jeans62.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+       <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Icecream Running Dog Denim Shorts&price=30.00.00&image=images/jeans66.jpg">
+            <img src="images/jeans66.jpg" class="product-img" alt="Icecream Running Dog Denim Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Icecream Running Dog Denim Shorts</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Icecream Running Dog Denim Shorts',30.00,'images/jeans66.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Hellstar Fire Diamond Denim Shorts&price=35.00.00&image=images/jeans72.jpg">
+            <img src="images/jeans72.jpg" class="product-img" alt="Icecream Running Dog Denim Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Hellstar Fire Diamond Denim Shorts</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Hellstar Fire Diamond Denim Shorts',35.00,'images/jeans72.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Bottega Desires Jorts&price=35.00.00&image=images/jeans78.jpg">
+            <img src="images/jeans78.jpg" class="product-img" alt="Bottega Desires Jorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Bottega Desires Jorts</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Bottega Desires Jorts',35.00,'images/jeans78.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Baggy Camouflage Cargo Denim Shorts&price=45.00.00&image=images/jeans83.jpg">
+            <img src="images/jeans83.jpg" class="product-img" alt="Baggy Camouflage Cargo Denim Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Baggy Camouflage Cargo Denim Shorts</h3>
+          <p class="product-price" data-usd="45.00">
+            <span class="primary-price">$45.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Baggy Camouflage Cargo Denim Shorts',45.00,'images/jeans83.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Streetwear Denim Jorts&price=35.00.00&image=images/jeans87.jpg">
+            <img src="images/jeans87.jpg" class="product-img" alt="Streetwear Denim Jorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Streetwear Denim Jorts</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Streetwear Denim Jorts',35.00,'images/jeans87.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Volymoon Y2K Baggy Jean Shorts&price=35.00.00&image=images/jeans93.jpg">
+            <img src="images/jeans93.jpg" class="product-img" alt="Volymoon Y2K Baggy Jean Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Volymoon Y2K Baggy Jean Shorts</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Volymoon Y2K Baggy Jean Shorts',35.00,'images/jeans93.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Aelfric Eden Jorts&price=35.00.00&image=images/jeans97.jpg">
+            <img src="images/jeans97.jpg" class="product-img" alt="Aelfric Eden Jorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Aelfric Eden Jorts</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Aelfric Eden Jorts',35.00,'images/jeans97.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Camouflage Splicing Design Vintage Baggy Jeans&price=40.00.00&image=images/jeans101.jpg">
+            <img src="images/jeans101.jpg" class="product-img" alt="Camouflage Splicing Design Vintage Baggy Jeans">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Camouflage Splicing Design Vintage Baggy Jeans</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Camouflage Splicing Design Vintage Baggy Jeans',40.00,'images/jeans101.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Vale Forever Skittles Jorts&price=45.00.00&image=images/jeans105.jpg">
+            <img src="images/jeans105.jpg" class="product-img" alt="Vale Forever Skittles Jorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Vale Forever Skittles Jorts</h3>
+          <p class="product-price" data-usd="45.00">
+            <span class="primary-price">$45.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Vale Forever Skittles Jorts',45.00,'images/jeans105.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Sume Double Waisted Jorts&price=37.00.00&image=images/jeans109.jpg">
+            <img src="images/jeans109.jpg" class="product-img" alt="Sume Double Waisted Jorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Sume Double Waisted Jorts</h3>
+          <p class="product-price" data-usd="37.00">
+            <span class="primary-price">$37.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Sume Double Waisted Jorts',37.00,'images/jeans109.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Fried Denim Jeans Jorts&price=35.00.00&image=images/jeans113.jpg">
+            <img src="images/jeans113.jpg" class="product-img" alt="Fried Denim Jeans Jorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Fried Denim Jeans Jorts</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Fried Denim Jeans Jorts',35.00,'images/jeans113.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=High Waist Ripped Jorts&price=35.00.00&image=images/jeans113.jpg">
+            <img src="images/jeans116.jpg" class="product-img" alt="High Waist Ripped Jorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">High Waist Ripped Jorts</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('High Waist Ripped Jorts',35.00,'images/jeans113.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Vintage Retro 90s Washed Shorts&price=35.00.00&image=images/jeans120.jpg">
+            <img src="images/jeans120.jpg" class="product-img" alt="Vintage Retro 90s Washed Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Vintage Retro 90s Washed Shorts</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Vintage Retro 90s Washed Shorts',35.00,'images/jeans120.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Acne Studios Judda Keychain Shorts&price=35.00.00&image=images/jeans123.jpg">
+            <img src="images/jeans123.jpg" class="product-img" alt="Vintage Retro 90s Washed Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Acne Studios Judda Keychain Shorts</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Acne Studios Judda Keychain Shorts',35.00,'images/jeans123.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Cortiez Jorts&price=35.00.00&image=images/jeans129.jpg">
+            <img src="images/jeans129.jpg" class="product-img" alt="Cortiez Jorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Cortiez Jorts</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Cortiez Jorts',35.00,'images/jeans129.jpg')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="category-section" id="hoodies-collection">
+    <h3 class="section-title">Classic Hoodies</h3>
+    <div class="products">
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Risen King Cropped Zip-Up Hoodie&price=30.00.00&image=images/hoodie1.jpg">
+            <img src="images/hoodie1.jpg" class="product-img" alt="Risen King Cropped Zip-Up Hoodie">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Risen King Cropped Zip-Up Hoodie</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Risen King Cropped Zip-Up Hoodie',30.00,'images/hoodie1.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Fallen Angel Hoodie&price=30.00.00&image=images/hoodie6.jpg">
+            <img src="images/hoodie6.jpg" class="product-img" alt="Fallen Angel Hoodie">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Fallen Angel Hoodie</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Fallen Angel Hoodie',30.00,'images/hoodie6.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Y2K Star Patchwork Hoodie&price=35.00.00&image=images/hoodie13.jpg">
+            <img src="images/hoodie13.jpg" class="product-img" alt="Y2K Star Patchwork Hoodie">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Y2K Star Patchwork Hoodie</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Y2K Star Patchwork Hoodie',35.00,'images/hoodie13.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Silence of Damned Skull Hoodie&price=35.00.00&image=images/hoodie17.jpg">
+            <img src="images/hoodie17.jpg" class="product-img" alt="Silence of Damned Skull Hoodie">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Silence of Damned Skull Hoodie</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Silence of Damned Skull Hoodie',35.00,'images/hoodie17.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Astro-World Hoodie&price=35.00.00&image=images/hoodie20.jpg">
+            <img src="images/hoodie20.jpg" class="product-img" alt="Astro-World Hoodie">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Astro-World Hoodie</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Astro-World Hoodie',35.00,'images/hoodie20.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Fuzzy Mohair Sweater&price=35.00.00&image=images/hoodie23.jpg">
+            <img src="images/hoodie23.jpg" class="product-img" alt="Fuzzy Mohair Sweater">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Fuzzy Mohair Sweater</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Fuzzy Mohair Sweater',35.00,'images/hoodie23.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=INFW Hoodie&price=35.00.00&image=images/hoodie28.jpg">
+            <img src="images/hoodie28.jpg" class="product-img" alt="INFW Hoodie">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">INFW Hoodie</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('INFW Hoodie',35.00,'images/hoodie28.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Trapstar Hoodie&price=40.00.00&image=images/hoodie33.jpg">
+            <img src="images/hoodie33.jpg" class="product-img" alt="Trapstar Hoodie">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Trapstar Hoodie</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Trapstar Hoodie',40.00,'images/hoodie33.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Choppa Krazy Hoodie&price=40.00.00&image=images/hoodie36.jpg">
+            <img src="images/hoodie36.jpg" class="product-img" alt="Choppa Krazy Hoodie">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Choppa Krazy Hoodie</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Choppa Krazy Hoodie',40.00,'images/hoodie36.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=LMLDUSA Hoodie&price=40.00.00&image=images/hoodie41.jpg">
+            <img src="images/hoodie41.jpg" class="product-img" alt="LMLDUSA Hoodie">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">LMLDUSA Hoodie</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('LMLDUSA Hoodie',40.00,'images/hoodie41.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Kozy Pullover Hoodie&price=40.00.00&image=images/hoodie43.jpg">
+            <img src="images/hoodie43.jpg" class="product-img" alt="LMLDUSA Hoodie">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Kozy Pullover Hoodie</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('LMLDUSA Hoodie',40.00,'images/hoodie43.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Doll House Hoodie&price=45.00.00&image=images/hoodie48.jpg">
+            <img src="images/hoodie48.jpg" class="product-img" alt="LMLDUSA Hoodie">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Doll House Hoodie</h3>
+          <p class="product-price" data-usd="45.00">
+            <span class="primary-price">$45.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Doll House Hoodie',45.00,'images/hoodie48.jpg')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="category-section" id="shirts-collection">
+    <h3 class="section-title">Vintage Shirts & Tank Tops</h3>
+    <div class="products">
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Nirvana T-Shirt&price=30.00.00&image=images/shirt1.jpg">
+            <img src="images/shirt1.jpg" class="product-img" alt="Nirvana T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Nirvana T-Shirt</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Nirvana T-Shirt',30.00,'images/shirt1.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Mötley Crüe T-Shirt&price=30.00.00&image=images/shirt10.jpg">
+            <img src="images/shirt10.jpg" class="product-img" alt="Mötley Crüe T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Mötley Crüe T-Shirt</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Mötley Crüe T-Shirt',30.00,'images/shirt10.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Time Will Tell T-Shirt&price=30.00.00&image=images/shirt14.jpg">
+            <img src="images/shirt14.jpg" class="product-img" alt="Time Will Tell T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Time Will Tell T-Shirt</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Time Will Tell T-Shirt',30.00,'images/shirt14.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Box Fit Mesh Jerseys&price=30.00.00&image=images/shirt18.jpg">
+            <img src="images/shirt18.jpg" class="product-img" alt="Box Fit Mesh Jerseys">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Box Fit Mesh Jerseys</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Box Fit Mesh Jerseys',30.00,'images/shirt18.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Shadow Face T-Shirt&price=30.00.00&image=images/shirt30.jpg">
+            <img src="images/shirt30.jpg" class="product-img" alt="Shadow Face T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Shadow Face T-Shirt</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Shadow Face T-Shirt',30.00,'images/shirt30.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Billionaire Studios T-Shirts&price=30.00.00&image=images/shirt35.jpg">
+            <img src="images/shirt35.jpg" class="product-img" alt="Billionaire Studios T-Shirts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Billionaire Studios T-Shirts</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Billionaire Studios T-Shirts',30.00,'images/shirt35.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Desire T-Shirt&price=35.00.00&image=images/shirt40.jpg">
+            <img src="images/shirt40.jpg" class="product-img" alt="Desire T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Desire T-Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Desire T-Shirt',35.00,'images/shirt40.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Plain T-Shirt&price=15.00.00&image=images/shirt45.jpg">
+            <img src="images/shirt45.jpg" class="product-img" alt="Plain T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Plain T-Shirt</h3>
+          <p class="product-price" data-usd="15.00">
+            <span class="primary-price">$15.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Plain T-Shirt',15.00,'images/shirt45.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Oversized Anime Cartoon T-Shirt&price=30.00.00&image=images/shirt53.jpg">
+            <img src="images/shirt53.jpg" class="product-img" alt="Oversized Anime Cartoon T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Oversized Anime Cartoon T-Shirt</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Oversized Anime Cartoon T-Shirt',30.00,'images/shirt53.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Multi Persona T-Shirt&price=28.00.00&image=images/shirt61.jpg">
+            <img src="images/shirt61.jpg" class="product-img" alt="Multi Persona T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Multi Persona T-Shirt</h3>
+          <p class="product-price" data-usd="28.00">
+            <span class="primary-price">$28.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Multi Persona T-Shirt',28.00,'images/shirt61.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Vintage Sports Shirt&price=28.00.00&image=images/shirt68.jpg">
+            <img src="images/shirt68.jpg" class="product-img" alt="Vintage Sports Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Vintage Sports Shirt</h3>
+          <p class="product-price" data-usd="28.00">
+            <span class="primary-price">$28.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Vintage Sports Shirt',28.00,'images/shirt68.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Striped Crewneck Sweater&price=28.00.00&image=images/shirt76.jpg">
+            <img src="images/shirt76.jpg" class="product-img" alt="Striped Crewneck Sweater">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Striped Crewneck Sweater</h3>
+          <p class="product-price" data-usd="28.00">
+            <span class="primary-price">$28.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Striped Crewneck Sweater',28.00,'images/shirt76.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Sleeveless Shirt&price=27.00.00&image=images/shirt81.jpg">
+            <img src="images/shirt81.jpg" class="product-img" alt="Sleeveless Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Sleeveless Shirt</h3>
+          <p class="product-price" data-usd="27.00">
+            <span class="primary-price">$27.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Sleeveless Shirt',27.00,'images/shirt81.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Grunge Graphic Long Sleeve&price=28.00.00&image=images/shirt87.jpg">
+            <img src="images/shirt87.jpg" class="product-img" alt="Grunge Graphic Long Sleeve">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Grunge Graphic Long Sleeve</h3>
+          <p class="product-price" data-usd="28.00">
+            <span class="primary-price">$28.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Grunge Graphic Long Sleeve',28.00,'images/shirt87.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Camo Sweater&price=40.00.00&image=images/shirt97.jpg">
+            <img src="images/shirt97.jpg" class="product-img" alt="Camo Sweater">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Camo Sweater</h3>
+          <p class="product-price" data-usd="40.00">
+            <span class="primary-price">$40.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Camo Sweater',40.00,'images/shirt97.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=SSSaint Louis Sweatshirt&price=45.00.00&image=images/shirt98.jpg">
+            <img src="images/shirt98.jpg" class="product-img" alt="SSSaint Louis Sweatshirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">SSSaint Louis Sweatshirt</h3>
+          <p class="product-price" data-usd="45.00">
+            <span class="primary-price">$45.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('SSSaint Louis Sweatshirt',45.00,'images/shirt98.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Holy Spirit Rugby Shirt&price=50.00.00&image=images/shirt104.jpg">
+            <img src="images/shirt104.jpg" class="product-img" alt="Holy Spirit Rugby Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Holy Spirit Rugby Shirt</h3>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Holy Spirit Rugby Shirt',50.00,'images/shirt104.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Cardinals Jersey Shirt&price=20.00.00&image=images/shirt113.jpg">
+            <img src="images/shirt113.jpg" class="product-img" alt="Cardinals Jersey Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Cardinals Jersey Shirt</h3>
+          <p class="product-price" data-usd="20.00">
+            <span class="primary-price">$20.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Cardinals Jersey Shirt',20.00,'images/shirt113.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Gallery Dept. Stadium Uniform Shirt&price=20.00.00&image=images/shirt118.jpg">
+            <img src="images/shirt118.jpg" class="product-img" alt="Gallery Dept. Stadium Uniform Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Gallery Dept. Stadium Uniform Shirt</h3>
+          <p class="product-price" data-usd="20.00">
+            <span class="primary-price">$20.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Gallery Dept. Stadium Uniform Shirt',20.00,'images/shirt118.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Graphic Print T-Shirt&price=20.00.00&image=images/shirt124.jpg">
+            <img src="images/shirt124.jpg" class="product-img" alt="Graphic Print T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Graphic Print T-Shirt</h3>
+          <p class="product-price" data-usd="20.00">
+            <span class="primary-price">$20.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Graphic Print T-Shirt',20.00,'images/shirt124.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Polo T-Shirt&price=35.00.00&image=images/shirt126.jpg">
+            <img src="images/shirt126.jpg" class="product-img" alt="Polo T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Polo T-Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Polo T-Shirt',35.00,'images/shirt126.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Embroidered Polo T-Shirt&price=35.00.00&image=images/shirt132.jpg">
+            <img src="images/shirt132.jpg" class="product-img" alt="Embroidered Polo T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Embroidered Polo T-Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Embroidered Polo T-Shirt',35.00,'images/shirt132.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Jersey Shirt&price=35.00.00&image=images/shirt136.jpg">
+            <img src="images/shirt136.jpg" class="product-img" alt="Jersey Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Jersey Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Jersey Shirt',35.00,'images/shirt136.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Enbrand T-Shirt&price=35.00.00&image=images/shirt141.jpg">
+            <img src="images/shirt141.jpg" class="product-img" alt="Enbrand T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Enbrand T-Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Enbrand T-Shirt',35.00,'images/shirt141.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Sunshine T-Shirt&price=35.00.00&image=images/shirt143.jpg">
+            <img src="images/shirt143.jpg" class="product-img" alt="Sunshine T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Sunshine T-Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Sunshine T-Shirt',35.00,'images/shirt143.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+       <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Shark T-Shirt&price=35.00.00&image=images/shirt148.jpg">
+            <img src="images/shirt148.jpg" class="product-img" alt="Shark T-Shirt ">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Shark T-Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Shark T-Shirt',35.00,'images/shirt148.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Painbows T-Shirt&price=35.00.00&image=images/shirt154.jpg">
+            <img src="images/shirt154.jpg" class="product-img" alt="Painbows T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Painbows T-Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Painbows T-Shirt',35.00,'images/shirt154.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Dunkin Donuts T-Shirt&price=35.00.00&image=images/shirt159.jpg">
+            <img src="images/shirt159.jpg" class="product-img" alt="Dunkin’ Donuts T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Dunkin’ Donuts T-Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Dunkin Donuts T-Shirt',35.00,'images/shirt159.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=9 GML T-Shirt&price=35.00.00&image=images/shirt164.jpg">
+            <img src="images/shirt164.jpg" class="product-img" alt="9 GML T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">9 GML T-Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('9 GML T-Shirt',35.00,'images/shirt164.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Barcelona Shirt&price=35.00.00&image=images/shirt167.jpg">
+            <img src="images/shirt167.jpg" class="product-img" alt="Barcelona Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Barcelona Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Barcelona Shirt',35.00,'images/shirt167.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Drew House Secret SS T-Shirt&price=50.00.00&image=images/shirt173.jpg">
+            <img src="images/shirt173.jpg" class="product-img" alt="Drew House Secret SS T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Drew House Secret SS T-Shirt</h3>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Drew House Secret SS T-Shirt',50.00,'images/shirt173.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Dickies T-Shirt&price=50.00.00&image=images/shirt181.jpg">
+            <img src="images/shirt181.jpg" class="product-img" alt="Dickies T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Dickies T-Shirt</h3>
+          <p class="product-price" data-usd="50.00">
+            <span class="primary-price">$50.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Dickies T-Shirt',50.00,'images/shirt181.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Nike Dri-FIT Men Training T-Shirt&price=35.00.00&image=images/shirt188.jpg">
+            <img src="images/shirt188.jpg" class="product-img" alt="Nike Dri-FIT Men’s Training T-Shirt">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Nike Dri-FIT Men Training T-Shirt</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Nike Dri-FIT Men Training T-Shirt',35.00,'images/shirt188.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Ribbed Tank Tops&price=10.00.00&image=images/shirt192.jpg">
+            <img src="images/shirt192.jpg" class="product-img" alt="Ribbed Tank Tops">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Ribbed Tank Tops</h3>
+          <p class="product-price" data-usd="10.00">
+            <span class="primary-price">$10.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Ribbed Tank Tops',10.00,'images/shirt192.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Roughplay Tank Tops&price=30.00.00&image=images/shirt199.jpg">
+            <img src="images/shirt199.jpg" class="product-img" alt="Ribbed Tank Tops">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Roughplay Tank Tops</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Roughplay Tank Tops',30.00,'images/shirt199.jpg')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="category-section" id="shorts-collection">
+    <h3 class="section-title">shorts</h3>
+    <div class="products">
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Gouge Shorts&price=30.00.00&image=images/shorts1.jpg">
+            <img src="images/shorts1.jpg" class="product-img" alt="Gouge Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Gouge Shorts</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Gouge Shorts',30.00,'images/shorts1.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Georgetown Hoyas Shorts&price=30.00.00&image=images/shorts3.jpg">
+            <img src="images/shorts3.jpg" class="product-img" alt="Georgetown Hoyas Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Georgetown Hoyas Shorts</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Georgetown Hoyas Shorts',30.00,'images/shorts3.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Nike Dri-FIT Shorts&price=25.00.00&image=images/shorts8.jpg">
+            <img src="images/shorts8.jpg" class="product-img" alt="Nike Dri-FIT Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Nike Dri-FIT Shorts</h3>
+          <p class="product-price" data-usd="25.00">
+            <span class="primary-price">$25.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Nike Dri-FIT Shorts',25.00,'images/shorts8.jpg')">Add to Cart</button>
+        </div>
+      </div>
+      
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Drawstring Shorts&price=30.00.00&image=images/shorts15.jpg">
+            <img src="images/shorts15.jpg" class="product-img" alt="Drawstring Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Drawstring Shorts</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Drawstring Shorts',30.00,'images/shorts15.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Trapstar Shorts&price=32.00.00&image=images/shorts18.jpg">
+            <img src="images/shorts18.jpg" class="product-img" alt="Trapstar Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Trapstar Shorts</h3>
+          <p class="product-price" data-usd="32.00">
+            <span class="primary-price">$32.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Trapstar Shorts',32.00,'images/shorts18.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Corteiz Cruise Summer Shorts&price=35.00.00&image=images/shorts28.jpg">
+            <img src="images/shorts28.jpg" class="product-img" alt="Corteiz Cruise Summer Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Corteiz Cruise Summer Shorts</h3>
+          <p class="product-price" data-usd="35.00">
+            <span class="primary-price">$35.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Corteiz Cruise Summer Shorts',35.00,'images/shorts28.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product">
+        <div class="product-img-container">
+          <a href="checkout.html?product=Cargo Shorts&price=30.00.00&image=images/shorts32.jpg">
+            <img src="images/shorts32.jpg" class="product-img" alt="Cargo Shorts">
+          </a>
+        </div>
+        <div class="product-content">
+          <h3 class="product-title">Cargo Shorts</h3>
+          <p class="product-price" data-usd="30.00">
+            <span class="primary-price">$30.00</span>
+            <span class="secondary-price"></span>
+          </p>
+          <button class="add-to-cart" onclick="addToCart('Cargo Shorts',30.00,'images/shorts32.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </section>
 <!-- Social CTA -->
   <section class="social-cta">
@@ -2793,7 +4412,6 @@
 </footer>
 <div class="cart-notification" id="cart-notification">Item added to cart!</div>
 <script>
-
   // Add this function to format numbers with commas
   function formatNumber(num) {
     // Split the number into integer and decimal parts
@@ -2810,6 +4428,7 @@
       event.stopPropagation(); // Stops the click event from bubbling up to the <a> tag
     });
   }); 
+  
   document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
@@ -2827,9 +4446,9 @@
     
     const exchangeRates = {
       USD: 1,
-      GHS: 12.50,
-      NGN: 1650,
-      LRD: 195
+      GHS: 13.50,
+      NGN: 1000,
+      LRD: 230
     };
     
     function updatePrices(currency) {
@@ -2920,6 +4539,174 @@
     };
     
     updateCartCount();
+    
+    // Search functionality
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+    const searchResults = document.getElementById('search-results');
+    const clearSearch = document.getElementById('clear-search');
+    const searchInfo = document.getElementById('search-info');
+    const categorySections = document.querySelectorAll('.category-section');
+    const products = document.querySelectorAll('.product');
+    
+    // Function to highlight search terms in text
+    function highlightText(text, searchTerm) {
+      if (!searchTerm) return text;
+      
+      const regex = new RegExp(`(${searchTerm})`, 'gi');
+      return text.replace(regex, '<span class="search-highlight">$1</span>');
+    }
+    
+    // Function to perform search
+    function performSearch() {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      
+      if (searchTerm === '') {
+        // If search is empty, show all products and categories
+        categorySections.forEach(section => {
+          section.classList.remove('hidden');
+        });
+        
+        products.forEach(product => {
+          product.classList.remove('hidden');
+        });
+        
+        searchResults.style.display = 'none';
+        searchInfo.style.display = 'none';
+        clearSearch.style.display = 'none';
+        return;
+      }
+      
+      // Show clear search button
+      clearSearch.style.display = 'inline-block';
+      
+      let foundProducts = 0;
+      
+      // Hide all products first
+      products.forEach(product => {
+        product.classList.add('hidden');
+      });
+      
+      // Show only matching products
+      products.forEach(product => {
+        const productTitle = product.querySelector('.product-title').textContent.toLowerCase();
+        
+        if (productTitle.includes(searchTerm)) {
+          product.classList.remove('hidden');
+          foundProducts++;
+          
+          // Highlight the search term in the product title
+          const titleElement = product.querySelector('.product-title');
+          titleElement.innerHTML = highlightText(titleElement.textContent, searchTerm);
+        }
+      });
+      
+      // Show/hide category sections based on whether they have visible products
+      categorySections.forEach(section => {
+        const sectionProducts = section.querySelectorAll('.product');
+        const visibleProducts = Array.from(sectionProducts).filter(product => !product.classList.contains('hidden'));
+        
+        if (visibleProducts.length > 0) {
+          section.classList.remove('hidden');
+        } else {
+          section.classList.add('hidden');
+        }
+      });
+      
+      // Show search info
+      searchInfo.textContent = `Found ${foundProducts} product${foundProducts !== 1 ? 's' : ''} matching "${searchTerm}"`;
+      searchInfo.style.display = 'block';
+      
+      // Hide dropdown results
+      searchResults.style.display = 'none';
+    }
+    
+    // Function to show dropdown search results
+    function showDropdownResults() {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      
+      if (searchTerm === '') {
+        searchResults.style.display = 'none';
+        return;
+      }
+      
+      let resultsHTML = '';
+      let resultCount = 0;
+      
+      products.forEach(product => {
+        const productTitle = product.querySelector('.product-title').textContent;
+        const productPrice = product.querySelector('.primary-price').textContent;
+        const productImage = product.querySelector('.product-img').src;
+        const productCategory = product.closest('.category-section').querySelector('.section-title').textContent;
+        
+        if (productTitle.toLowerCase().includes(searchTerm)) {
+          resultCount++;
+          resultsHTML += `
+            <div class="search-result-item" data-product-title="${productTitle}">
+              <img src="${productImage}" alt="${productTitle}">
+              <div class="product-info">
+                <div class="product-name">${highlightText(productTitle, searchTerm)}</div>
+                <div class="product-price">${productPrice}</div>
+                <div class="product-category">${productCategory}</div>
+              </div>
+            </div>
+          `;
+        }
+      });
+      
+      if (resultCount === 0) {
+        resultsHTML = '<div class="no-results">No products found</div>';
+      }
+      
+      searchResults.innerHTML = resultsHTML;
+      searchResults.style.display = 'block';
+      
+      // Add click event to search result items
+      document.querySelectorAll('.search-result-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const productTitle = item.getAttribute('data-product-title');
+          searchInput.value = productTitle;
+          performSearch();
+          searchResults.style.display = 'none';
+          
+          // Scroll to the first matching product
+          const firstMatchingProduct = document.querySelector(`.product-title:contains("${productTitle}")`).closest('.product');
+          if (firstMatchingProduct) {
+            firstMatchingProduct.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      });
+    }
+    
+    // Event listeners for search
+    searchInput.addEventListener('input', () => {
+      showDropdownResults();
+    });
+    
+    searchButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      performSearch();
+    });
+    
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        performSearch();
+      }
+    });
+    
+    clearSearch.addEventListener('click', () => {
+      searchInput.value = '';
+      performSearch();
+      searchResults.style.display = 'none';
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-container')) {
+        searchResults.style.display = 'none';
+      }
+    });
   });
 </script>
 </body>
